@@ -1,48 +1,48 @@
-# День 00 - Интенсив SQL
+# Day 00 - Piscine SQL
 
-## _Реляционная модель данных и SQL_
+## _Relational Data Model and SQL_
 
-Резюме: Сегодня вы увидите, как работает реляционная модель и как получить необходимые данные на основе базовых конструкций SQL.
+Resume: Today you will see how relational model works and how to get needed data based on basic constructions of  SQL
 
-## Содержание
+## Contents
 
-1. [Глава I](#chapter-i) \
-    1.1. [Преамбула](#preamble)
-2. [Глава II](#chapter-ii) \
-    2.1. [Основные правила](#general-rules)
-3. [Глава III](#chapter-iii) \
-    3.1. [Правила дня ](#rules-of-the-day)  
-4. [Глава IV](#chapter-iv) \
-    4.1. [Упражнение 00 - Первые шаги в мир SQL](#exercise-00-first-steps-into-sql-world)  
-5. [Глава V](#chapter-v) \
-    5.1. [Упражнение 01 - Первые шаги в мир SQL](#exercise-01-first-steps-into-sql-world)  
-6. [Глава VI](#chapter-vi) \
-    6.1. [Упражнение 02 - Первые шаги в мир SQL](#exercise-02-first-steps-into-sql-world)  
-7. [Глава VII](#chapter-vii) \
-    7.1. [Упражнение 03 - Первые шаги в мир SQL](#exercise-03-first-steps-into-sql-world)  
-8. [Глава VIII](#chapter-viii) \
-    8.1. [Упражнение 04 - Первые шаги в мир SQL](#exercise-04-first-steps-into-sql-world)
-9. [Глава IX](#chapter-ix) \
-    9.1. [Упражнение 05 - Первые шаги в мир SQL](#exercise-05-first-steps-into-sql-world)
-10. [Глава X](#chapter-x) \
-    10.1. [Упражнение 06 - Первые шаги в мир SQL](#exercise-06-first-steps-into-sql-world)
-11. [Глава XI](#chapter-xi) \
-    11.1. [Упражнение 07 - Первые шаги в мир SQL](#exercise-07-first-steps-into-sql-world)
-12. [Глава XII](#chapter-xii) \
-    12.1. [Упражнение 08 - Первые шаги в мир SQL](#exercise-08-first-steps-into-sql-world)
-13. [Глава XIII](#chapter-xiii) \
-    13.1. [Упражнение 09 - Первые шаги в мир SQL](#exercise-09-first-steps-into-sql-world)
+1. [Chapter I](#chapter-i) \
+    1.1. [Preamble](#preamble)
+2. [Chapter II](#chapter-ii) \
+    2.1. [General Rules](#general-rules)
+3. [Chapter III](#chapter-iii) \
+    3.1. [Rules of the day](#rules-of-the-day)  
+4. [Chapter IV](#chapter-iv) \
+    4.1. [Exercise 00 - First steps into SQL world](#exercise-00-first-steps-into-sql-world)  
+5. [Chapter V](#chapter-v) \
+    5.1. [Exercise 01 - First steps into SQL world](#exercise-01-first-steps-into-sql-world)  
+6. [Chapter VI](#chapter-vi) \
+    6.1. [Exercise 02 - First steps into SQL world](#exercise-02-first-steps-into-sql-world)  
+7. [Chapter VII](#chapter-vii) \
+    7.1. [Exercise 03 - First steps into SQL world](#exercise-03-first-steps-into-sql-world)  
+8. [Chapter VIII](#chapter-viii) \
+    8.1. [Exercise 04 - First steps into SQL world](#exercise-04-first-steps-into-sql-world)
+9. [Chapter IX](#chapter-ix) \
+    9.1. [Exercise 05 - First steps into SQL world](#exercise-05-first-steps-into-sql-world)
+10. [Chapter X](#chapter-x) \
+    10.1. [Exercise 06 - First steps into SQL world](#exercise-06-first-steps-into-sql-world)
+11. [Chapter XI](#chapter-xi) \
+    11.1. [Exercise 07 - First steps into SQL world](#exercise-07-first-steps-into-sql-world)
+12. [Chapter XII](#chapter-xii) \
+    12.1. [Exercise 08 - First steps into SQL world](#exercise-08-first-steps-into-sql-world)
+13. [Chapter XIII](#chapter-xiii) \
+    13.1. [Exercise 09 - First steps into SQL world](#exercise-09-first-steps-into-sql-world)
 
-## Глава I
-## Преамбула
+## Chapter I
+## Preamble
 
 ![D01_01](misc/images/D01_01.png)
 
-Стандарты повсюду, и реляционные базы данных тоже под контролем :-). Честно говоря, более ограниченные стандарты SQL были в начале 2000-х годов. На самом деле, когда родился паттерн «Большие данные», у реляционных баз данных был свой способ реализации этого паттерна, и поэтому стандарты сейчас более… легковесны. 
+Standards are everywhere, and Relational Databases are under control as well :-). To be honest between us, more restricted SQL standards were at the beginning of 2000 years. Actually when the “Big Data” pattern was born, Relational Databases had their own way to realize this pattern and therefore standards right now are more ... lightweight. 
 
 ![D01_02](misc/images/D01_02.png)
 
-Ознакомьтесь с приведенными ниже стандартами SQL и подумайте о будущем реляционных баз данных.
+Please take a look at some SQL standards below and try to think about the future of Relational Databases.
 
 |  |  |
 | ------ | ------ |
@@ -50,64 +50,64 @@
 | ![D01_05](misc/images/D01_05.png) | ![D01_06](misc/images/D01_06.png) |
 | ![D01_07](misc/images/D01_07.png) | ![D01_08](misc/images/D01_08.png) |
 
-## Глава II
-## Основные правила
+## Chapter II
+## General Rules
 
-- Используйте эту страницу как единственную инструкцию. Не слушайте никаких слухов и домыслов о том, как подготовить своё решение.
-- Пожалуйста, убедитесь, что вы используете последнюю версию PostgreSQL.
-- Это совершенно нормально, если вы используете IDE для написания исходного кода (он же SQL-скрипт).
-- Для оценки ваше решение должно находиться в вашем репозитории GIT.
-- Ваши решения будут оценены вашими товарищами по интенсиву.
-- Вы не должны оставлять в своем каталоге никаких других файлов, кроме тех, которые явно указаны в инструкциях к упражнению. Рекомендуется изменить ваш .gitignoreчтобы избежать случайностей.
-- У вас есть вопрос? Спросите у соседа справа. Если не помогло - попробуйте с соседом слева.
-- Ваш справочник: товарищи/интернет/гугл.
-- Внимательно прочитайте примеры. Они могут понять вещи, которые иначе не указаны в задании. 
-- И да прибудет с вами сила SQL!
-- Абсолютно все можно представить в SQL! Давайте начнем и получайте удовольствие!
+- Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
+- Please make sure you are using the latest version of PostgreSQL.
+- That is completely OK if you are using IDE to write a source code (aka SQL script).
+- To be assessed your solution must be in your GIT repository.
+- Your solutions will be evaluated by your piscine mates.
+- You should not leave in your directory any other file than those explicitly specified by the exercise instructions. It is recommended that you modify your `.gitignore` to avoid accidents.
+- Do you have a question? Ask your neighbor on the right. Otherwise, try with your neighbor on the left.
+- Your reference manual: mates / Internet / Google. 
+- Read the examples carefully. They may require things that are not otherwise specified in the subject.
+- And may the SQL-Force be with you!
+- Absolutely everything can be presented in SQL! Let’s start and have fun!
 
-## Глава III
-## Правила дня
+## Chapter III
+## Rules of the day
 
-- Убедитесь, что у вас есть собственная база данных и доступ к ней в вашем кластере PostgreSQL.
-- Загрузите скрипт с моделью базы данных здесь и примените его к своей базе данных (вы можете использовать командную строку с psql или просто запустить его через любую IDE, например DataGrip от JetBrains или pgAdmin от сообщества PostgreSQL).
-- Все задачи содержат список разрешенных и запрещенных разделов с перечисленными параметрами базы данных, типами баз данных, конструкциями SQL и т. д. Пожалуйста, ознакомьтесь с разделом перед началом.
-- Пожалуйста, взгляните на логическое представление нашей модели базы данных.
+- Please make sure you have an own database and access for it on your PostgreSQL cluster. 
+- Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). 
+- All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
+- Please take a look at the Logical View of our Database Model. 
 
 ![schema](misc/images/schema.png)
 
 
-1. Таблица **pizzeria** (Таблица-словарь с доступными пиццериями)
-- поле ``id`` - первичный ключ (primary key)
-- поле ``name`` - название пиццерии
-- поле ``rating`` - средний рейтинг пиццерии (от 0 до 5 баллов)
-2. Таблица **person** (Таблица-словарь с людьми, которые любят пиццу)
-- поле ``id`` - первичный ключ (primary key)
-- поле ``name`` - имя человека
-- поле ``age`` - возраст человека
-- поле ``gender`` - пол человека
-- поле ``address`` - адрес человека
-3. Таблица **menu** (Таблица-словарь с доступным меню и ценой на конкретную пиццу)
-- поле ``id`` - первичный ключ (primary key)
-- поле ``pizzeria_id`` - внешний ключ к пиццерии
-- поле ``pizza_name`` - название пиццы в пиццерии
-- поле ``price`` - цена конкретной пиццы
-4. Таблица **person_visits** (Операционная таблица с информацией о посещениях пиццерии)
-- поле ``id`` - первичный ключ (primary key)
-- поле ``person_id`` - внешний ключ к человеку
-- поле ``pizzeria_id`` - внешний ключ к пиццерии
-- поле ``visit_date`` - дата (например 2022-01-01) посещения пиццерии человеком
-5. Таблица **person_order** (операционная таблица с информацией о заказах людей)
-- поле ``id`` - первичный ключ (primary key)
-- поле ``person_id`` - внешний ключ к человеку
-- поле ``menu_id`` - внешний ключ к меню
-- поле ``order_date`` - дата (например 2022-01-01) заказа человека
+1. **pizzeria** table (Dictionary Table with available pizzerias)
+- field id - primary key
+- field name - name of pizzeria
+- field rating - average rating of pizzeria (from 0 to 5 points)
+2. **person** table (Dictionary Table with persons who loves pizza)
+- field id - primary key
+- field name - name of person
+- field age - age of person
+- field gender - gender of person
+- field address - address of person
+3. **menu** table (Dictionary Table with available menu and price for concrete pizza)
+- field id - primary key
+- field pizzeria_id - foreign key to pizzeria
+- field pizza_name - name of pizza in pizzeria
+- field price - price of concrete pizza
+4. **person_visits** table (Operational Table with information about visits of pizzeria)
+- field id - primary key
+- field person_id - foreign key to person
+- field pizzeria_id - foreign key to pizzeria
+- field visit_date - date (for example 2022-01-01) of person visit 
+5. **person_order** table (Operational Table with information about persons orders)
+- field id - primary key
+- field person_id - foreign key to person
+- field menu_id - foreign key to menu
+- field order_date - date (for example 2022-01-01) of person order 
 
-Посещение (visit_date) и заказ (order_date) - это разные сущности, и нет никакой корреляции между их данными. Например, клиент может находиться в одном месте (просто просматривая меню) и в это время сделать заказ в другом по телефону или с помощью мобильного приложения. Или позвонить из дома с заказом без каких-либо визитов.
+Persons' visit and persons' order are different entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
 
-## Глава IV
-## Упражнение 00 - Первые шаги в мир SQL
+## Chapter IV
+## Exercise 00 - First steps into SQL world
 
-| Упражнение 00: Первые шаги в мир SQL |                                                                                                                          |
+| Exercise 00: First steps into SQL world |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex00                                                                                                                     |
 | Files to turn-in                      | `day00_ex00.sql`                                                                                 |
@@ -118,10 +118,10 @@ Let’s make our first task.
 Please make a select statement which returns all person's names and person's ages from the city ‘Kazan’.
 
 
-## Глава V
-## Упражнение 01 - Первые шаги в мир SQL
+## Chapter V
+## Exercise 01 - First steps into SQL world
 
-| Упражнение 01: Первые шаги в мир SQL |                                                                                                                          |
+| Exercise 01: First steps into SQL world |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex01                                                                                                                     |
 | Files to turn-in                      | `day00_ex01.sql`                                                                                 |
@@ -130,10 +130,10 @@ Please make a select statement which returns all person's names and person's age
 
 Please make a select statement which returns names , ages for all womens from the city ‘Kazan’. Yep, and please sort result by name.
 
-## Глава VI
-## Упражнение 02 - Первые шаги в мир SQL
+## Chapter VI
+## Exercise 02 - First steps into SQL world
 
-| Упражнение 02: Первые шаги в мир SQL |                                                                                                                          |
+| Exercise 02: First steps into SQL world |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex02                                                                                                                     |
 | Files to turn-in                      | `day00_ex02.sql`                                                                                 |
@@ -144,10 +144,10 @@ Please make 2 syntax different select statements which return a list of pizzeria
 - the 1st select statement must contain comparison signs  (<=, >=)
 - the 2nd select statement must contain `BETWEEN` keyword
 
-## Глава VII
-## Упражнение 03 - Первые шаги в мир SQL
+## Chapter VII
+## Exercise 03 - First steps into SQL world
 
-| Упражнение 03: Первые шаги в мир SQL |                                                                                                                          |
+| Exercise 03: First steps into SQL world |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex03                                                                                                                     |
 | Files to turn-in                      | `day00_ex03.sql`                                                                                 |
@@ -156,11 +156,11 @@ Please make 2 syntax different select statements which return a list of pizzeria
 
 Please make a select statement which returns the person's identifiers (without duplication) which visited pizzerias in a period from 6th of January 2022 to 9th of January 2022 (including all days) or visited pizzeria with identifier 2. Also include ordering clause by person identifier in descending mode.
 
-## Глава VIII
-## Упражнение 04 - Первые шаги в мир SQL
+## Chapter VIII
+## Exercise 04 - First steps into SQL world
 
 
-| Упражнение 04: Первые шаги в мир SQL |                                                                                                                          |
+| Exercise 04: First steps into SQL world |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex04                                                                                                                     |
 | Files to turn-in                      | `day00_ex04.sql`                                                                                 |
@@ -174,11 +174,11 @@ Please make a select statement which returns one calculated field with name ‘p
 Finally , please add the ordering clause by calculated column in ascending mode.
 Please pay attention to quote symbols in your formula!
 
-## Глава IX
-## Упражнение 05 - Первые шаги в мир SQL
+## Chapter IX
+## Exercise 05 - First steps into SQL world
 
 
-| Упражнение 05: Первые шаги в мир SQL |                                                                                                                          |
+| Exercise 05: First steps into SQL world |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex05                                                                                                                     |
 | Files to turn-in                      | `day00_ex05.sql`                                                                                 |
@@ -196,11 +196,11 @@ Please take a look at the pattern of internal query.
     FROM ...
     WHERE ...
 
-## Глава X
-## Упражнение 06 - Первые шаги в мир SQL
+## Chapter X
+## Exercise 06 - First steps into SQL world
 
 
-| Упражнение 06: Первые шаги в мир SQL |                                                                                                                          |
+| Exercise 06: First steps into SQL world |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex06                                                                                                                     |
 | Files to turn-in                      | `day00_ex06.sql`                                                                                 |
@@ -214,11 +214,11 @@ Please use SQL construction from Exercise 05 and add a new calculated column (us
     if (person_name == 'Denis') then return true
         else return false
 
-## Глава XI
-## Упражнение 07 - Первые шаги в мир SQL
+## Chapter XI
+## Exercise 07 - First steps into SQL world
 
 
-| Упражнение 07: Первые шаги в мир SQL |                                                                                                                          |
+| Exercise 07: First steps into SQL world |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex07                                                                                                                     |
 | Files to turn-in                      | `day00_ex07.sql`                                                                                 |
@@ -234,11 +234,11 @@ Please make a SQL statement which returns a person's identifiers, person's names
 
 and yes...please sort a result by ‘interval_info’ column in ascending mode.
 
-## Глава XII
-## Упражнение 08 - Первые шаги в мир SQL
+## Chapter XII
+## Exercise 08 - First steps into SQL world
 
 
-| Упражнение 08: Первые шаги в мир SQL |                                                                                                                          |
+| Exercise 08: First steps into SQL world |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex08                                                                                                                     |
 | Files to turn-in                      | `day00_ex08.sql`                                                                                 |
@@ -247,11 +247,11 @@ and yes...please sort a result by ‘interval_info’ column in ascending mode.
 
 Please make a SQL statement which returns all columns from the `person_order` table with rows whose identifier is an even number. The result have to order by returned identifier.
 
-## Глава XIII
-## Упражнение 09 - Первые шаги в мир SQL
+## Chapter XIII
+## Exercise 09 - First steps into SQL world
 
 
-| Упражнение 09: Первые шаги в мир SQL |                                                                                                                          |
+| Exercise 09: First steps into SQL world |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Turn-in directory                     | ex09                                                                                                                     |
 | Files to turn-in                      | `day00_ex09.sql`                                                                                 |
