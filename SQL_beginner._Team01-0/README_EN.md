@@ -6,19 +6,19 @@ Resume: Today you will know what DWH is and how to create a first ETL process
 
 ## Contents
 
-1. [Глава I](#chapter-i) \
-    1.1. [Преамбула](#preamble)
-2. [Глава II](#chapter-ii) \
-    2.1. [Основные правила](#general-rules)
-3. [Глава III](#chapter-iii) \
-    3.1. [Правила дня](#rules-of-the-day)  
-4. [Глава IV](#chapter-iv) \
-    4.1. [Упражнение 00 - Classical DWH](#exercise-00-classical-dwh)  
-5. [Глава V](#chapter-v) \
-    5.1. [Упражнение 01 - Detailed Query](#exercise-01-detailed-query)  
+1. [Chapter I](#chapter-i) \
+    1.1. [Preamble](#preamble)
+2. [Chapter II](#chapter-ii) \
+    2.1. [General Rules](#general-rules)
+3. [Chapter III](#chapter-iii) \
+    3.1. [Rules of the day](#rules-of-the-day)  
+4. [Chapter IV](#chapter-iv) \
+    4.1. [Exercise 00 - Classical DWH](#exercise-00-classical-dwh)  
+5. [Chapter V](#chapter-v) \
+    5.1. [Exercise 01 - Detailed Query](#exercise-01-detailed-query)  
 
-## Глава I
-## Преамбула
+## Chapter I
+## Preamble
 
 ![T01_01](misc/images/T01_01.png)
 
@@ -49,8 +49,8 @@ I would like to show a list of existing Data Models Patterns.
 - Graph Model
 
 
-## Глава II
-## Основные правила
+## Chapter II
+## General Rules
 
 - Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
 - Please make sure you are using the latest version of PostgreSQL.
@@ -64,8 +64,8 @@ I would like to show a list of existing Data Models Patterns.
 - And may the SQL-Force be with you!
 - Absolutely everything can be presented in SQL! Let’s start and have fun!
 
-## Глава III
-## Правила дня
+## Chapter III
+## Rules of the day
 
 - Please make sure you have an own database and access for it on your PostgreSQL cluster. 
 - All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
@@ -75,15 +75,15 @@ I would like to show a list of existing Data Models Patterns.
 ![schema](misc/images/schema.png)
 
 
-## Глава IV
-## Упражнение 00 - Classical DWH
+## Chapter IV
+## Exercise 00 - Classical DWH
 
-| Упражнение 00: Classical DWH|                                                                                                                          |
+| Exercise 00: Classical DWH|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex00                                                                                                                     |
-| Файлы для сдачи                      | `team01_ex00.sql`                                                                           |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        |  SQL|
+| Turn-in directory                     | ex00                                                                                                                     |
+| Files to turn-in                      | `team01_ex00.sql`                                                                           |
+| **Allowed**                               |                                                                                                                          |
+| Language                        |  SQL|
 
 Let’s take a look at the data sources and first logical data layer (ODS - Operational Data Store) in the DWH.
 
@@ -208,15 +208,15 @@ Please take a look at a sample of output data below. Sort the result by user nam
 | ... | ... | ... | ... | ... | ... | ... |
 
 
-## Глава V
-## Упражнение 01 - Detailed Query
+## Chapter V
+## Exercise 01 - Detailed Query
 
-| Упражнение 01: Detailed Query|                                                                                                                          |
+| Exercise 01: Detailed Query|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex01                                                                                                                     |
-| Файлы для сдачи                      | `team01_ex01.sql`                                                                             |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        | ANSI SQL|
+| Turn-in directory                     | ex01                                                                                                                     |
+| Files to turn-in                      | `team01_ex01.sql`                                                                             |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL|
 
 
 Before deeper diving into this task please apply INSERTs statements below.

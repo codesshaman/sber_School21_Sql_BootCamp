@@ -6,155 +6,153 @@ Resume: Today you will see how to get needed data based on different structures 
 
 ## Contents
 
-1. [Chapter I](#chapter-i) \
-    1.1. [Preamble](#preamble)
-2. [Chapter II](#chapter-ii) \
-    2.1. [General Rules](#general-rules)
-3. [Chapter III](#chapter-iii) \
-    3.1. [Rules of the day](#rules-of-the-day)  
-4. [Chapter IV](#chapter-iv) \
-    4.1. [Exercise 00 - Move to the LEFT, move to the RIGHT](#exercise-00-move-to-the-left-move-to-the-right)  
-5. [Chapter V](#chapter-v) \
-    5.1. [Exercise 01 - Find data gaps](#exercise-01-find-data-gaps)  
-6. [Chapter VI](#chapter-vi) \
-    6.1. [Exercise 02 - FULL means ‘completely filled’](#exercise-02-full-means-completely-filled)  
-7. [Chapter VII](#chapter-vii) \
-    7.1. [Exercise 03 - Reformat to CTE](#exercise-03-reformat-to-cte)  
-8. [Chapter VIII](#chapter-viii) \
-    8.1. [Exercise 04 - Find a favorite pizzas](#exercise-04-find-a-favorite-pizzas)
-9. [Chapter IX](#chapter-ix) \
-    9.1. [Exercise 05 - Investigate Person Data](#exercise-05-investigate-person-data)
-10. [Chapter X](#chapter-x) \
-    10.1. [Exercise 06 - Favorite pizzas for Denis and Anna](#exercise-06-favorite-pizzas-for-denis-and-anna)
-11. [Chapter XI](#chapter-xi) \
-    11.1. [Exercise 07 - Cheapest pizzeria for Dmitriy](#exercise-07-cheapest-pizzeria-for-dmitriy)
-12. [Chapter XII](#chapter-xii) \
-    12.1. [Exercise 08 - Continuing to research data](#exercise-08-continuing-to-research-data)
-13. [Chapter XIII](#chapter-xiii) \
-    13.1. [Exercise 09 - Who loves cheese and pepperoni?](#exercise-09-who-loves-cheese-and-pepperoni)
-14. [Chapter XIV](#chapter-xiv) \
-    14.1. [Exercise 10 - Find persons from one city](#exercise-10-find-persons-from-one-city)
+1. [Глава I](#chapter-i) \
+    1.1. [Преамбула](#preamble)
+2. [Глава II](#chapter-ii) \
+    2.1. [Основные правила](#general-rules)
+3. [Глава III](#chapter-iii) \
+    3.1. [Правила дня](#rules-of-the-day)  
+4. [Глава IV](#chapter-iv) \
+    4.1. [Упражнение 00 - Двигайтесь ВЛЕВО, двигайтесь ВПРАВО](#exercise-00-move-to-the-left-move-to-the-right)  
+5. [Глава V](#chapter-v) \
+    5.1. [Упражнение 01 - Найдите пробелы в данных](#exercise-01-find-data-gaps)  
+6. [Глава VI](#chapter-vi) \
+    6.1. [Упражнение 02 - ПОЛНЫЙ означает «полностью заполненный»](#exercise-02-full-means-completely-filled)  
+7. [Глава VII](#chapter-vii) \
+    7.1. [Упражнение 03 - Преобразование в CTE](#exercise-03-reformat-to-cte)  
+8. [Глава VIII](#chapter-viii) \
+    8.1. [Упражнение 04 - Найдите любимую пиццу](#exercise-04-find-a-favorite-pizzas)
+9. [Глава IX](#chapter-ix) \
+    9.1. [Упражнение 05 - Исследование личных данных](#exercise-05-investigate-person-data)
+10. [Глава X](#chapter-x) \
+    10.1. [Упражнение 06 - Любимые пиццы Дениса и Анны](#exercise-06-favorite-pizzas-for-denis-and-anna)
+11. [Глава XI](#chapter-xi) \
+    11.1. [Упражнение 07 - Самая дешевая пиццерия для Дмитрия](#exercise-07-cheapest-pizzeria-for-dmitriy)
+12. [Глава XII](#chapter-xii) \
+    12.1. [Упражнение 08 - Продолжаем исследовать данные](#exercise-08-continuing-to-research-data)
+13. [Глава XIII](#chapter-xiii) \
+    13.1. [Упражнение 09 - Кто любит сыр и пепперони?](#exercise-09-who-loves-cheese-and-pepperoni)
+14. [Глава XIV](#chapter-xiv) \
+    14.1. [Упражнение 10 - Найдите людей из одного города](#exercise-10-find-persons-from-one-city)
 
 
-## Chapter I
-## Preamble
+## Глава I
+## Преамбула
 
 ![D02_01](misc/images/D02_01.png)
 
-In the picture, you can see a Relational Expression in Tree View. This expression corresponds the next SQL query 
+На рисунке вы можете увидеть реляционное выражение в древовидном представлении. Это выражение соответствует следующему SQL-запросу:
 
+```
     SELECT *
         FROM R CROSS JOIN S
     WHERE clause
+```
 
-So, in other words we can describe any SQL in mathematical terms of Relational Algebra.
+Итак, другими словами, мы можем описать любой SQL в математических терминах реляционной алгебры.
 
-The main question (which I hear from my students) is why do we need to learn Relational Algebra in a course, if we can write a SQL in a first attempt? My answer is yes and no in one time. “Yes” means you can write a SQL from the first attempt, that’s right , “No” means you have to know the main aspects of Relational Algebra, because this knowledge is in use for optimization plans and for semantic queries. 
-Which type of joins are existing in Relational Algebra?
-Actually, “Cross Join” is a primitive operator and it is an anchestor for other types of joins.
+Главный вопрос (который я слышу от своих студентов): зачем нам изучать реляционную алгебру в курсе, если мы можем написать SQL с первого раза? Мой ответ и да и нет. «Да» означает, что вы можете написать SQL с первой попытки, это верно, «Нет» означает, что вы должны знать основные аспекты реляционной алгебры, потому что она используется для планов оптимизации и для семантических запросов. Какие типы соединений представлены в реляционной алгебре? На самом деле «Cross Join» — это примитивный оператор, который является родителем для других типов соединений. 
+
 - Natural Join
 - Theta Join
 - Semi Join
 - Anti Join
-- Left / Right / Full Joins 
+- Left / Right / Full Joins
 
-But what does a join operation between 2 tables mean? Let me present a part of pseudo code, how join operation works without indexing. 
+Но что такое операция соединения между двумя таблицами? Позвольте мне представить часть псевдокода, как работает операция объединения без индексации.
 
+```
     FOR r in R LOOP
         FOR s in S LOOP
         if r.id = s.r_id then add(r,s)
         …
         END;
     END;
+```
 
-It’s just a set of loops ... Not magic at all
+Это просто набор циклов... Совсем не магия 
 
+## Глава II
+## Основные правила
 
+- Используйте эту страницу как единственную инструкцию. Не слушайте никаких слухов и домыслов о том, как подготовить своё решение.
+- Пожалуйста, убедитесь, что вы используете последнюю версию PostgreSQL.
+- Это совершенно нормально, если вы используете IDE для написания исходного кода (он же SQL-скрипт).
+- Для оценки ваше решение должно находиться в вашем репозитории GIT.
+- Ваши решения будут оценены вашими товарищами по интенсиву.
+- Вы не должны оставлять в своем каталоге никаких других файлов, кроме тех, которые явно указаны в инструкциях к упражнению. Рекомендуется изменить ваш .gitignoreчтобы избежать случайностей.
+- У вас есть вопрос? Спросите у соседа справа. Если не помогло - попробуйте с соседом слева.
+- Ваш справочник: товарищи/интернет/гугл.
+- Внимательно прочитайте примеры. Они могут понять вещи, которые иначе не указаны в задании. 
+- И да прибудет с вами сила SQL!
+- Абсолютно все можно представить в SQL! Давайте начнем и получайте удовольствие!
 
+## Глава III
+## Правила дня
 
-## Chapter II
-## General Rules
-
-- Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
-- Please make sure you are using the latest version of PostgreSQL.
-- That is completely OK if you are using IDE to write a source code (aka SQL script).
-- To be assessed your solution must be in your GIT repository.
-- Your solutions will be evaluated by your piscine mates.
-- You should not leave in your directory any other file than those explicitly specified by the exercise instructions. It is recommended that you modify your `.gitignore` to avoid accidents.
-- Do you have a question? Ask your neighbor on the right. Otherwise, try with your neighbor on the left.
-- Your reference manual: mates / Internet / Google. 
-- Read the examples carefully. They may require things that are not otherwise specified in the subject.
-- And may the SQL-Force be with you!
-- Absolutely everything can be presented in SQL! Let’s start and have fun!
-
-## Chapter III
-## Rules of the day
-
-- Please make sure you have an own database and access for it on your PostgreSQL cluster. 
-- Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). 
-- All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
-- Please take a look at the Logical View of our Database Model. 
+- Убедитесь, что у вас есть собственная база данных и доступ к ней в вашем кластере PostgreSQL.
+- Загрузите скрипт (materials/model.sql) с моделью базы данных здесь и примените его к своей базе данных (вы можете использовать командную строку с psql или просто запустить его через любую IDE, например DataGrip от JetBrains или pgAdmin от сообщества PostgreSQL).
+- Все задачи содержат список разрешенных и запрещенных разделов с перечисленными параметрами базы данных, типами баз данных, конструкциями SQL и т. д. Пожалуйста, ознакомьтесь с разделом перед началом.
+- Пожалуйста, взгляните на логическое представление нашей модели базы данных.
 
 ![schema](misc/images/schema.png)
 
+1. Таблица **pizzeria** (Таблица-словарь с доступными пиццериями)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``name`` - название пиццерии
+- поле ``rating`` - средний рейтинг пиццерии (от 0 до 5 баллов)
+2. Таблица **person** (Таблица-словарь с людьми, которые любят пиццу)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``name`` - имя человека
+- поле ``age`` - возраст человека
+- поле ``gender`` - пол человека
+- поле ``address`` - адрес человека
+3. Таблица **menu** (Таблица-словарь с доступным меню и ценой на конкретную пиццу)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``pizzeria_id`` - внешний ключ к пиццерии
+- поле ``pizza_name`` - название пиццы в пиццерии
+- поле ``price`` - цена конкретной пиццы
+4. Таблица **person_visits** (Операционная таблица с информацией о посещениях пиццерии)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``person_id`` - внешний ключ к человеку
+- поле ``pizzeria_id`` - внешний ключ к пиццерии
+- поле ``visit_date`` - дата (например 2022-01-01) посещения пиццерии человеком
+5. Таблица **person_order** (операционная таблица с информацией о заказах людей)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``person_id`` - внешний ключ к человеку
+- поле ``menu_id`` - внешний ключ к меню
+- поле ``order_date`` - дата (например 2022-01-01) заказа человека
 
-1. **pizzeria** table (Dictionary Table with available pizzerias)
-- field id - primary key
-- field name - name of pizzeria
-- field rating - average rating of pizzeria (from 0 to 5 points)
-2. **person** table (Dictionary Table with persons who loves pizza)
-- field id - primary key
-- field name - name of person
-- field age - age of person
-- field gender - gender of person
-- field address - address of person
-3. **menu** table (Dictionary Table with available menu and price for concrete pizza)
-- field id - primary key
-- field pizzeria_id - foreign key to pizzeria
-- field pizza_name - name of pizza in pizzeria
-- field price - price of concrete pizza
-4. **person_visits** table (Operational Table with information about visits of pizzeria)
-- field id - primary key
-- field person_id - foreign key to person
-- field pizzeria_id - foreign key to pizzeria
-- field visit_date - date (for example 2022-01-01) of person visit 
-5. **person_order** table (Operational Table with information about persons orders)
-- field id - primary key
-- field person_id - foreign key to person
-- field menu_id - foreign key to menu
-- field order_date - date (for example 2022-01-01) of person order 
+Посещение (visit_date) и заказ (order_date) - это разные сущности, и нет никакой корреляции между их данными. Например, клиент может находиться в одном месте (просто просматривая меню) и в это время сделать заказ в другом по телефону или с помощью мобильного приложения. Или позвонить из дома с заказом без каких-либо визитов.
 
-Persons' visit and persons' order are different entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
+## Глава IV
+## Упражнение 00 - Двигайтесь ВЛЕВО, двигайтесь ВПРАВО
 
-## Chapter IV
-## Exercise 00 - Move to the LEFT, move to the RIGHT
-
-| Exercise 00: Move to the LEFT, move to the RIGHT |                                                                                                                          |
+| Упражнение 00: Двигайтесь ВЛЕВО, двигайтесь ВПРАВО |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex00                                                                                                                     |
-| Files to turn-in                      | `day02_ex00.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-| **Denied**                               |                                                                                                                          |
-| SQL Syntax Construction                        | `NOT IN`, `IN`, `NOT EXISTS`, `EXISTS`, `UNION`, `EXCEPT`, `INTERSECT`                                                                                              |
+| Каталог сдачи                     | ex00                                                                                                                     |
+| Файлы для сдачи                      | `day02_ex00.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
+| **Запрещено**                               |                                                                                                                          |
+| Синтаксические конструкции SQL                        | `NOT IN`, `IN`, `NOT EXISTS`, `EXISTS`, `UNION`, `EXCEPT`, `INTERSECT`                                                                                              |
 
-Please write a SQL statement which returns a list of pizzerias names with corresponding rating value which have not been visited by persons. 
+Пожалуйста, напишите оператор SQL, который возвращает список названий пиццерий, которые никто не посещал.
 
+## Глава V
+## Упражнение 01 - Найдите пробелы в данных
 
-## Chapter V
-## Exercise 01 - Find data gaps
-
-| Exercise 01: Find data gaps|                                                                                                                          |
+| Упражнение 01: Найдите пробелы в данных|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex01                                                                                                                     |
-| Files to turn-in                      | `day02_ex01.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-| SQL Syntax Construction                        | `generate_series(...)`                                                                                              |
-| **Denied**                               |                                                                                                                          |
-| SQL Syntax Construction                        | `NOT IN`, `IN`, `NOT EXISTS`, `EXISTS`, `UNION`, `EXCEPT`, `INTERSECT`                                                                                              |
+| Каталог сдачи                     | ex01                                                                                                                     |
+| Файлы для сдачи                      | `day02_ex01.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
+| Синтаксические конструкции SQL                        | `generate_series(...)`                                                                                              |
+| **Запрещено**                               |                                                                                                                          |
+| Синтаксические конструкции SQL                        | `NOT IN`, `IN`, `NOT EXISTS`, `EXISTS`, `UNION`, `EXCEPT`, `INTERSECT`                                                                                              |
 
-Please write a SQL statement which returns the missing days from 1st to 10th of January 2022 (including all days) for visits  of persons with identifiers 1 or 2. Please order by visiting days in ascending mode. The sample of data with column name is presented below.
+Пожалуйста, напишите оператор SQL, который возвращает пропущенные дни из интервала с 1 по 10 января 2022 года для посещений лиц с идентификаторами 1 и 2. Упорядочьте по дням посещения по возрастанию. Образец данных с именем столбца представлен ниже.
 
 | missing_date |
 | ------ |
@@ -163,20 +161,19 @@ Please write a SQL statement which returns the missing days from 1st to 10th of 
 | 2022-01-05 |
 | ... |
 
+## Глава VI
+## Упражнение 02 - ПОЛНЫЙ означает «полностью заполненный»
 
-## Chapter VI
-## Exercise 02 - FULL means ‘completely filled’
-
-| Exercise 02: FULL means ‘completely filled’|                                                                                                                          |
+| Упражнение 02: ПОЛНЫЙ означает «полностью заполненный»|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex02                                                                                                                     |
-| Files to turn-in                      | `day02_ex02.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-| **Denied**                               |                                                                                                                          |
-| SQL Syntax Construction                        | `NOT IN`, `IN`, `NOT EXISTS`, `EXISTS`, `UNION`, `EXCEPT`, `INTERSECT`                                                                                              |
+| Каталог сдачи                     | ex02                                                                                                                     |
+| Файлы для сдачи                      | `day02_ex02.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
+| **Запрещено**                               |                                                                                                                          |
+| Синтаксические конструкции SQL                        | `NOT IN`, `IN`, `NOT EXISTS`, `EXISTS`, `UNION`, `EXCEPT`, `INTERSECT`                                                                                              |
 
-Please write a SQL statement that returns a whole list of person names visited (or not visited) pizzerias during the period from 1st to 3rd of January 2022 from one side and the whole list of pizzeria names which have been visited (or not visited) from the other side. The data sample with needed column names is presented below. Please pay attention to the substitution value ‘-’ for `NULL` values in `person_name` and `pizzeria_name` columns. Please also add ordering for all 3 columns.
+Пожалуйста, напишите оператор SQL, который возвращает полный список имен людей, посетивших (или не посетивших) пиццерии в интервале времени с 1 по 3 января 2022 года с одной стороны, и весь список имен пиццерий, которые были посещены или не посещены с другой стороны. Другая сторона. Пример данных с нужными именами столбцов представлен ниже. Обратите внимание на значение замены '-' для значений `NULL` в столбцах `person_name` и `pizzeria_name` Пожалуйста, также добавьте порядок по всем 3 столбцам.
 
 | person_name | visit_date | pizzeria_name |
 | ------ | ------ | ------ |
@@ -189,20 +186,20 @@ Please write a SQL statement that returns a whole list of person names visited (
 | Dmitriy | null | - |
 | ... | ... | ... |
 
-## Chapter VII
-## Exercise 03 - Reformat to CTE
+## Глава VII
+## Упражнение 03 - Преобразование в CTE
 
-| Exercise 03: Reformat to CTE |                                                                                                                          |
+| Упражнение 03: Преобразование в CTE |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex03                                                                                                                     |
-| Files to turn-in                      | `day02_ex03.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-| SQL Syntax Construction                        | `generate_series(...)`                                                                                              |
-| **Denied**                               |                                                                                                                          |
-| SQL Syntax Construction                        | `NOT IN`, `IN`, `NOT EXISTS`, `EXISTS`, `UNION`, `EXCEPT`, `INTERSECT`                                                                                              |
+| Каталог сдачи                     | ex03                                                                                                                     |
+| Файлы для сдачи                      | `day02_ex03.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
+| Синтаксические конструкции SQL                        | `generate_series(...)`                                                                                              |
+| **Запрещено**                               |                                                                                                                          |
+| Синтаксические конструкции SQL                        | `NOT IN`, `IN`, `NOT EXISTS`, `EXISTS`, `UNION`, `EXCEPT`, `INTERSECT`                                                                                              |
 
-Let’s return back to Exercise #01, please rewrite your SQL by using the CTE (Common Table Expression) pattern. Please move into the CTE part of your "day generator". The result should be similar like in Exercise #01
+Вернемся к упражнению № 01. Пожалуйста, перепишите свой SQL, используя шаблон CTE (Common Table Expression). Пожалуйста, перейдите в часть CTE вашего дневного генератора. Результат должен быть таким же, как в упражнении № 01.
 
 | missing_date | 
 | ------ | 
@@ -211,18 +208,18 @@ Let’s return back to Exercise #01, please rewrite your SQL by using the CTE (C
 | 2022-01-05 | 
 | ... |
 
-## Chapter VIII
-## Exercise 04 - Find a favorite pizzas
+## Глава VIII
+## Упражнение 04 - Найдите любимую пиццу
 
 
-| Exercise 04: Find a favorite pizzas |                                                                                                                          |
+| Упражнение 04: Найдите любимую пиццу |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex04                                                                                                                     |
-| Files to turn-in                      | `day02_ex04.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
+| Каталог сдачи                     | ex04                                                                                                                     |
+| Файлы для сдачи                      | `day02_ex04.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
 
-Find full information about all possible pizzeria names and prices to get mushroom or pepperoni pizzas. Please sort the result by pizza name and pizzeria name then. The result of sample data is below (please use the same column names in your SQL statement).
+Найдите полную информацию обо всех возможных названиях пиццерий и ценах, чтобы получить пиццу с грибами или пепперони. Затем отсортируйте результат по названию пиццы и названию пиццерии. Результат выборки данных приведен ниже (пожалуйста, используйте те же имена столбцов в своем операторе SQL).
 
 | pizza_name | pizzeria_name | price |
 | ------ | ------ | ------ |
@@ -231,18 +228,18 @@ Find full information about all possible pizzeria names and prices to get mushro
 | pepperoni pizza | Best Pizza | 800 |
 | ... | ... | ... |
 
-## Chapter IX
-## Exercise 05 - Investigate Person Data
+## Глава IX
+## Упражнение 05 - Исследование личных данных
 
 
-| Exercise 05: Investigate Person Data |                                                                                                                          |
+| Упражнение 05: Исследование личных данных |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex05                                                                                                                     |
-| Files to turn-in                      | `day02_ex05.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
+| Каталог сдачи                     | ex05                                                                                                                     |
+| Файлы для сдачи                      | `day02_ex05.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
 
-Find names of all female persons older than 25 and order the result by name. The sample of output is presented below.
+Найдите имена всех лиц женского пола старше 25 лет и упорядочите результат по имени. Образец вывода представлен ниже.
 
 | name | 
 | ------ | 
@@ -251,18 +248,18 @@ Find names of all female persons older than 25 and order the result by name. The
 
 
 
-## Chapter X
-## Exercise 06 - Favorite pizzas for Denis and Anna
+## Глава X
+## Упражнение 06 - Любимые пиццы Дениса и Анны
 
 
-| Exercise 06: Favorite pizzas for Denis and Anna |                                                                                                                          |
+| Упражнение 06: Любимые пиццы Дениса и Анны |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex06                                                                                                                     |
-| Files to turn-in                      | `day02_ex06.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
+| Каталог сдачи                     | ex06                                                                                                                     |
+| Файлы для сдачи                      | `day02_ex06.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
 
-Please find all pizza names (and corresponding pizzeria names using `menu` table) that Denis or Anna ordered. Sort a result by both columns. The sample of output is presented below.
+Пожалуйста, найдите все названия пицц (и соответствующие названия ресторанов-пиццерий используя таблицу `menu`), которые заказывали Денис и Анна, и упорядочите результат по обоим столбцам. Образец вывода представлен ниже.
 
 | pizza_name | pizzeria_name |
 | ------ | ------ |
@@ -270,70 +267,64 @@ Please find all pizza names (and corresponding pizzeria names using `menu` table
 | cheese pizza | Pizza Hut |
 | ... | ... |
 
-## Chapter XI
-## Exercise 07 - Cheapest pizzeria for Dmitriy
+## Глава XI
+## Упражнение 07 - Самая дешевая пиццерия для Дмитрия
 
 
-| Exercise 07: Cheapest pizzeria for Dmitriy |                                                                                                                          |
+| Упражнение 07: Самая дешевая пиццерия для Дмитрия |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex07                                                                                                                     |
-| Files to turn-in                      | `day02_ex07.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
+| Каталог сдачи                     | ex07                                                                                                                     |
+| Файлы для сдачи                      | `day02_ex07.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
 
 Please find the name of pizzeria Dmitriy visited on January 8, 2022 and could eat pizza for less than 800 rubles.
 
-## Chapter XII
-## Exercise 08 - Continuing to research data
+## Глава XII
+## Упражнение 08 - Продолжаем исследовать данные
 
-
-| Exercise 08: Continuing to research data |                                                                                                                          |
+| Упражнение 08: Продолжаем исследовать данные |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex08                                                                                                                     |
-| Files to turn-in                      | `day02_ex08.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |           
+| Каталог сдачи                     | ex08                                                                                                                     |
+| Файлы для сдачи                      | `day02_ex08.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |           
 
-
-Please find the names of all males from Moscow or Samara cities who orders either pepperoni or mushroom pizzas (or both) . Please order the result by person name in descending mode. The sample of output is presented below.
+Пожалуйста, найдите названия пиццерий, в которых бывал Дмитрий и где можно купить пиццу, которую он ест менее чем за 800 рублей 8 января 2022 года. 
 
 | name | 
 | ------ | 
 | Dmitriy | 
 | ... |
 
+## Глава XIII
+## Упражнение 09 - Кто любит сыр и пепперони?
 
-## Chapter XIII
-## Exercise 09 - Who loves cheese and pepperoni?
-
-
-| Exercise 09: Who loves cheese and pepperoni? |                                                                                                                          |
+| Упражнение 09: Кто любит сыр и пепперони? |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex09                                                                                                                     |
-| Files to turn-in                      | `day02_ex09.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
+| Каталог сдачи                     | ex09                                                                                                                     |
+| Файлы для сдачи                      | `day02_ex09.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
 
-Please find the names of all females who ordered both pepperoni and cheese pizzas (at any time and in any pizzerias). Make sure that the result is ordered by person name. The sample of data is presented below.
+Пожалуйста, найдите имена всех мужчин из Москвы или Самары, которые заказывают либо пепперони, либо грибную пиццу (или и то, и другое). Упорядочить результат по имени человека в порядке убывания. Образец вывода представлен ниже. 
 
 | name | 
 | ------ | 
 | Anna | 
 | ... |
 
+## Глава XIV
+## Упражнение 10 - Найдите людей из одного города
 
-## Chapter XIV
-## Exercise 10 - Find persons from one city
-
-
-| Exercise 10: Find persons from one city |                                                                                                                          |
+| Exercise 10: Найдите людей из одного города |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex10                                                                                                                     |
-| Files to turn-in                      | `day02_ex10.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
+| Каталог сдачи                     | ex10                                                                                                                     |
+| Файлы для сдачи                      | `day02_ex10.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
 
-Please find the names of persons who live on the same address. Make sure that the result is ordered by 1st person, 2nd person's name and common address. The  data sample is presented below. Please make sure your column names are corresponding column names below.
+Пожалуйста, найдите имена людей, которые живут по тому же адресу. Убедитесь, что результат упорядочен по имени 1-го лица, имени 2-го лица и общему адресу. Образец данных представлен ниже. Пожалуйста, убедитесь, что ваши имена столбцов соответствуют именам столбцов ниже. 
 
 | person_name1 | person_name2 | common_address | 
 | ------ | ------ | ------ |

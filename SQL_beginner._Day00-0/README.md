@@ -69,12 +69,11 @@
 ## Правила дня
 
 - Убедитесь, что у вас есть собственная база данных и доступ к ней в вашем кластере PostgreSQL.
-- Загрузите скрипт с моделью базы данных здесь и примените его к своей базе данных (вы можете использовать командную строку с psql или просто запустить его через любую IDE, например DataGrip от JetBrains или pgAdmin от сообщества PostgreSQL).
+- Загрузите скрипт (materials/model.sql) с моделью базы данных здесь и примените его к своей базе данных (вы можете использовать командную строку с psql или просто запустить его через любую IDE, например DataGrip от JetBrains или pgAdmin от сообщества PostgreSQL).
 - Все задачи содержат список разрешенных и запрещенных разделов с перечисленными параметрами базы данных, типами баз данных, конструкциями SQL и т. д. Пожалуйста, ознакомьтесь с разделом перед началом.
 - Пожалуйста, взгляните на логическое представление нашей модели базы данных.
 
 ![schema](misc/images/schema.png)
-
 
 1. Таблица **pizzeria** (Таблица-словарь с доступными пиццериями)
 - поле ``id`` - первичный ключ (primary key)
@@ -114,9 +113,7 @@
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | ANSI SQL                                                                                              |
 
-Let’s make our first task. 
-Please make a select statement which returns all person's names and person's ages from the city ‘Kazan’.
-
+Давайте сделаем нашу первую задачу. Пожалуйста, сделайте оператор выбора, который возвращает имя человека и возраст человека из города «Казань».
 
 ## Глава V
 ## Упражнение 01 - Первые шаги в мир SQL
@@ -128,7 +125,7 @@ Please make a select statement which returns all person's names and person's age
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | ANSI SQL                                                                                              |
 
-Please make a select statement which returns names , ages for all womens from the city ‘Kazan’. Yep, and please sort result by name.
+Пожалуйста, сделайте оператор выбора, который возвращает имя человека, возраст человека из города «Казань» и пол «женский». Да, и, пожалуйста, добавьте пункт заказа по имени человека.
 
 ## Глава VI
 ## Упражнение 02 - Первые шаги в мир SQL
@@ -140,9 +137,9 @@ Please make a select statement which returns names , ages for all womens from th
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | ANSI SQL                                                                                              |
 
-Please make 2 syntax different select statements which return a list of pizzerias (pizzeria name and rating) with rating between 3.5 and 5 points (including limit points) and ordered by pizzeria rating.
-- the 1st select statement must contain comparison signs  (<=, >=)
-- the 2nd select statement must contain `BETWEEN` keyword
+Пожалуйста, сделайте 2 оператора выбора с разными синтаксисом, которые возвращают список пиццерий (название пиццерии и рейтинг) с рейтингом от 3,5 до 5 баллов (включая интервалы) и упорядочивание по рейтингу пиццерии.
+- 1-й оператор select должен содержать знаки для сравнения (<=, =>) 
+- второй оператор выбора должен содержать ключевое слово `BETWEEN`
 
 ## Глава VII
 ## Упражнение 03 - Первые шаги в мир SQL
@@ -154,7 +151,7 @@ Please make 2 syntax different select statements which return a list of pizzeria
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | ANSI SQL                                                                                              |
 
-Please make a select statement which returns the person's identifiers (without duplication) which visited pizzerias in a period from 6th of January 2022 to 9th of January 2022 (including all days) or visited pizzeria with identifier 2. Also include ordering clause by person identifier in descending mode.
+Пожалуйста, сделайте оператор select, который возвращает идентификатор человека (без дублирования), который посещает пиццерии в течение 6 января 2022 г. и 9 января 2022 г. или посещает пиццерию с идентификатором 2. Также включите пункт упорядочения по идентификатору человека в порядке убывания.
 
 ## Глава VIII
 ## Упражнение 04 - Первые шаги в мир SQL
@@ -167,12 +164,11 @@ Please make a select statement which returns the person's identifiers (without d
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | ANSI SQL                                                                                              |
 
-Please make a select statement which returns one calculated field with name ‘person_information’ in one string like described in the next sample:
+Пожалуйста, сделайте оператор select, который возвращает одно предварительно вычисленное поле с именем «person_information» в одной строке, как описано в следующем примере:
 
 `Anna (age:16,gender:'female',address:'Moscow')`
 
-Finally , please add the ordering clause by calculated column in ascending mode.
-Please pay attention to quote symbols in your formula!
+Наконец, добавьте предложение упорядочения по предварительно вычисляемому столбцу в порядке возрастания. Обратите внимание на кавычки в формуле! 
 
 ## Глава IX
 ## Упражнение 05 - Первые шаги в мир SQL
@@ -187,9 +183,9 @@ Please pay attention to quote symbols in your formula!
 | **Запрещено**                               |                                           
 | Синтаксические конструкции SQL                        | `IN`, any types of `JOINs`                                                                                              |
 
-Please make a select statement which returns person's names (based on internal query in `SELECT` clause) which made orders for the menu with identifiers 13 , 14 and 18 and date of orders should equal 7th of January 2022. Please be aware with "Denied Section" before your work.
+Пожалуйста, сделайте оператор select, который возвращает имена людей (на основе внутреннего запроса в предложении `SELECT`), которые сделали заказы на меню с идентификаторами 13, 14 и 18, а дата заказа должна быть равна 7 января 2022 года.
 
-Please take a look at the pattern of internal query.
+Пожалуйста, взгляните на шаблон внутреннего запроса. 
 
     SELECT 
 	    (SELECT ... ) AS NAME  -- this is an internal query in a main SELECT clause
@@ -209,10 +205,12 @@ Please take a look at the pattern of internal query.
 | **Запрещено**                               |                                           
 | Синтаксические конструкции SQL                       | `IN`, any types of `JOINs`                                                                                              |
 
-Please use SQL construction from Exercise 05 and add a new calculated column (use column's name ‘check_name’) with a check statement (a pseudo code for this check is presented below) in the `SELECT` clause.
+Пожалуйста, используйте конструкцию SQL из упражнения 05 и добавьте новый вычисляемый столбец (задайте имя = 'check_name') с оператором проверки (псевдокод для этой проверки представлен ниже) в предложении  `SELECT`.
 
+```
     if (person_name == 'Denis') then return true
         else return false
+```
 
 ## Глава XI
 ## Упражнение 07 - Первые шаги в мир SQL
@@ -225,14 +223,16 @@ Please use SQL construction from Exercise 05 and add a new calculated column (us
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | ANSI SQL                                                                                              |
 
-Let’s apply data intervals for the `person` table. 
-Please make a SQL statement which returns a person's identifiers, person's names and interval of person’s ages (set a name of a new calculated column as ‘interval_info’) based on pseudo code below. 
+Применим интервалы данных для таблицы `person`. 
+Пожалуйста, сделайте оператор SQL, который возвращает идентификатор человека, имя человека и интервал возраста человека (задайте имя нового вычисляемого столбца как «интервал») на основе приведенного ниже псевдокода.
 
+```
     if (age >= 10 and age <= 20) then return 'interval #1'
     else if (age > 20 and age < 24) then return 'interval #2'
     else return 'interval #3'
+```
 
-and yes...please sort a result by ‘interval_info’ column in ascending mode.
+и да... пожалуйста, добавьте сортировку по возрастанию по столбцу "интервал".
 
 ## Глава XII
 ## Упражнение 08 - Первые шаги в мир SQL
@@ -245,7 +245,7 @@ and yes...please sort a result by ‘interval_info’ column in ascending mode.
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | ANSI SQL                                                                                              |
 
-Please make a SQL statement which returns all columns from the `person_order` table with rows whose identifier is an even number. The result have to order by returned identifier.
+Пожалуйста, сделайте оператор SQL, который возвращает все столбцы из таблицы ``person_order``, но строки, идентификатор которых является четным числом, и выведите данные в порядке возрастания. 
 
 ## Глава XIII
 ## Упражнение 09 - Первые шаги в мир SQL
@@ -260,16 +260,16 @@ Please make a SQL statement which returns all columns from the `person_order` ta
 | **Запрещено**                               |                                           
 | Синтаксические конструкции SQL                       | any types of `JOINs`                                                                                              |
 
+Пожалуйста, сделайте оператор select, который возвращает имена людей и названия пиццерий на основе таблицы `person_visit` с датами посещения в промежутке с 07 января по 09 января 2022 года (на основе внутреннего запроса в предложении FROM).
 
-Please make a select statement that returns person names and pizzeria names based on the `person_visit` table with date of visit in a period from 07th of January to 09th of January 2022 (including all days) (based on internal query in `FROM` clause) .
+Пожалуйста, взгляните на шаблон окончательного запроса.
 
-
-Please take a look at the pattern of the final query.
-
+```
     SELECT (...) AS person_name ,  -- this is an internal query in a main SELECT clause
             (...) AS pizzeria_name  -- this is an internal query in a main SELECT clause
     FROM (SELECT … FROM person_visits WHERE …) AS pv -- this is an internal query in a main FROM clause
     ORDER BY ...
+```
 
-Please add a ordering clause by person name in ascending mode and by pizzeria name in descending mode
+Пожалуйста, добавьте пункт заказа по имени человека по возрастанию и по названию пиццерии по убыванию.
 

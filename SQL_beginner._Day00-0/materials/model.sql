@@ -134,4 +134,3 @@ insert into person_order values (18,8, 14, '2022-01-07');
 
 insert into person_order values (19,9, 18, '2022-01-09');
 insert into person_order values (20,9, 6, '2022-01-10');
-

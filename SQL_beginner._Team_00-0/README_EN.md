@@ -6,19 +6,19 @@ Resume: Today you will implementing a quick solution on SQL to achieve results o
 
 ## Contents
 
-1. [Глава I](#chapter-i) \
-    1.1. [Преамбула](#preamble)
-2. [Глава II](#chapter-ii) \
-    2.1. [Основные правила](#general-rules)
-3. [Глава III](#chapter-iii) \
-    3.1. [Правила дня](#rules-of-the-day)  
-4. [Глава IV](#chapter-iv) \
-    4.1. [Упражнение 00 - Classical TSP](#exercise-00-classical-tsp)  
-5. [Глава V](#chapter-v) \
-    5.1. [Упражнение 01 - Opposite TSP](#exercise-01-opposite-tsp)  
+1. [Chapter I](#chapter-i) \
+    1.1. [Preamble](#preamble)
+2. [Chapter II](#chapter-ii) \
+    2.1. [General Rules](#general-rules)
+3. [Chapter III](#chapter-iii) \
+    3.1. [Rules of the day](#rules-of-the-day)  
+4. [Chapter IV](#chapter-iv) \
+    4.1. [Exercise 00 - Classical TSP](#exercise-00-classical-tsp)  
+5. [Chapter V](#chapter-v) \
+    5.1. [Exercise 01 - Opposite TSP](#exercise-01-opposite-tsp)  
 
-## Глава I
-## Преамбула
+## Chapter I
+## Preamble
 
 ![T00_01](misc/images/T00_01.png)
 
@@ -31,8 +31,8 @@ The travel costs are symmetric in the sense that traveling from city X to city Y
 The origins of the TSP are obscure. In the 1920's, the mathematician and economist Karl Menger publicized it among his colleagues in Vienna. In the 1930's, the problem reappeared in the mathematical circles of Princeton. In the 1940's, it was  studied by statisticians (Mahalanobis (1940), Jessen (1942), Gosh (1948), Marks (1948)) in connection with an agricultural  application and the mathematician Merill Flood popularized it among his colleagues at the RAND Corporation.  Eventually,  the TSP gained notoriety as the prototype of a hard problem in combinatorial optimization: examining the tours one by one  is out of the question because of their large number, and no other idea was on the horizon for a long time.
 
 
-## Глава II
-## Основные правила
+## Chapter II
+## General Rules
 
 - Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
 - Please make sure you are using the latest version of PostgreSQL.
@@ -46,23 +46,23 @@ The origins of the TSP are obscure. In the 1920's, the mathematician and economi
 - And may the SQL-Force be with you!
 - Absolutely everything can be presented in SQL! Let’s start and have fun!
 
-## Глава III
-## Правила дня
+## Chapter III
+## Rules of the day
 
 - Please make sure you have an own database and access for it on your PostgreSQL cluster. 
 - All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
 
 
 
-## Глава IV
-## Упражнение 00 - Classical TSP
+## Chapter IV
+## Exercise 00 - Classical TSP
 
-| Упражнение 00: Classical TSP|                                                                                                                          |
+| Exercise 00: Classical TSP|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex00                                                                                                                     |
-| Файлы для сдачи                      | `team00_ex00.sql` DDL for table creation with INSERTs of data; SQL DML statement                                                                                |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        | ANSI SQL|
+| Turn-in directory                     | ex00                                                                                                                     |
+| Files to turn-in                      | `team00_ex00.sql` DDL for table creation with INSERTs of data; SQL DML statement                                                                                |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL|
 | SQL Syntax Pattern                        | Recursive Query|
 
 ![T00_02](misc/images/T00_02.png)
@@ -81,15 +81,15 @@ The sample of output data you can find below. Please sort data by total_cost and
 | 80 | {a,b,d,c,a} |
 | ... | ... |
 
-## Глава V
-## Упражнение 01 - Opposite TSP
+## Chapter V
+## Exercise 01 - Opposite TSP
 
-| Упражнение 01: Opposite TSP|                                                                                                                          |
+| Exercise 01: Opposite TSP|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex01                                                                                                                     |
-| Файлы для сдачи                      | `team00_ex01.sql`     SQL DML statement                                                                             |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        | ANSI SQL|
+| Turn-in directory                     | ex01                                                                                                                     |
+| Files to turn-in                      | `team00_ex01.sql`     SQL DML statement                                                                             |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | ANSI SQL|
 | SQL Syntax Pattern                        | Recursive Query|
 
 Please add a possibility to see additional rows with the most expensive cost to the SQL from previous exercise. Just take a look at the sample of data below. Please sort data by total_cost and then by tour.

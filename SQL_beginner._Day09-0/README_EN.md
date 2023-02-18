@@ -6,38 +6,38 @@ Resume: Today you will see how to create and use functional blocks in Databases
 
 ## Contents
 
-1. [Глава I](#chapter-i) \
-    1.1. [Преамбула](#preamble)
-2. [Глава II](#chapter-ii) \
-    2.1. [Основные правила](#general-rules)
-3. [Глава III](#chapter-iii) \
-    3.1. [Правила дня](#rules-of-the-day)  
-4. [Глава IV](#chapter-iv) \
-    4.1. [Упражнение 00 - Audit of incoming inserts](#exercise-00-audit-of-incoming-inserts)  
-5. [Глава V](#chapter-v) \
-    5.1. [Упражнение 01 - Audit of incoming updates](#exercise-01-audit-of-incoming-updates)  
-6. [Глава VI](#chapter-vi) \
-    6.1. [Упражнение 02 - Audit of incoming deletes](#exercise-02-audit-of-incoming-deletes)  
-7. [Глава VII](#chapter-vii) \
-    7.1. [Упражнение 03 - Generic Audit](#exercise-03-generic-audit)  
-8. [Глава VIII](#chapter-viii) \
-    8.1. [Упражнение 04 - Database View VS Database Function](#exercise-04-database-view-vs-database-function)
-9. [Глава IX](#chapter-ix) \
-    9.1. [Упражнение 05 - Parameterized Database Function](#exercise-05-parameterized-database-function)
-10. [Глава X](#chapter-x) \
-    10.1. [Упражнение 06 - Function like a function-wrapper](#exercise-06-function-like-a-function-wrapper)
-11. [Глава XI](#chapter-xi) \
-    11.1. [Упражнение 07 - Different view to find a Minimum](#exercise-07-different-view-to-find-a-minimum)
-12. [Глава XII](#chapter-xii) \
-    12.1. [Упражнение 08 - Fibonacci algorithm is in a function](#exercise-08-fibonacci-algorithm-is-in-a-function)    
+1. [Chapter I](#chapter-i) \
+    1.1. [Preamble](#preamble)
+2. [Chapter II](#chapter-ii) \
+    2.1. [General Rules](#general-rules)
+3. [Chapter III](#chapter-iii) \
+    3.1. [Rules of the day](#rules-of-the-day)  
+4. [Chapter IV](#chapter-iv) \
+    4.1. [Exercise 00 - Audit of incoming inserts](#exercise-00-audit-of-incoming-inserts)  
+5. [Chapter V](#chapter-v) \
+    5.1. [Exercise 01 - Audit of incoming updates](#exercise-01-audit-of-incoming-updates)  
+6. [Chapter VI](#chapter-vi) \
+    6.1. [Exercise 02 - Audit of incoming deletes](#exercise-02-audit-of-incoming-deletes)  
+7. [Chapter VII](#chapter-vii) \
+    7.1. [Exercise 03 - Generic Audit](#exercise-03-generic-audit)  
+8. [Chapter VIII](#chapter-viii) \
+    8.1. [Exercise 04 - Database View VS Database Function](#exercise-04-database-view-vs-database-function)
+9. [Chapter IX](#chapter-ix) \
+    9.1. [Exercise 05 - Parameterized Database Function](#exercise-05-parameterized-database-function)
+10. [Chapter X](#chapter-x) \
+    10.1. [Exercise 06 - Function like a function-wrapper](#exercise-06-function-like-a-function-wrapper)
+11. [Chapter XI](#chapter-xi) \
+    11.1. [Exercise 07 - Different view to find a Minimum](#exercise-07-different-view-to-find-a-minimum)
+12. [Chapter XII](#chapter-xii) \
+    12.1. [Exercise 08 - Fibonacci algorithm is in a function](#exercise-08-fibonacci-algorithm-is-in-a-function)    
       
 
-## Глава I
-## Преамбула
+## Chapter I
+## Preamble
 
 ![D09_01](misc/images/D09_01.png)
 
-There are a lot of functional programming Языкs in the RDBMS world. We can say mainly about “one-to-one” dependency between a particular RDBMS engine and functional Язык inside. Please take a look at a sample of these Языкs.
+There are a lot of functional programming languages in the RDBMS world. We can say mainly about “one-to-one” dependency between a particular RDBMS engine and functional language inside. Please take a look at a sample of these languages.
 - T-SQL
 - PL/SQL
 - SQL
@@ -58,8 +58,8 @@ Please take a look at the 2 simple architectures below.
 Just think about it and try to create a clean architecture :-)
 
 
-## Глава II
-## Основные правила
+## Chapter II
+## General Rules
 
 - Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
 - Please make sure you are using the latest version of PostgreSQL.
@@ -73,11 +73,11 @@ Just think about it and try to create a clean architecture :-)
 - And may the SQL-Force be with you!
 - Absolutely everything can be presented in SQL! Let’s start and have fun!
 
-## Глава III
-## Правила дня
+## Chapter III
+## Rules of the day
 
 - Please make sure you have an own database and access for it on your PostgreSQL cluster. 
-- Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). **Our knowledge way is incremental and linear therefore please be aware all changes that you made in Day03 during exercises 07-13 and in Day04 during Упражнение 07 should be on place (its similar like in real world , when we applied a release and need to be consistency with data for new changes).**
+- Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). **Our knowledge way is incremental and linear therefore please be aware all changes that you made in Day03 during exercises 07-13 and in Day04 during exercise 07 should be on place (its similar like in real world , when we applied a release and need to be consistency with data for new changes).**
 - All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
 - Please take a look at the Logical View of our Database Model. 
 
@@ -113,15 +113,15 @@ Just think about it and try to create a clean architecture :-)
 Persons' visit and persons' order are different entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
 
 
-## Глава IV
-## Упражнение 00 - Audit of incoming inserts
+## Chapter IV
+## Exercise 00 - Audit of incoming inserts
 
-| Упражнение 00: Audit of incoming inserts |                                                                                                                          |
+| Exercise 00: Audit of incoming inserts |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex00                                                                                                                     |
-| Файлы для сдачи                      | `day09_ex00.sql`                                                                                 |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        | SQL, DDL, DML|
+| Turn-in directory                     | ex00                                                                                                                     |
+| Files to turn-in                      | `day09_ex00.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | SQL, DDL, DML|
 
 We want to be stronger with data and don’t want to lose any event of changes. Let’s implement an audit feature for INSERT’s incoming changes. 
 Please create a table `person_audit` with the same structure like a person table but please add a few additional changes. Take a look at the table below with descriptions for each column.
@@ -149,15 +149,15 @@ When you are ready with trigger objects then please make an `INSERT` statement i
 `INSERT INTO person(id, name, age, gender, address) VALUES (10,'Damir', 22, 'male', 'Irkutsk');`
 
 
-## Глава V
-## Упражнение 01 - Audit of incoming updates
+## Chapter V
+## Exercise 01 - Audit of incoming updates
 
-| Упражнение 01: Audit of incoming updates|                                                                                                                          |
+| Exercise 01: Audit of incoming updates|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex01                                                                                                                     |
-| Файлы для сдачи                      | `day09_ex01.sql`                                                                                 |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        | SQL, DDL, DML                                                                                              |
+| Turn-in directory                     | ex01                                                                                                                     |
+| Files to turn-in                      | `day09_ex01.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | SQL, DDL, DML                                                                                              |
 
 Let’s continue to implement our audit pattern for the person table. Just define a trigger `trg_person_update_audit` and corresponding trigger function `fnc_trg_person_update_audit` to handle all `UPDATE` traffic on the person table. We should save OLD states of all attribute’s values.
 
@@ -167,15 +167,15 @@ When you are ready please apply UPDATE’s statements below.
 `UPDATE person SET name = 'Damir' WHERE id = 10;`
 
 
-## Глава VI
-## Упражнение 02 - Audit of incoming deletes
+## Chapter VI
+## Exercise 02 - Audit of incoming deletes
 
-| Упражнение 02: Audit of incoming deletes|                                                                                                                          |
+| Exercise 02: Audit of incoming deletes|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex02                                                                                                                     |
-| Файлы для сдачи                      | `day09_ex02.sql`                                                                                 |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        | SQL, DDL, DML                                                                                              |
+| Turn-in directory                     | ex02                                                                                                                     |
+| Files to turn-in                      | `day09_ex02.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | SQL, DDL, DML                                                                                              |
 
 Finally, we need to handle `DELETE` statements and make a copy of OLD states for all attribute’s values. Please create a trigger `trg_person_delete_audit` and corresponding trigger function `fnc_trg_person_delete_audit`. 
 
@@ -183,15 +183,15 @@ When you are ready please apply the SQL statement below.
 
 `DELETE FROM person WHERE id = 10;`
 
-## Глава VII
-## Упражнение 03 - Generic Audit
+## Chapter VII
+## Exercise 03 - Generic Audit
 
-| Упражнение 03: Generic Audit |                                                                                                                          |
+| Exercise 03: Generic Audit |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex03                                                                                                                     |
-| Файлы для сдачи                      | `day09_ex03.sql`                                                                                 |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        | SQL, DDL, DML                                                                                              |
+| Turn-in directory                     | ex03                                                                                                                     |
+| Files to turn-in                      | `day09_ex03.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | SQL, DDL, DML                                                                                              |
 
 Actually, there are 3 triggers for one `person` table. Let’s merge all our logic to the one main trigger with the name `trg_person_audit` and a new corresponding trigger function `fnc_trg_person_audit`.
 
@@ -209,16 +209,16 @@ When you are ready, please re-apply the set of DML statements.
 `DELETE FROM person WHERE id = 10;`
 
 
-## Глава VIII
-## Упражнение 04 - Database View VS Database Function
+## Chapter VIII
+## Exercise 04 - Database View VS Database Function
 
 
-| Упражнение 04: Database View VS Database Function |                                                                                                                          |
+| Exercise 04: Database View VS Database Function |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex04                                                                                                                     |
-| Файлы для сдачи                      | `day09_ex04.sql`                                                                                 |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        | SQL, DDL, DML                                                                                              |
+| Turn-in directory                     | ex04                                                                                                                     |
+| Files to turn-in                      | `day09_ex04.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | SQL, DDL, DML                                                                                              |
 
 As you remember, we created 2 database views to separate data from the person tables by gender attribute. 
 Please define 2 SQL-functions (please be aware, not pl/pgsql-functions) with names
@@ -234,18 +234,18 @@ To check yourself and call a function, you can make a statement like below (amaz
     FROM fnc_persons_female();
 
 
-## Глава IX
-## Упражнение 05 - Parameterized Database Function
+## Chapter IX
+## Exercise 05 - Parameterized Database Function
 
 
-| Упражнение 05: Parameterized Database Function|                                                                                                                          |
+| Exercise 05: Parameterized Database Function|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex05                                                                                                                     |
-| Файлы для сдачи                      | `day09_ex05.sql`                                                                                 |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        |  SQL, DDL, DML                                                                                               |
+| Turn-in directory                     | ex05                                                                                                                     |
+| Files to turn-in                      | `day09_ex05.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        |  SQL, DDL, DML                                                                                               |
 
-Looks like 2 functions from Упражнение 04 need a more generic approach. Please before our further steps drop these functions from the database. 
+Looks like 2 functions from exercise 04 need a more generic approach. Please before our further steps drop these functions from the database. 
 Write a common SQL-function (please be aware, not pl/pgsql-function) with the name `fnc_persons`. This function should have an `IN` parameter pgender with default value = ‘female’. 
 
 To check yourself and call a function, you can make a statement like below (wow! you can work with a function like with a virtual table but with more flexibilities!). 
@@ -257,16 +257,16 @@ To check yourself and call a function, you can make a statement like below (wow!
     from fnc_persons();
 
 
-## Глава X
-## Упражнение 06 - Function like a function-wrapper
+## Chapter X
+## Exercise 06 - Function like a function-wrapper
 
 
-| Упражнение 06: Function like a function-wrapper|                                                                                                                          |
+| Exercise 06: Function like a function-wrapper|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex06                                                                                                                     |
-| Файлы для сдачи                      | `day09_ex06.sql`                                                                                 |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        | SQL, DDL, DML                                                                                              |
+| Turn-in directory                     | ex06                                                                                                                     |
+| Files to turn-in                      | `day09_ex06.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | SQL, DDL, DML                                                                                              |
 
 Let’s look at pl/pgsql functions right now. 
 
@@ -281,16 +281,16 @@ To check yourself and call a function, you can make a statement like below.
     from fnc_person_visits_and_eats_on_date(pperson := 'Anna',pprice := 1300,pdate := '2022-01-01');
 
 
-## Глава XI
-## Упражнение 07 - Different view to find a Minimum
+## Chapter XI
+## Exercise 07 - Different view to find a Minimum
 
 
-| Упражнение 07: Different view to find a Minimum|                                                                                                                          |
+| Exercise 07: Different view to find a Minimum|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex07                                                                                                                     |
-| Файлы для сдачи                      | `day09_ex07.sql`                                                                                 |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        | SQL, DDL, DML                                                                                              |
+| Turn-in directory                     | ex07                                                                                                                     |
+| Files to turn-in                      | `day09_ex07.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | SQL, DDL, DML                                                                                              |
 
 Please write a SQL or pl/pgsql function `func_minimum` (it’s up to you) that has an input parameter is an array of numbers and the function should return a minimum value. 
 
@@ -299,16 +299,16 @@ To check yourself and call a function, you can make a statement like below.
     SELECT func_minimum(VARIADIC arr => ARRAY[10.0, -1.0, 5.0, 4.4]);
 
 
-## Глава XII
-## Упражнение 08 - Fibonacci algorithm is in a function
+## Chapter XII
+## Exercise 08 - Fibonacci algorithm is in a function
 
 
-| Упражнение 08: Fibonacci algorithm is in a function|                                                                                                                          |
+| Exercise 08: Fibonacci algorithm is in a function|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex08                                                                                                                     |
-| Файлы для сдачи                      | `day09_ex08.sql`                                                                                 |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        | SQL, DDL, DML                                                                                              |
+| Turn-in directory                     | ex08                                                                                                                     |
+| Files to turn-in                      | `day09_ex08.sql`                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        | SQL, DDL, DML                                                                                              |
 
 Please write a SQL or pl/pgsql function `fnc_fibonacci` (it’s up to you) that has an input parameter pstop with type integer (by default is 10) and the function output is a table with all Fibonacci numbers less than pstop.
 

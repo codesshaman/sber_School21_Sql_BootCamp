@@ -1,9 +1,8 @@
-SELECT order_date AS action_date,
-	   person.name AS person_name
-FROM person_order
-JOIN person ON person_order.person_id = person.id
-INTERSECT
-SELECT visit_date, person.name
-FROM person_visits
-JOIN person ON person_visits.person_id = person.id
+SELECT table1.action_date, table2.name, person.name AS person_name
+FROM (
+    (SELECT order_date AS action_date, person_id FROM person_order
+    	INTERSECT
+    SELECT visit_date, person_id FROM person_visits) AS table1
+    	JOIN
+    (SELECT name, id FROM person) AS table2 ON table1.person_id = table2.id)
 ORDER BY action_date ASC, person_name DESC;

@@ -6,181 +6,179 @@ Resume: Today you will see how to get needed data based on sets constructions an
 
 ## Contents
 
-1. [Chapter I](#chapter-i) \
-    1.1. [Preamble](#preamble)
-2. [Chapter II](#chapter-ii) \
-    2.1. [General Rules](#general-rules)
-3. [Chapter III](#chapter-iii) \
-    3.1. [Rules of the day](#rules-of-the-day)  
-4. [Chapter IV](#chapter-iv) \
-    4.1. [Exercise 00 - Let’s make UNION dance](#exercise-00-lets-make-union-dance)  
-5. [Chapter V](#chapter-v) \
-    5.1. [Exercise 01 - UNION dance with subquery](#exercise-01-union-dance-with-subquery)  
-6. [Chapter VI](#chapter-vi) \
-    6.1. [Exercise 02 - Duplicates or not duplicates](#exercise-02-duplicates-or-not-duplicates)  
-7. [Chapter VII](#chapter-vii) \
-    7.1. [Exercise 03 - “Hidden” Insights](#exercise-03-hidden-insights)  
-8. [Chapter VIII](#chapter-viii) \
-    8.1. [Exercise 04 - Difference? Yep, let's find the difference between multisets](#exercise-04-difference-yep-lets-find-the-difference-between-multisets)
-9. [Chapter IX](#chapter-ix) \
-    9.1. [Exercise 05 - Did you hear about Cartesian Product?](#exercise-05-did-you-hear-about-cartesian-product)
-10. [Chapter X](#chapter-x) \
-    10.1. [Exercise 06 - Lets see on “Hidden” Insights](#exercise-06-lets-see-on-hidden-insights)
-11. [Chapter XI](#chapter-xi) \
-    11.1. [Exercise 07 - Just make a JOIN](#exercise-07-just-make-a-join)
-12. [Chapter XII](#chapter-xii) \
-    12.1. [Exercise 08 - Migrate JOIN to NATURAL JOIN](#exercise-08-migrate-join-to-natural-join)
-13. [Chapter XIII](#chapter-xiii) \
-    13.1. [Exercise 09 - IN versus EXISTS](#exercise-09-in-versus-exists)
-14. [Chapter XIV](#chapter-xiv) \
-    14.1. [Exercise 10 - Global JOIN](#exercise-10-global-join)
+1. [Глава I](#chapter-i) \
+    1.1. [Преамбула](#preamble)
+2. [Глава II](#chapter-ii) \
+    2.1. [Основные правила](#general-rules)
+3. [Глава III](#chapter-iii) \
+    3.1. [Правила дня](#rules-of-the-day)  
+4. [Глава IV](#chapter-iv) \
+    4.1. [Упражнение 00 - Заставим UNION танцевать](#exercise-00-lets-make-union-dance)  
+5. [Глава V](#chapter-v) \
+    5.1. [Упражнение 01 - танец UNION с подзапросом](#exercise-01-union-dance-with-subquery)  
+6. [Глава VI](#chapter-vi) \
+    6.1. [Упражнение 02 - Дублирует или не дублирует](#exercise-02-duplicates-or-not-duplicates)  
+7. [Глава VII](#chapter-vii) \
+    7.1. [Упражнение 03 - "Тайные" знания](#exercise-03-hidden-insights)  
+8. [Глава VIII](#chapter-viii) \
+    8.1. [Упражнение 04 - Разница? Да, давайте найдем разницу между мультимножествами](#exercise-04-difference-yep-lets-find-the-difference-between-multisets)
+9. [Глава IX](#chapter-ix) \
+    9.1. [Упражнение 05 - Вы слышали о декартовом произведении?](#exercise-05-did-you-hear-about-cartesian-product)
+10. [Глава X](#chapter-x) \
+    10.1. [Упражнение 06 - Давайте посмотрим на "тайные" знания](#exercise-06-lets-see-on-hidden-insights)
+11. [Глава XI](#chapter-xi) \
+    11.1. [Упражнение 07 - Просто сделайте JOIN](#exercise-07-just-make-a-join)
+12. [Глава XII](#chapter-xii) \
+    12.1. [Упражнение 08 - Перенос JOIN в NATURAL JOIN](#exercise-08-migrate-join-to-natural-join)
+13. [Глава XIII](#chapter-xiii) \
+    13.1. [Упражнение 09 - IN против EXISTS](#exercise-09-in-versus-exists)
+14. [Глава XIV](#chapter-xiv) \
+    14.1. [Упражнение 10 - Глобальный JOIN](#exercise-10-global-join)
 
 
-## Chapter I
-## Preamble
+## Глава I
+## Преамбула
 
 ![D01_01](misc/images/D01_01.png)
 
-In many aspects, sets are used in Relational Databases. Not just, make UNION or find MINUS between sets. Sets are also good candidates to make recursive queries.
+Во многих аспектах наборы используются в реляционных базах данных. Не просто для ОБЪЕДИНЕНИЯ или поиска исключений между наборами. Наборы также являются хорошим инструментом для выполнения рекурсивных запросов.
 
-There are the next set operators in PostgreSQL. 
+В PostgreSQL есть следующие операторы множеств:
 - UNION [ALL]
 - EXCEPT [ALL] 
 - INTERSECT [ALL]
 
-Keyword “ALL” means to save duplicates of rows in the result.
-The main rules to work with sets are below
-- The main SQL provides a final names of attributes for whole query
-- The attributes of controlled SQL should satisfied number of columns and corresponding family types of main SQL
+Ключевое слово “ALL” означает сохранение дубликатов строк в результате. Основные правила работы с наборами приведены ниже.
+
+- Основной SQL предоставляет окончательные имена атрибутов для всего запроса.
+- Атрибуты контролируемого SQL должны соответствовать количеству столбцов и соответствующим типам семейства основного SQL.
 
 ![D01_02](misc/images/D01_02.png)
 
-Moreover, SQL sets are useful  to calculate some specific Data Science metrics, for example Jaccard distance between 2 objects based on existing data features.
+Кроме того, наборы SQL полезны для расчета некоторых конкретных показателей науки о данных, например, расстояния Жаккара между двумя объектами на основе существующих функций данных.
 
+## Глава II
+## Основные правила
 
-## Chapter II
-## General Rules
+- Используйте эту страницу как единственную инструкцию. Не слушайте никаких слухов и домыслов о том, как подготовить своё решение.
+- Пожалуйста, убедитесь, что вы используете последнюю версию PostgreSQL.
+- Это совершенно нормально, если вы используете IDE для написания исходного кода (он же SQL-скрипт).
+- Для оценки ваше решение должно находиться в вашем репозитории GIT.
+- Ваши решения будут оценены вашими товарищами по интенсиву.
+- Вы не должны оставлять в своем каталоге никаких других файлов, кроме тех, которые явно указаны в инструкциях к упражнению. Рекомендуется изменить ваш .gitignoreчтобы избежать случайностей.
+- У вас есть вопрос? Спросите у соседа справа. Если не помогло - попробуйте с соседом слева.
+- Ваш справочник: товарищи/интернет/гугл.
+- Внимательно прочитайте примеры. Они могут понять вещи, которые иначе не указаны в задании. 
+- И да прибудет с вами сила SQL!
+- Абсолютно все можно представить в SQL! Давайте начнем и получайте удовольствие!
 
-- Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
-- Please make sure you are using the latest version of PostgreSQL.
-- That is completely OK if you are using IDE to write a source code (aka SQL script).
-- To be assessed your solution must be in your GIT repository.
-- Your solutions will be evaluated by your piscine mates.
-- You should not leave in your directory any other file than those explicitly specified by the exercise instructions. It is recommended that you modify your `.gitignore` to avoid accidents.
-- Do you have a question? Ask your neighbor on the right. Otherwise, try with your neighbor on the left.
-- Your reference manual: mates / Internet / Google. 
-- Read the examples carefully. They may require things that are not otherwise specified in the subject.
-- And may the SQL-Force be with you!
-- Absolutely everything can be presented in SQL! Let’s start and have fun!
+## Глава III
+## Правила дня
 
-## Chapter III
-## Rules of the day
-
-- Please make sure you have an own database and access for it on your PostgreSQL cluster. 
-- Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). 
-- All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
-- Please take a look at the Logical View of our Database Model. 
+- Убедитесь, что у вас есть собственная база данных и доступ к ней в вашем кластере PostgreSQL.
+- Загрузите скрипт (materials/model.sql) с моделью базы данных здесь и примените его к своей базе данных (вы можете использовать командную строку с psql или просто запустить его через любую IDE, например DataGrip от JetBrains или pgAdmin от сообщества PostgreSQL).
+- Все задачи содержат список разрешенных и запрещенных разделов с перечисленными параметрами базы данных, типами баз данных, конструкциями SQL и т. д. Пожалуйста, ознакомьтесь с разделом перед началом.
+- Пожалуйста, взгляните на логическое представление нашей модели базы данных.
 
 ![schema](misc/images/schema.png)
 
+1. Таблица **pizzeria** (Таблица-словарь с доступными пиццериями)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``name`` - название пиццерии
+- поле ``rating`` - средний рейтинг пиццерии (от 0 до 5 баллов)
+2. Таблица **person** (Таблица-словарь с людьми, которые любят пиццу)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``name`` - имя человека
+- поле ``age`` - возраст человека
+- поле ``gender`` - пол человека
+- поле ``address`` - адрес человека
+3. Таблица **menu** (Таблица-словарь с доступным меню и ценой на конкретную пиццу)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``pizzeria_id`` - внешний ключ к пиццерии
+- поле ``pizza_name`` - название пиццы в пиццерии
+- поле ``price`` - цена конкретной пиццы
+4. Таблица **person_visits** (Операционная таблица с информацией о посещениях пиццерии)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``person_id`` - внешний ключ к человеку
+- поле ``pizzeria_id`` - внешний ключ к пиццерии
+- поле ``visit_date`` - дата (например 2022-01-01) посещения пиццерии человеком
+5. Таблица **person_order** (операционная таблица с информацией о заказах людей)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``person_id`` - внешний ключ к человеку
+- поле ``menu_id`` - внешний ключ к меню
+- поле ``order_date`` - дата (например 2022-01-01) заказа человека
 
-1. **pizzeria** table (Dictionary Table with available pizzerias)
-- field id - primary key
-- field name - name of pizzeria
-- field rating - average rating of pizzeria (from 0 to 5 points)
-2. **person** table (Dictionary Table with persons who loves pizza)
-- field id - primary key
-- field name - name of person
-- field age - age of person
-- field gender - gender of person
-- field address - address of person
-3. **menu** table (Dictionary Table with available menu and price for concrete pizza)
-- field id - primary key
-- field pizzeria_id - foreign key to pizzeria
-- field pizza_name - name of pizza in pizzeria
-- field price - price of concrete pizza
-4. **person_visits** table (Operational Table with information about visits of pizzeria)
-- field id - primary key
-- field person_id - foreign key to person
-- field pizzeria_id - foreign key to pizzeria
-- field visit_date - date (for example 2022-01-01) of person visit 
-5. **person_order** table (Operational Table with information about persons orders)
-- field id - primary key
-- field person_id - foreign key to person
-- field menu_id - foreign key to menu
-- field order_date - date (for example 2022-01-01) of person order 
+Посещение (visit_date) и заказ (order_date) - это разные сущности, и нет никакой корреляции между их данными. Например, клиент может находиться в одном месте (просто просматривая меню) и в это время сделать заказ в другом по телефону или с помощью мобильного приложения. Или позвонить из дома с заказом без каких-либо визитов.
 
-Persons' visit and persons' order are different entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
+## Глава IV
+## Упражнение 00 - Заставим UNION танцевать 
 
-## Chapter IV
-## Exercise 00 - Let’s make UNION dance
-
-| Exercise 00: Let’s make UNION dance |                                                                                                                          |
+| Упражнение 00: Заставим UNION танцевать |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex00                                                                                                                     |
-| Files to turn-in                      | `day01_ex00.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
+| Каталог сдачи                     | ex00                                                                                                                     |
+| Файлы для сдачи                      | `day01_ex00.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
 
-Please write a SQL statement which returns menu’s identifier and pizza names from `menu` table and person’s identifier and person name from `person` table in one global list (with column names as presented on a sample below) ordered by object_id and then by object_name columns.
+Пожалуйста, напишите оператор SQL, который возвращает идентификатор меню и названия пицц из таблицы ``menu`` и идентификатор человека и имя человека из таблицы ``person`` в один глобальный список (имена столбцов представлены на образце ниже), упорядоченный по столбцу имя_объекта. 
 
 | object_id | object_name |
 | ------ | ------ |
-| 1 | Anna |
-| 1 | cheese pizza |
+| 1 | Анна |
+| 1 | пицца с сыром |
 | ... | ... |
 
 
 
-## Chapter V
-## Exercise 01 - UNION dance with subquery
+## Глава V
+## Упражнение 01 - танец UNION с подзапросом
 
-| Exercise 01: UNION dance with subquery|                                                                                                                          |
+| Упражнение 01: танец UNION с подзапросом |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex01                                                                                                                     |
-| Files to turn-in                      | `day01_ex01.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
+| Каталог сдачи                     | ex01                                                                                                                     |
+| Файлы для сдачи                      | `day01_ex01.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
 
-Please modify a SQL statement from “exercise 00” by removing the object_id column. Then change ordering by object_name for part of data from the `person` table and then from `menu` table (like presented on a sample below). Please save duplicates!
+Измените оператор SQL из “Упражнение 00”, удалив столбец ``object_id``, а затем измените порядок по ``object_name`` для части данных из таблицы ``person``, а затем по таблицы ``menu`` (аналогично представленной на образце ниже). Пожалуйста, сохраняйте дубликаты! 
 
 | object_name |
 | ------ |
-| Andrey |
-| Anna |
+| Андрей |
+| Анна |
 | ... |
-| cheese pizza |
-| cheese pizza |
+| пицца с сыром |
+| пицца с сыром |
 | ... |
 
 
-## Chapter VI
-## Exercise 02 - Duplicates or not duplicates
+## Глава VI
+## Упражнение 02 - Дублирует или не дублирует
 
-| Exercise 02: Duplicates or not duplicates|                                                                                                                          |
+| Упражнение 02: Дублирует или не дублирует |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex02                                                                                                                     |
-| Files to turn-in                      | `day01_ex02.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-| **Denied**                               |                                                                                                                          |
-| SQL Syntax Construction                        | `DISTINCT`, `GROUP BY`, `HAVING`, any type of `JOINs`                                                                                              |
+| Каталог сдачи                     | ex02                                                                                                                     |
+| Файлы для сдачи                      | `day01_ex02.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
+| **Запрещено**                               |                                                                                                                          |
+| Синтаксические конструкции SQL                        | `DISTINCT`, `GROUP BY`, `HAVING`, any type of `JOINs`                                                                                              |
 
-Please write a SQL statement which returns unique pizza names from the `menu` table and orders by pizza_name column in descending mode. Please pay attention to the Denied section.
+Пожалуйста, напишите SQL, который возвращает уникальные названия пиццы из таблицы ``menu`` и упорядочивание по столбцу ``pizza_name`` в порядке убывания. Пожалуйста, обратите внимание на раздел "Запрещено".
 
-## Chapter VII
-## Exercise 03 - “Hidden” Insights
+## Глава VII
+## Упражнение 03 - "Тайные" знания
 
-| Exercise 03: “Hidden” Insights |                                                                                                                          |
+| Упражнение 03: “Тайные” знания |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex03                                                                                                                     |
-| Files to turn-in                      | `day01_ex03.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-| **Denied**                               |                                                                                                                          |
-| SQL Syntax Construction                        |  any type of `JOINs`                                                                                              |
+| Каталог сдачи                     | ex03                                                                                                                     |
+| Файлы для сдачи                      | `day01_ex03.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
+| **Запрещено**                               |                                                                                                                          |
+| Синтаксические конструкции SQL                        |  any type of `JOINs`                                                                                              |
 
-Please write a SQL statement which returns common rows for attributes order_date, person_id from `person_order` table from one side and visit_date, person_id from `person_visits` table from the other side (please see a sample below). In other words, let’s find identifiers of persons, who visited and ordered some pizza on the same day. Actually, please add ordering by action_date in ascending mode and then by person_id in descending mode.
+Пожалуйста, напишите оператор SQL, который возвращает общие строки для атрибутов ``order_date``, ``person_id`` из таблицы ``person_order`` с одной стороны и ``visit_date``, ``person_id`` из таблицы ``person_visits`` с другой стороны (см. образец ниже). Другими словами, найдем идентификаторы людей, которые посетили, а затем заказали пиццу в один и тот же день. Добавьте сортировку по ``action_date`` по возрастанию, а затем по ``person_id`` по убыванию.
 
 | action_date | person_id |
 | ------ | ------ |
@@ -191,33 +189,33 @@ Please write a SQL statement which returns common rows for attributes order_date
 | 2022-01-04 | 3 |
 | ... | ... |
 
-## Chapter VIII
-## Exercise 04 - Difference? Yep, let's find the difference between multisets.
+## Глава VIII
+## Упражнение 04 - Разница? Да, давайте найдем разницу между мультимножествами
 
 
-| Exercise 04: Difference? Yep, let's find the difference between multisets. |                                                                                                                          |
+| Упражнение 04: Разница? Да, давайте найдем разницу между мультимножествами |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex04                                                                                                                     |
-| Files to turn-in                      | `day01_ex04.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-| **Denied**                               |                                                                                                                          |
-| SQL Syntax Construction                        |  any type of `JOINs`                                                                                              |
+| Каталог сдачи                     | ex04                                                                                                                     |
+| Файлы для сдачи                      | `day01_ex04.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
+| **Запрещено**                               |                                                                                                                          |
+| Синтаксические конструкции SQL                        |  any type of `JOINs`                                                                                              |
 
-Please write a SQL statement which returns a difference (minus) of person_id column values with saving duplicates between `person_order` table and `person_visits` table for order_date and visit_date are for 7th of January of 2022
+Пожалуйста, напишите оператор SQL, который возвращает разницу (минус) значений колонки ``person_id`` с сохранением дубликатов между таблицами `person_order` и `person_visits` table для order_date и visit_date на 7 января 2022 г.
 
-## Chapter IX
-## Exercise 05 - Did you hear about Cartesian Product?
+## Глава IX
+## Упражнение 05 - Вы слышали о декартовом произведении?
 
 
-| Exercise 05: Did you hear about Cartesian Product? |                                                                                                                          |
+| Упражнение 05: Вы слышали о декартовом произведении? |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex05                                                                                                                     |
-| Files to turn-in                      | `day01_ex05.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
+| Каталог сдачи                     | ex05                                                                                                                     |
+| Файлы для сдачи                      | `day01_ex05.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
 
-Please write a SQL statement which returns all possible combinations between `person` and `pizzeria` tables and please set ordering by person identifier and then by pizzeria identifier columns. Please take a look at the result sample below. Please be aware column's names can be different for you.
+Пожалуйста, напишите оператор SQL, который возвращает все возможные комбинации между таблицами ``person`` и ``pizzeria``, установите порядок сортировки по идентификатору человека, а затем по столбцам идентификатора пиццерии. Пожалуйста, взгляните на образец результата ниже. 
 
 | person.id | person.name | age | gender | address | pizzeria.id | pizzeria.name | rating |
 | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -226,18 +224,17 @@ Please write a SQL statement which returns all possible combinations between `pe
 | ... | ... | ... | ... | ... | ... | ... | ... |
 
 
-## Chapter X
-## Exercise 06 - Lets see on “Hidden” Insights
+## Глава X
+## Упражнение 06 - Давайте взглянем на "тайные" знания
 
-
-| Exercise 06: Lets see on “Hidden” Insights |                                                                                                                          |
+| Упражнение 06: Давайте посмотрим на "тайные" знания |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex06                                                                                                                     |
-| Files to turn-in                      | `day01_ex06.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
+| Каталог сдачи                     | ex06                                                                                                                     |
+| Файлы для сдачи                      | `day01_ex06.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
 
-Let's return our mind back to exercise #03 and change our SQL statement to return person names instead of person identifiers and change ordering by action_date in ascending mode and then by person_name in descending mode. Please take a look at a data sample below.
+Давайте вернемся к упражнению № 03 и изменим нашу инструкцию SQL, чтобы она возвращала имена людей вместо идентификаторов людей, и изменим порядок сортировки - сначала по ``action_date`` по возрастанию, а затем по ``person_name`` по убыванию. Пожалуйста, взгляните на образец данных ниже.
 
 | action_date | person_name |
 | ------ | ------ |
@@ -246,18 +243,17 @@ Let's return our mind back to exercise #03 and change our SQL statement to retur
 | 2022-01-01 | Andrey |
 | ... | ... |
 
-## Chapter XI
-## Exercise 07 - Just make a JOIN
+## Глава XI
+## Упражнение 07 - Просто сделайте JOIN
 
-
-| Exercise 07: Just make a JOIN |                                                                                                                          |
+| Упражнение 07: Просто сделайте JOIN |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex07                                                                                                                     |
-| Files to turn-in                      | `day01_ex07.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
+| Каталог сдачи                     | ex07                                                                                                                     |
+| Файлы для сдачи                      | `day01_ex07.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
 
-Please write a SQL statement which returns the date of order from the `person_order` table and corresponding person name (name and age are formatted as in the data sample below) which made an order from the `person` table. Add a sort by both columns in ascending mode.
+Напишите оператор SQL, который возвращает дату заказа из таблицы ``person_order`` и соответствующее имя человека (переименуйте выходной вычисляемый столбец в ``person_information``), который сделал заказ, из таблицы ``person``, как в следующем примере ниже. Добавьте сортировку по обоим столбцам по возрастанию. 
 
 | order_date | person_information |
 | ------ | ------ |
@@ -267,47 +263,47 @@ Please write a SQL statement which returns the date of order from the `person_or
 | ... | ... |
 
 
-## Chapter XII
-## Exercise 08 - Migrate JOIN to NATURAL JOIN
+## Глава XII
+## Упражнение 08 - Перенос JOIN в NATURAL JOIN
 
 
-| Exercise 08: Migrate JOIN to NATURAL JOIN |                                                                                                                          |
+| Упражнение 08: Перенос JOIN в NATURAL JOIN |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex08                                                                                                                     |
-| Files to turn-in                      | `day01_ex08.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
-| SQL Syntax Construction                        | `NATURAL JOIN`                                                                                              |
-| **Denied**                               |                                                                                                                          |
-| SQL Syntax Construction                        | other type of  `JOINs`                                                                                              |
+| Каталог сдачи                     | ex08                                                                                                                     |
+| Файлы для сдачи                      | `day01_ex08.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
+| Синтаксические конструкции SQL                        | `NATURAL JOIN`                                                                                              |
+| **Запрещено**                               |                                                                                                                          |
+| Синтаксические конструкции SQL                        | other type of  `JOINs`                                                                                              |
 
-Please rewrite a SQL statement from exercise #07 by using NATURAL JOIN construction. The result must be the same like for exercise #07.  
+Пожалуйста, перепишите оператор SQL из упражнения № 07, используя конструкцию NATURAL JOIN. Результат должен быть такой же как в упражнении #07.  
 
-## Chapter XIII
-## Exercise 09 - IN versus EXISTS
+## Глава XIII
+## Упражнение 09 - IN против EXISTS
 
 
-| Exercise 09: IN versus EXISTS |                                                                                                                          |
+| Упражнение 09: IN против EXISTS |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex09                                                                                                                     |
-| Files to turn-in                      | `day01_ex09.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
+| Каталог сдачи                     | ex09                                                                                                                     |
+| Файлы для сдачи                      | `day01_ex09.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
 
-Please write 2 SQL statements which return a list of pizzerias names which have not been visited by persons by using IN for 1st one and EXISTS for the 2nd one.
+Пожалуйста, напишите 2 оператора SQL, которые возвращают список названий пиццерий, которые не посещались людьми, используя IN для 1-го и EXISTS для 2-го.
 
-## Chapter XIV
-## Exercise 10 - Global JOIN
+## Глава XIV
+## Упражнение 10 - Глобальный JOIN
 
 
-| Exercise 10: Global JOIN |                                                                                                                          |
+| Exercise 10: Глобальный JOIN |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Turn-in directory                     | ex10                                                                                                                     |
-| Files to turn-in                      | `day01_ex10.sql`                                                                                 |
-| **Allowed**                               |                                                                                                                          |
-| Language                        | ANSI SQL                                                                                              |
+| Каталог сдачи                     | ex10                                                                                                                     |
+| Файлы для сдачи                      | `day01_ex10.sql`                                                                                 |
+| **Разрешено**                               |                                                                                                                          |
+| Язык                        | ANSI SQL                                                                                              |
 
-Please write a SQL statement which returns a list of the person names which made an order for pizza in the corresponding pizzeria. The sample result (with named columns) is provided below and yes ... please make ordering by 3 columns in ascending mode.
+Пожалуйста, напишите оператор SQL, который возвращает список имен людей, сделавших заказ на пиццу в соответствующей пиццерии. Пример результата (с именованными столбцами) представлен ниже, и да... пожалуйста, упорядочьте по 3 столбцам в порядке возрастания. 
 
 | person_name | pizza_name | pizzeria_name | 
 | ------ | ------ | ------ |

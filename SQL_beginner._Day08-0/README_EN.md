@@ -6,32 +6,32 @@ Resume: Today you will see how database works with transactions and isolation le
 
 ## Contents
 
-1. [Глава I](#chapter-i) \
-    1.1. [Преамбула](#preamble)
-2. [Глава II](#chapter-ii) \
-    2.1. [Основные правила](#general-rules)
-3. [Глава III](#chapter-iii) \
-    3.1. [Правила дня](#rules-of-the-day)  
-4. [Глава IV](#chapter-iv) \
-    4.1. [Упражнение 00 - Simple transaction](#exercise-00-simple-transaction)  
-5. [Глава V](#chapter-v) \
-    5.1. [Упражнение 01 - Lost Update Anomaly](#exercise-01-lost-update-anomaly)  
-6. [Глава VI](#chapter-vi) \
-    6.1. [Упражнение 02 - Lost Update for Repeatable Read](#exercise-02-lost-update-for-repeatable-read)  
-7. [Глава VII](#chapter-vii) \
-    7.1. [Упражнение 03 - Non-Repeatable Reads Anomaly](#exercise-03-non-repeatable-reads-anomaly)  
-8. [Глава VIII](#chapter-viii) \
-    8.1. [Упражнение 04 - Non-Repeatable Reads for Serialization](#exercise-04-non-repeatable-reads-for-serialization)
-9. [Глава IX](#chapter-ix) \
-    9.1. [Упражнение 05 - Phantom Reads Anomaly](#exercise-05-phantom-reads-anomaly)
-10. [Глава X](#chapter-x) \
-    10.1. [Упражнение 06 - Phantom Reads for Repeatable Read](#exercise-06-phantom-reads-for-repeatable-read)
-11. [Глава XI](#chapter-xi) \
-    11.1. [Упражнение 07 - Deadlock](#exercise-07-deadlock)
+1. [Chapter I](#chapter-i) \
+    1.1. [Preamble](#preamble)
+2. [Chapter II](#chapter-ii) \
+    2.1. [General Rules](#general-rules)
+3. [Chapter III](#chapter-iii) \
+    3.1. [Rules of the day](#rules-of-the-day)  
+4. [Chapter IV](#chapter-iv) \
+    4.1. [Exercise 00 - Simple transaction](#exercise-00-simple-transaction)  
+5. [Chapter V](#chapter-v) \
+    5.1. [Exercise 01 - Lost Update Anomaly](#exercise-01-lost-update-anomaly)  
+6. [Chapter VI](#chapter-vi) \
+    6.1. [Exercise 02 - Lost Update for Repeatable Read](#exercise-02-lost-update-for-repeatable-read)  
+7. [Chapter VII](#chapter-vii) \
+    7.1. [Exercise 03 - Non-Repeatable Reads Anomaly](#exercise-03-non-repeatable-reads-anomaly)  
+8. [Chapter VIII](#chapter-viii) \
+    8.1. [Exercise 04 - Non-Repeatable Reads for Serialization](#exercise-04-non-repeatable-reads-for-serialization)
+9. [Chapter IX](#chapter-ix) \
+    9.1. [Exercise 05 - Phantom Reads Anomaly](#exercise-05-phantom-reads-anomaly)
+10. [Chapter X](#chapter-x) \
+    10.1. [Exercise 06 - Phantom Reads for Repeatable Read](#exercise-06-phantom-reads-for-repeatable-read)
+11. [Chapter XI](#chapter-xi) \
+    11.1. [Exercise 07 - Deadlock](#exercise-07-deadlock)
       
 
-## Глава I
-## Преамбула
+## Chapter I
+## Preamble
 
 ![D08_01](misc/images/D08_01.png)
 
@@ -65,8 +65,8 @@ Nowadays, IT community found a set of new anomalies based on Database Model (log
 - etc.
 
 
-## Глава II
-## Основные правила
+## Chapter II
+## General Rules
 
 - Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
 - Please make sure you are using the latest version of PostgreSQL.
@@ -80,11 +80,11 @@ Nowadays, IT community found a set of new anomalies based on Database Model (log
 - And may the SQL-Force be with you!
 - Absolutely everything can be presented in SQL! Let’s start and have fun!
 
-## Глава III
-## Правила дня
+## Chapter III
+## Rules of the day
 
 - Please make sure you have an own database and access for it on your PostgreSQL cluster. 
-- Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). **Our knowledge way is incremental and linear therefore please be aware all changes that you made in Day03 during exercises 07-13 and in Day04 during Упражнение 07 should be on place (its similar like in real world , when we applied a release and need to be consistency with data for new changes).**
+- Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). **Our knowledge way is incremental and linear therefore please be aware all changes that you made in Day03 during exercises 07-13 and in Day04 during exercise 07 should be on place (its similar like in real world , when we applied a release and need to be consistency with data for new changes).**
 - All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
 - Please take a look at the Logical View of our Database Model. 
 
@@ -120,15 +120,15 @@ Nowadays, IT community found a set of new anomalies based on Database Model (log
 Persons' visit and persons' order are different entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
 
 
-## Глава IV
-## Упражнение 00 - Simple transaction
+## Chapter IV
+## Exercise 00 - Simple transaction
 
-| Упражнение 00: Simple transaction |                                                                                                                          |
+| Exercise 00: Simple transaction |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex00                                                                                                                     |
-| Файлы для сдачи                      | `day08_ex00.sql` with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2 |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        |  SQL|
+| Turn-in directory                     | ex00                                                                                                                     |
+| Files to turn-in                      | `day08_ex00.sql` with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        |  SQL|
 
 Please for this task use the command line for PostgreSQL database (psql). You need to check how your changes will be published in the database for other database users. 
 
@@ -170,15 +170,15 @@ You can see the same query returns different results, because the first one was 
 
 
 
-## Глава V
-## Упражнение 01 - Lost Update Anomaly
+## Chapter V
+## Exercise 01 - Lost Update Anomaly
 
-| Упражнение 01: Lost Update Anomaly|                                                                                                                          |
+| Exercise 01: Lost Update Anomaly|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex01                                                                                                                     |
-| Файлы для сдачи                      | `day08_ex01.sql` with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                 |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        |  SQL                                                                                              |
+| Turn-in directory                     | ex01                                                                                                                     |
+| Files to turn-in                      | `day08_ex01.sql` with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        |  SQL                                                                                              |
 
 Please for this task use the command line for PostgreSQL database (psql). You need to check how your changes will be published in the database for other database users. 
 
@@ -200,15 +200,15 @@ Please check a rating for “Pizza Hut” in a transaction mode for both Session
 
 
 
-## Глава VI
-## Упражнение 02 - Lost Update for Repeatable Read
+## Chapter VI
+## Exercise 02 - Lost Update for Repeatable Read
 
-| Упражнение 02: Lost Update for Repeatable Read|                                                                                                                          |
+| Exercise 02: Lost Update for Repeatable Read|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex02                                                                                                                     |
-| Файлы для сдачи                      | `day08_ex02.sql` with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                  |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        |  SQL                                                                                              |
+| Turn-in directory                     | ex02                                                                                                                     |
+| Files to turn-in                      | `day08_ex02.sql` with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                  |
+| **Allowed**                               |                                                                                                                          |
+| Language                        |  SQL                                                                                              |
 
 Please for this task use the command line for PostgreSQL database (psql). You need to check how your changes will be published in the database for other database users. 
 
@@ -220,15 +220,15 @@ Actually, we need two active sessions (meaning 2 parallel sessions in the comman
 
 Please check a rating for “Pizza Hut” in a transaction mode for both Sessions and after that make `UPDATE` of rating to 4 value in session #1 and make `UPDATE` of rating to 3.6 value in session #2 (in the same order as in the picture). 
 
-## Глава VII
-## Упражнение 03 - Non-Repeatable Reads Anomaly
+## Chapter VII
+## Exercise 03 - Non-Repeatable Reads Anomaly
 
-| Упражнение 03: Non-Repeatable Reads Anomaly |                                                                                                                          |
+| Exercise 03: Non-Repeatable Reads Anomaly |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex03                                                                                                                     |
-| Файлы для сдачи                      | `day08_ex03.sql` with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                 |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        |  SQL                                                                                              |
+| Turn-in directory                     | ex03                                                                                                                     |
+| Files to turn-in                      | `day08_ex03.sql` with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        |  SQL                                                                                              |
 
 Please for this task use the command line for PostgreSQL database (psql). You need to check how your changes will be published in the database for other database users. 
 
@@ -241,16 +241,16 @@ Actually, we need two active sessions (meaning 2 parallel sessions in the comman
 Please check a rating for “Pizza Hut” in a transaction mode for both Sessions and after that make `UPDATE` of rating to 3.6 value in session #2 (in the same order as in the picture). 
 
 
-## Глава VIII
-## Упражнение 04 - Non-Repeatable Reads for Serialization
+## Chapter VIII
+## Exercise 04 - Non-Repeatable Reads for Serialization
 
 
-| Упражнение 04: Non-Repeatable Reads for Serialization |                                                                                                                          |
+| Exercise 04: Non-Repeatable Reads for Serialization |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex04                                                                                                                     |
-| Файлы для сдачи                      | `day08_ex04.sql` with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                 |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        |  SQL                                                                                              |
+| Turn-in directory                     | ex04                                                                                                                     |
+| Files to turn-in                      | `day08_ex04.sql` with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        |  SQL                                                                                              |
 
 Please for this task use the command line for PostgreSQL database (psql). You need to check how your changes will be published in the database for other database users. 
 
@@ -264,16 +264,16 @@ Please check a rating for “Pizza Hut” in a transaction mode for both Session
 
 
 
-## Глава IX
-## Упражнение 05 - Phantom Reads Anomaly
+## Chapter IX
+## Exercise 05 - Phantom Reads Anomaly
 
 
-| Упражнение 05: Phantom Reads Anomaly|                                                                                                                          |
+| Exercise 05: Phantom Reads Anomaly|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex05                                                                                                                     |
-| Файлы для сдачи                      | `day08_ex05.sql`  with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                 |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        |   SQL                                                                                              |
+| Turn-in directory                     | ex05                                                                                                                     |
+| Files to turn-in                      | `day08_ex05.sql`  with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        |   SQL                                                                                              |
 
 Please for this task use the command line for PostgreSQL database (psql). You need to check how your changes will be published in the database for other database users. 
 
@@ -287,16 +287,16 @@ Please summarize all ratings for all pizzerias in a transaction mode for both Se
 
  
 
-## Глава X
-## Упражнение 06 - Phantom Reads for Repeatable Read
+## Chapter X
+## Exercise 06 - Phantom Reads for Repeatable Read
 
 
-| Упражнение 06: Phantom Reads for Repeatable Read|                                                                                                                          |
+| Exercise 06: Phantom Reads for Repeatable Read|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex06                                                                                                                     |
-| Файлы для сдачи                      | `day08_ex06.sql`  with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                 |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        |  SQL                                                                                              |
+| Turn-in directory                     | ex06                                                                                                                     |
+| Files to turn-in                      | `day08_ex06.sql`  with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                 |
+| **Allowed**                               |                                                                                                                          |
+| Language                        |  SQL                                                                                              |
 
 Please for this task use the command line for PostgreSQL database (psql). You need to check how your changes will be published in the database for other database users. 
 
@@ -309,16 +309,16 @@ Actually, we need two active sessions (meaning 2 parallel sessions in the comman
 
 Please summarize all ratings for all pizzerias in a transaction mode for both Sessions and after that make `UPDATE` of rating to 5 value for “Pizza Hut” restaurant in session #2 (in the same order as in the picture). 
 
-## Глава XI
-## Упражнение 07 - Deadlock
+## Chapter XI
+## Exercise 07 - Deadlock
 
 
-| Упражнение 07: Deadlock|                                                                                                                          |
+| Exercise 07: Deadlock|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Каталог сдачи                     | ex07                                                                                                                     |
-| Файлы для сдачи                      | `day08_ex07.sql`    with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                |
-| **Разрешено**                               |                                                                                                                          |
-| Язык                        |  SQL                                                                                              |
+| Turn-in directory                     | ex07                                                                                                                     |
+| Files to turn-in                      | `day08_ex07.sql`    with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                |
+| **Allowed**                               |                                                                                                                          |
+| Language                        |  SQL                                                                                              |
 
 Please for this task use the command line for PostgreSQL database (psql). You need to check how your changes will be published in the database for other database users. 
 
