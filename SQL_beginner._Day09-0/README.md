@@ -112,7 +112,6 @@ Just think about it and try to create a clean architecture :-)
 
 Persons' visit and persons' order are different entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
 
-
 ## Глава IV
 ## Упражнение 00 - Audit of incoming inserts
 

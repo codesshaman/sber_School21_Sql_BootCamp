@@ -13,32 +13,32 @@ Resume: Today you will see how to add a new business feature into our data model
 3. [Глава III](#chapter-iii) \
     3.1. [Правила дня](#rules-of-the-day)  
 4. [Глава IV](#chapter-iv) \
-    4.1. [Упражнение 00 - Discounts, discounts , everyone loves discounts](#exercise-00-discounts-discounts-everyone-loves-discounts)  
+    4.1. [Упражнение 00 - Скидки, скидки, все любят скидки](#exercise-00-discounts-discounts-everyone-loves-discounts)  
 5. [Глава V](#chapter-v) \
-    5.1. [Упражнение 01 - Let’s set personal discounts](#exercise-01-lets-set-personal-discounts)  
+    5.1. [Упражнение 01 - Установим персональные скидки](#exercise-01-lets-set-personal-discounts)  
 6. [Глава VI](#chapter-vi) \
-    6.1. [Упражнение 02 - Let’s recalculate a history of orders.](#exercise-02-lets-recalculate-a-history-of-orders)  
+    6.1. [Упражнение 02 - Пересчитаем историю заказов.](#exercise-02-lets-recalculate-a-history-of-orders)  
 7. [Глава VII](#chapter-vii) \
-    7.1. [Упражнение 03 - Improvements are in a way](#exercise-03-improvements-are-in-a-way)  
+    7.1. [Упражнение 03 - Возможны улучшения](#exercise-03-improvements-are-in-a-way)  
 8. [Глава VIII](#chapter-viii) \
-    8.1. [Упражнение 04 - We need more Data Consistency](#exercise-04-we-need-more-data-consistency)
+    8.1. [Упражнение 04 - Нам нужно больше согласованности данных](#exercise-04-we-need-more-data-consistency)
 9. [Глава IX](#chapter-ix) \
-    9.1. [Упражнение 05 - Data Governance Rules](#exercise-05-data-governance-rules)
+    9.1. [Упражнение 05 - Правила управления данными](#exercise-05-data-governance-rules)
 10. [Глава X](#chapter-x) \
-    10.1. [Упражнение 06 - Let’s automate Primary Key generation](#exercise-06-lets-automate-primary-key-generation)
+    10.1. [Упражнение 06 - Автоматизируем генерацию первичного ключа](#exercise-06-lets-automate-primary-key-generation)
 
 ## Глава I
 ## Преамбула
 
 ![D06_01](misc/images/D06_01.png)
 
-Why is a diamond one of the most durable objects? The reason is in the structure. Every atom knows about his place in diamond’s topology and makes the whole diamond unbreakable. 
+Почему алмаз является одним из самых прочных предметов? Причина в конструкции. Каждый атом знает о своем месте в топологии алмаза и делает весь алмаз нерушимым.
 
-Logical structure is like a diamond. If you find an appropriate structure for your own Database Model then you find gold (or diamond :-). There are two aspects of Database Modeling. The first one is a logical view, in other words how your model will smoothly describe the real business world. 
+Логическая структура подобна бриллианту. Если вы найдете подходящую структуру для своей собственной модели базы данных, вы найдете золото (или алмаз :-). Есть два аспекта моделирования баз данных. Первый — это логическое представление, другими словами, как ваша модель будет плавно описывать реальный деловой мир.
 
 ![D06_02](misc/images/D06_02.png)
 
-On the other hand, your model should solve your functional tasks with minimal impaction. It means, logical model view transforms to physical model view and not just from table and attributes descriptions. But actually, from performance and budget perspectives that are more mainly nowadays. How to find a balance? For this case there are 3 steps to create a very good design. Just take a look at the picture below. 
+С другой стороны, ваша модель должна решать ваши функциональные задачи с минимальным воздействием. Это означает, что представление логической модели преобразуется в представление физической модели, а не только из описаний таблиц и атрибутов. Но на самом деле, с точки зрения производительности и бюджета, которые в настоящее время более важны. Как найти баланс? Для этого случая есть 3 шага, чтобы создать очень хороший дизайн. Просто взгляните на картинку ниже.
 
 ![D06_03](misc/images/D06_03.png)
 
@@ -46,120 +46,115 @@ On the other hand, your model should solve your functional tasks with minimal im
 ## Глава II
 ## Основные правила
 
-- Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
-- Please make sure you are using the latest version of PostgreSQL.
-- That is completely OK if you are using IDE to write a source code (aka SQL script).
-- To be assessed your solution must be in your GIT repository.
-- Your solutions will be evaluated by your piscine mates.
-- You should not leave in your directory any other file than those explicitly specified by the exercise instructions. It is recommended that you modify your `.gitignore` to avoid accidents.
-- Do you have a question? Ask your neighbor on the right. Otherwise, try with your neighbor on the left.
-- Your reference manual: mates / Internet / Google. 
-- Read the examples carefully. They may require things that are not otherwise specified in the subject.
-- And may the SQL-Force be with you!
-- Absolutely everything can be presented in SQL! Let’s start and have fun!
+- Используйте эту страницу как единственную инструкцию. Не слушайте никаких слухов и домыслов о том, как подготовить своё решение.
+- Пожалуйста, убедитесь, что вы используете последнюю версию PostgreSQL.
+- Это совершенно нормально, если вы используете IDE для написания исходного кода (он же SQL-скрипт).
+- Для оценки ваше решение должно находиться в вашем репозитории GIT.
+- Ваши решения будут оценены вашими товарищами по интенсиву.
+- Вы не должны оставлять в своем каталоге никаких других файлов, кроме тех, которые явно указаны в инструкциях к упражнению. Рекомендуется изменить ваш .gitignoreчтобы избежать случайностей.
+- У вас есть вопрос? Спросите у соседа справа. Если не помогло - попробуйте с соседом слева.
+- Ваш справочник: товарищи/интернет/гугл.
+- Внимательно прочитайте примеры. Они могут понять вещи, которые иначе не указаны в задании. 
+- И да прибудет с вами сила SQL!
+- Абсолютно все можно представить в SQL! Давайте начнем и получайте удовольствие!
 
 ## Глава III
 ## Правила дня
 
-- Please make sure you have an own database and access for it on your PostgreSQL cluster. 
-- Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). **Our knowledge way is incremental and linear therefore please be aware all changes that you made in Day03 during exercises 07-13 and in Day04 during Упражнение 07 should be on place (its similar like in real world , when we applied a release and need to be consistency with data for new changes).**
-- All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
-- Please take a look at the Logical View of our Database Model. 
+- Убедитесь, что у вас есть собственная база данных и доступ к ней в вашем кластере PostgreSQL.
+- Загрузите скрипт (materials/model.sql) с моделью базы данных здесь и примените его к своей базе данных (вы можете использовать командную строку с psql или просто запустить его через любую IDE, например DataGrip от JetBrains или pgAdmin от сообщества PostgreSQL).
+- Все задачи содержат список разрешенных и запрещенных разделов с перечисленными параметрами базы данных, типами баз данных, конструкциями SQL и т. д. Пожалуйста, ознакомьтесь с разделом перед началом.
+- Пожалуйста, взгляните на логическое представление нашей модели базы данных.
 
 ![schema](misc/images/schema.png)
 
+1. Таблица **pizzeria** (Таблица-словарь с доступными пиццериями)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``name`` - название пиццерии
+- поле ``rating`` - средний рейтинг пиццерии (от 0 до 5 баллов)
+2. Таблица **person** (Таблица-словарь с людьми, которые любят пиццу)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``name`` - имя человека
+- поле ``age`` - возраст человека
+- поле ``gender`` - пол человека
+- поле ``address`` - адрес человека
+3. Таблица **menu** (Таблица-словарь с доступным меню и ценой на конкретную пиццу)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``pizzeria_id`` - внешний ключ к пиццерии
+- поле ``pizza_name`` - название пиццы в пиццерии
+- поле ``price`` - цена конкретной пиццы
+4. Таблица **person_visits** (Операционная таблица с информацией о посещениях пиццерии)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``person_id`` - внешний ключ к человеку
+- поле ``pizzeria_id`` - внешний ключ к пиццерии
+- поле ``visit_date`` - дата (например 2022-01-01) посещения пиццерии человеком
+5. Таблица **person_order** (операционная таблица с информацией о заказах людей)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``person_id`` - внешний ключ к человеку
+- поле ``menu_id`` - внешний ключ к меню
+- поле ``order_date`` - дата (например 2022-01-01) заказа человека
 
-1. **pizzeria** table (Dictionary Table with available pizzerias)
-- field id - primary key
-- field name - name of pizzeria
-- field rating - average rating of pizzeria (from 0 to 5 points)
-2. **person** table (Dictionary Table with persons who loves pizza)
-- field id - primary key
-- field name - name of person
-- field age - age of person
-- field gender - gender of person
-- field address - address of person
-3. **menu** table (Dictionary Table with available menu and price for concrete pizza)
-- field id - primary key
-- field pizzeria_id - foreign key to pizzeria
-- field pizza_name - name of pizza in pizzeria
-- field price - price of concrete pizza
-4. **person_visits** table (Operational Table with information about visits of pizzeria)
-- field id - primary key
-- field person_id - foreign key to person
-- field pizzeria_id - foreign key to pizzeria
-- field visit_date - date (for example 2022-01-01) of person visit 
-5. **person_order** table (Operational Table with information about persons orders)
-- field id - primary key
-- field person_id - foreign key to person
-- field menu_id - foreign key to menu
-- field order_date - date (for example 2022-01-01) of person order 
-
-Persons' visit and persons' order are different entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
-
+Посещение (visit_date) и заказ (order_date) - это разные сущности, и нет никакой корреляции между их данными. Например, клиент может находиться в одном месте (просто просматривая меню) и в это время сделать заказ в другом по телефону или с помощью мобильного приложения. Или позвонить из дома с заказом без каких-либо визитов.
 
 ## Глава IV
-## Упражнение 00 - Discounts, discounts , everyone loves discounts
+## Упражнение 00 - Скидки, скидки, все любят скидки 
 
-| Упражнение 00: Discounts, discounts , everyone loves discounts |                                                                                                                          |
+| Упражнение 00: Скидки, скидки, все любят скидки  |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex00                                                                                                                     |
 | Файлы для сдачи                      | `day06_ex00.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | SQL, DML, DDL                                                                                              |
 
-Let’s expand our data model to involve a new business feature.
-Every person wants to see a personal discount and every business wants to be closer for clients.
+Давайте расширим нашу модель данных, включив в нее новую бизнес-функцию. Каждый человек хочет видеть персональную скидку и каждый бизнес хочет быть ближе к клиентам.
 
-Please think about personal discounts for people from one side and pizzeria restaurants from other. Need to create a new relational table (please set a name `person_discounts`) with the next rules.
-- set id attribute like a Primary Key (please take a look on id column in existing tables and choose the same data type)
-- set for attributes person_id and pizzeria_id foreign keys for corresponding tables (data types should be the same like for id columns in corresponding parent tables)
-- please set explicit names for foreign keys constraints by pattern fk_{table_name}_{column_name},  for example `fk_person_discounts_person_id`
-- add a discount attribute to store a value of discount in percent. Remember, discount value can be a number with floats (please just use `numeric` data type). So, please choose the corresponding data type to cover this possibility.
-
-
+Пожалуйста, подумайте о персональных скидках для людей с одной стороны и ресторанов-пиццерий с другой. Необходимо создать новую реляционную таблицу (пожалуйста, задайте имя `person_discounts`) со следующими правилами:
+- установите атрибут id как первичный ключ (пожалуйста, посмотрите на столбец id в существующих таблицах и выберите тот же тип данных)
+- установить внешние ключи атрибутов person_id и pizzeria_id для соответствующих таблиц (типы данных должны быть такими же, как и для столбцов id в соответствующих родительских таблицах)
+- пожалуйста, установите явные имена для ограничений внешних ключей по шаблону fk_{table_name}_{column_name}, например `fk_person_discounts_person_id`
+- добавьте атрибут скидки для хранения значения скидки в процентах. Помните, что значение скидки может быть числом с плавающей запятой. Поэтому, пожалуйста, выберите соответствующий тип данных, чтобы покрыть эту возможность.
 
 ## Глава V
-## Упражнение 01 - Let’s set personal discounts
+## Упражнение 01 - Установим персональные скидки
 
-| Упражнение 01: Let’s set personal discounts|                                                                                                                          |
+| Упражнение 01: Установим персональные скидки|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex01                                                                                                                     |
 | Файлы для сдачи                      | `day06_ex01.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | SQL, DML, DDL                                                                                              |
 
-Actually, we created a structure to store our discounts and we are ready to go further and fill our `person_discounts` table with new records.
+Собственно, мы создали структуру для хранения наших скидок и готовы идти дальше и наполнять нашу таблицу `person_discounts` с новыми записями.
 
-So, there is a table `person_order` that stores the history of a person's orders. Please write a DML statement (`INSERT INTO ... SELECT ...`) that makes  inserts new records into `person_discounts` table based on the next rules.
-- take aggregated state by person_id and pizzeria_id columns 
-- calculate personal discount value by the next pseudo code:
+Итак, есть таблица `person_order` который хранит историю заказов человека. Пожалуйста, напишите оператор DML (`INSERT INTO ... SELECT ...`), который вставляет новые записи в таблицу `person_discounts` на основе следующих правил:
+- взять агрегированное состояние по столбцам person_id и pizzeria_id
 
+- рассчитать величину персональной скидки по следующему псевдокоду:
+
+```
     `if “amount of orders” = 1 then
         “discount” = 10.5 
     else if “amount of orders” = 2 then 
         “discount” = 22
     else 
         “discount” = 30`
+```
 
-- to generate a primary key for the person_discounts table please use  SQL construction below (this construction is from the WINDOW FUNCTION  SQL area).
-    
+- чтобы сгенерировать первичный ключ для таблицы person_discounts, используйте приведенную ниже конструкцию SQL (эта конструкция взята из области SQL WINDOW FUNCTION).
+
     `... ROW_NUMBER( ) OVER ( ) AS id ...`
 
-
-
-
 ## Глава VI
-## Упражнение 02 - Let’s recalculate a history of orders
+## Упражнение 02 - Пересчитаем историю заказов
 
-| Упражнение 02: Let’s recalculate a history of orders|                                                                                                                          |
+| Упражнение 02: Пересчитаем историю заказов|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex02                                                                                                                     |
 | Файлы для сдачи                      | `day06_ex02.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | SQL, DML, DDL                                                                                              |
 
-Please write a SQL statement that returns orders with actual price and price with applied discount for each person in the corresponding pizzeria restaurant and sort by person name, and pizza name. Please take a look at the sample of data below.
+Пожалуйста, напишите оператор SQL, который возвращает заказы с фактической ценой и ценой с примененной скидкой для каждого человека в соответствующем ресторане-пиццерии и сортирует по имени человека и названию пиццы. Пожалуйста, взгляните на образец данных ниже.
 
 | name | pizza_name | price | discount_price | pizzeria_name | 
 | ------ | ------ | ------ | ------ | ------ |
@@ -168,71 +163,64 @@ Please write a SQL statement that returns orders with actual price and price wit
 | ... | ... | ... | ... | ... |
 
 ## Глава VII
-## Упражнение 03 - Improvements are in a way
+## Упражнение 03 - Возможны улучшения
 
-| Упражнение 03: Improvements are in a way |                                                                                                                          |
+| Упражнение 03: Возможны улучшения |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex03                                                                                                                     |
 | Файлы для сдачи                      | `day06_ex03.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | SQL, DML, DDL                                                                                              |
 
+На самом деле нам нужно улучшить согласованность данных с одной стороны и настроить производительность с другой стороны. Пожалуйста, создайте многоколоночный уникальный индекс (с именем `idx_person_discounts_unique`), который предотвращает дублирование парных значений идентификаторов человека и пиццерии.
 
-Actually, we have to make improvements to data consistency from one side and performance tuning from the other side. Please create a multicolumn unique index (with name `idx_person_discounts_unique`) that prevents duplicates of pair values person and pizzeria identifiers.
-
-After creation of a new index, please provide any simple SQL statement that shows proof of index usage (by using `EXPLAIN ANALYZE`).
-The example of “proof” is below
+После создания нового индекса предоставьте любую простую инструкцию SQL, которая показывает доказательство использования индекса (с помощью`EXPLAIN ANALYZE`). Пример «доказательства» ниже
     
-    ...
-    Index Scan using idx_person_discounts_unique on person_discounts
-    ...
-
+```
+Index Scan using idx_person_discounts_unique on person_discounts
+```
 
 ## Глава VIII
-## Упражнение 04 - We need more Data Consistency
+## Упражнение 04 - Нам нужно больше согласованности данных
 
 
-| Упражнение 04: We need more Data Consistency |                                                                                                                          |
+| Упражнение 04: Нам нужно больше согласованности данных |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex04                                                                                                                     |
 | Файлы для сдачи                      | `day06_ex04.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | SQL, DML, DDL                                                                                              |
 
-Please add the following constraint rules for existing columns of the `person_discounts` table.
-- person_id column should not be NULL (use constraint name `ch_nn_person_id`)
-- pizzeria_id column should not be NULL (use constraint name `ch_nn_pizzeria_id`)
-- discount column should not be NULL (use constraint name `ch_nn_discount`)
-- discount column should be 0 percent by default
-- discount column should be in a range values from 0 to 100 (use constraint name `ch_range_discount`)
-
+Пожалуйста, добавьте следующие правила ограничения для существующих атрибутов таблицы `person_discounts`.
+- столбец person_id не должен быть NULL (используйте имя ограничения `ch_nn_person_id`)
+- столбец pizzeria_id не должен быть NULL (используйте имя ограничения `ch_nn_pizzeria_id`)
+- столбец скидки не должен быть NULL (используйте имя ограничения `ch_nn_discount`)
+- столбец скидки должен быть 0 процентов по умолчанию
+- столбец скидки должен находиться в диапазоне значений от 0 до 100 (используйте имя ограничения `ch_range_discount`)
 
 ## Глава IX
-## Упражнение 05 - Data Governance Rules
+## Упражнение 05 - Правила управления данными
 
-
-| Упражнение 05: Data Governance Rules|                                                                                                                          |
+| Упражнение 05: Правила управления данными|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex05                                                                                                                     |
 | Файлы для сдачи                      | `day06_ex05.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        |  SQL, DML, DDL                                                                                              |
 
-To satisfy Data Governance Policies need to add comments for the table and table's columns. Let’s apply this policy for the `person_discounts` table. Please add English or Russian comments (it's up to you) that explain what is a business goal of a table and all included attributes. 
+Чтобы соответствовать политикам управления данными, необходимо добавить комментарии к таблице и каждому атрибуту внутри. Применим эту политику к таблице `person_discounts` table. Пожалуйста, добавьте комментарии на английском или русском языке (на ваше усмотрение), поясняющие, какова бизнес-цель таблицы и атрибутов.
 
 ## Глава X
-## Упражнение 06 - Let’s automate Primary Key generation
+## Упражнение 06 - Автоматизируем генерацию первичного ключа
 
 
-| Упражнение 06: Let’s automate Primary Key generation|                                                                                                                          |
+| Упражнение 06: Автоматизируем генерацию первичного ключа|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex06                                                                                                                     |
 | Файлы для сдачи                      | `day06_ex06.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | SQL, DML, DDL                                                                                              |
 | **Запрещено**                               |                                                                                                                          |
-| SQL Syntax Pattern                        | Don’t use hard-coded value for amount of rows to set a right value for sequence                                                                                              |
+| Шаблон синтаксиса SQL                        | Не используйте жестко закодированное значение для количества строк, чтобы установить правильное значение для последовательности.                                                                                             |
 
-Let’s create a Database Sequence with the name `seq_person_discounts` (starting from 1 value) and set a default value for id attribute of `person_discounts` table to take a value from `seq_person_discounts` each time automatically. 
-Please be aware that your next sequence number is 1, in this case please set an actual value for database sequence based on formula “amount of rows in person_discounts table” + 1. Otherwise you will get errors about Primary Key violation constraint.
-
+Давайте создадим последовательность базы данных с именем `seq_person_discounts`(начиная с 1 значения) и установите значение по умолчанию для атрибута id таблицы `person_discounts`, из которой нужно взять значение `seq_person_discounts` каждый раз автоматически. Имейте в виду, что ваш следующий порядковый номер равен 1, в этом случае установите фактическое значение для последовательности базы данных на основе формулы «количество строк в таблице person_discounts» + 1. В противном случае вы получите ошибки об ограничении нарушения первичного ключа. 

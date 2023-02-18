@@ -13,109 +13,106 @@ Resume: Today you will see how to use specific OLAP constructions to get a “Va
 3. [Глава III](#chapter-iii) \
     3.1. [Правила дня](#rules-of-the-day)  
 4. [Глава IV](#chapter-iv) \
-    4.1. [Упражнение 00 - Simple aggregated information](#exercise-00-simple-aggregated-information)  
+    4.1. [Упражнение 00 - Простая агрегированная информация](#exercise-00-simple-aggregated-information)  
 5. [Глава V](#chapter-v) \
-    5.1. [Упражнение 01 - Let’s see real names](#exercise-01-lets-see-real-names)  
+    5.1. [Упражнение 01 - Давайте посмотрим на настоящие имена](#exercise-01-lets-see-real-names)  
 6. [Глава VI](#chapter-vi) \
-    6.1. [Упражнение 02 - Restaurants statistics](#exercise-02-restaurants-statistics)  
+    6.1. [Упражнение 02 - Статистика ресторанов](#exercise-02-restaurants-statistics)  
 7. [Глава VII](#chapter-vii) \
-    7.1. [Упражнение 03 - Restaurants statistics #2](#exercise-03-restaurants-statistics-2)  
+    7.1. [Упражнение 03 - Статистика ресторанов #2](#exercise-03-restaurants-statistics-2)  
 8. [Глава VIII](#chapter-viii) \
-    8.1. [Упражнение 04 - Clause for groups](#exercise-04-clause-for-groups)
+    8.1. [Упражнение 04 - Предложение для групп](#exercise-04-clause-for-groups)
 9. [Глава IX](#chapter-ix) \
-    9.1. [Упражнение 05 - Person's uniqueness](#exercise-05-persons-uniqueness)
+    9.1. [Упражнение 05 - Уникальность человека](#exercise-05-persons-uniqueness)
 10. [Глава X](#chapter-x) \
-    10.1. [Упражнение 06 - Restaurant metrics](#exercise-06-restaurant-metrics)
+    10.1. [Упражнение 06 - Показатели ресторана](#exercise-06-restaurant-metrics)
 11. [Глава XI](#chapter-xi) \
-    11.1. [Упражнение 07 - Average global rating](#exercise-07-average-global-rating)
+    11.1. [Упражнение 07 - Средний глобальный рейтинг](#exercise-07-average-global-rating)
 12. [Глава XII](#chapter-xii) \
-    12.1. [Упражнение 08 - Find pizzeria’s restaurant locations](#exercise-08-find-pizzerias-restaurant-locations)    
+    12.1. [Упражнение 08 - Найдите расположение ресторанов пиццерии](#exercise-08-find-pizzerias-restaurant-locations)    
 13. [Глава XIII](#chapter-xiii) \
-    13.1. [Упражнение 09 - Explicit type transformation](#exercise-09-explicit-type-transformation)        
+    13.1. [Упражнение 09 - Явное преобразование типов](#exercise-09-explicit-type-transformation)        
 
 ## Глава I
 ## Преамбула
 
 ![D07_01](misc/images/D07_01.png)
 
-Please take a look at Curve of Usefulness for detailed data in time. Other words, detailed data (means user transactions, facts about products and providers, etc.) are not useful for us from a historical perspective, because we just need to know  some aggregation to describe what was going on a year ago.
+Пожалуйста, взгляните на кривую полезности для получения подробных данных во времени. Другими словами, подробные данные (имеются в виду транзакции пользователей, факты о продуктах и ​​провайдерах и т. д.) бесполезны для нас с исторической точки зрения, потому что нам просто нужно знать некоторую агрегацию, чтобы описать, что происходило год назад.
 
-Why does it happen? The reason is in our analytical mind. Actually we want to concentrate on our business strategy from a historical perspective to set new business goals and we don’t need details. 
+Почему это происходит? Причина в нашем аналитическом уме. На самом деле мы хотим сосредоточиться на нашей бизнес-стратегии с исторической точки зрения, чтобы установить новые бизнес-цели, и нам не нужны подробности.
 
-From a database point of view, “Analytical mind” corresponds to OLAP  traffic (information layer), “details” corresponds to OLTP traffic (raw data layer). Today there is a more flexible pattern to store detailed data and aggregated information in the ecosystem. I am talking about `LakeHouse = DataLake + DataWareHouse`.
+С точки зрения базы данных «Аналитический ум» соответствует OLAP-трафику (информационный слой), «детали» — OLTP-трафику (сырой слой данных). Сегодня существует более гибкий шаблон для хранения подробных данных и агрегированной информации в экосистеме. я говорю о `LakeHouse = DataLake + DataWareHouse`.
 
-If we are talking about historical data then we should mention the “Data lifecycle management” pattern. Simple words, what should we do with old data? TTL (time-to-live), SLA for data, Retention Data Policy, etc. are terms that are in use in Data Governance strategy.
+Если мы говорим об исторических данных, то следует упомянуть паттерн «Управление жизненным циклом данных». Простыми словами, что нам делать со старыми данными? TTL (время жизни), SLA для данных, политика хранения данных и т. д. — это термины, которые используются в стратегии управления данными. 
 
 ![D07_02](misc/images/D07_02.png)
-
-
 
 ## Глава II
 ## Основные правила
 
-- Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
-- Please make sure you are using the latest version of PostgreSQL.
-- That is completely OK if you are using IDE to write a source code (aka SQL script).
-- To be assessed your solution must be in your GIT repository.
-- Your solutions will be evaluated by your piscine mates.
-- You should not leave in your directory any other file than those explicitly specified by the exercise instructions. It is recommended that you modify your `.gitignore` to avoid accidents.
-- Do you have a question? Ask your neighbor on the right. Otherwise, try with your neighbor on the left.
-- Your reference manual: mates / Internet / Google. 
-- Read the examples carefully. They may require things that are not otherwise specified in the subject.
-- And may the SQL-Force be with you!
-- Absolutely everything can be presented in SQL! Let’s start and have fun!
+- Используйте эту страницу как единственную инструкцию. Не слушайте никаких слухов и домыслов о том, как подготовить своё решение.
+- Пожалуйста, убедитесь, что вы используете последнюю версию PostgreSQL.
+- Это совершенно нормально, если вы используете IDE для написания исходного кода (он же SQL-скрипт).
+- Для оценки ваше решение должно находиться в вашем репозитории GIT.
+- Ваши решения будут оценены вашими товарищами по интенсиву.
+- Вы не должны оставлять в своем каталоге никаких других файлов, кроме тех, которые явно указаны в инструкциях к упражнению. Рекомендуется изменить ваш .gitignoreчтобы избежать случайностей.
+- У вас есть вопрос? Спросите у соседа справа. Если не помогло - попробуйте с соседом слева.
+- Ваш справочник: товарищи/интернет/гугл.
+- Внимательно прочитайте примеры. Они могут понять вещи, которые иначе не указаны в задании. 
+- И да прибудет с вами сила SQL!
+- Абсолютно все можно представить в SQL! Давайте начнем и получайте удовольствие!
 
 ## Глава III
 ## Правила дня
 
-- Please make sure you have an own database and access for it on your PostgreSQL cluster. 
-- Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). **Our knowledge way is incremental and linear therefore please be aware all changes that you made in Day03 during exercises 07-13 and in Day04 during Упражнение 07 should be on place (its similar like in real world , when we applied a release and need to be consistency with data for new changes).**
-- All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
-- Please take a look at the Logical View of our Database Model. 
+- Убедитесь, что у вас есть собственная база данных и доступ к ней в вашем кластере PostgreSQL.
+- Загрузите скрипт (materials/model.sql) с моделью базы данных здесь и примените его к своей базе данных (вы можете использовать командную строку с psql или просто запустить его через любую IDE, например DataGrip от JetBrains или pgAdmin от сообщества PostgreSQL).
+- **Наш способ получения знаний является постепенным и линейным, поэтому, пожалуйста, имейте в виду, что все изменения, которые вы внесли в День03 во время упражнений 07-13 и в День04 во время Упражнение 07, должны быть на месте (это похоже на реальный мир, когда мы применили релиз и должны быть согласованы с данными для новых изменений).**
+- Все задачи содержат список разрешенных и запрещенных разделов с перечисленными параметрами базы данных, типами баз данных, конструкциями SQL и т. д. Пожалуйста, ознакомьтесь с разделом перед началом.
+- Пожалуйста, взгляните на логическое представление нашей модели базы данных.
 
 ![schema](misc/images/schema.png)
 
+1. Таблица **pizzeria** (Таблица-словарь с доступными пиццериями)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``name`` - название пиццерии
+- поле ``rating`` - средний рейтинг пиццерии (от 0 до 5 баллов)
+2. Таблица **person** (Таблица-словарь с людьми, которые любят пиццу)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``name`` - имя человека
+- поле ``age`` - возраст человека
+- поле ``gender`` - пол человека
+- поле ``address`` - адрес человека
+3. Таблица **menu** (Таблица-словарь с доступным меню и ценой на конкретную пиццу)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``pizzeria_id`` - внешний ключ к пиццерии
+- поле ``pizza_name`` - название пиццы в пиццерии
+- поле ``price`` - цена конкретной пиццы
+4. Таблица **person_visits** (Операционная таблица с информацией о посещениях пиццерии)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``person_id`` - внешний ключ к человеку
+- поле ``pizzeria_id`` - внешний ключ к пиццерии
+- поле ``visit_date`` - дата (например 2022-01-01) посещения пиццерии человеком
+5. Таблица **person_order** (операционная таблица с информацией о заказах людей)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``person_id`` - внешний ключ к человеку
+- поле ``menu_id`` - внешний ключ к меню
+- поле ``order_date`` - дата (например 2022-01-01) заказа человека
 
-1. **pizzeria** table (Dictionary Table with available pizzerias)
-- field id - primary key
-- field name - name of pizzeria
-- field rating - average rating of pizzeria (from 0 to 5 points)
-2. **person** table (Dictionary Table with persons who loves pizza)
-- field id - primary key
-- field name - name of person
-- field age - age of person
-- field gender - gender of person
-- field address - address of person
-3. **menu** table (Dictionary Table with available menu and price for concrete pizza)
-- field id - primary key
-- field pizzeria_id - foreign key to pizzeria
-- field pizza_name - name of pizza in pizzeria
-- field price - price of concrete pizza
-4. **person_visits** table (Operational Table with information about visits of pizzeria)
-- field id - primary key
-- field person_id - foreign key to person
-- field pizzeria_id - foreign key to pizzeria
-- field visit_date - date (for example 2022-01-01) of person visit 
-5. **person_order** table (Operational Table with information about persons orders)
-- field id - primary key
-- field person_id - foreign key to person
-- field menu_id - foreign key to menu
-- field order_date - date (for example 2022-01-01) of person order 
-
-Persons' visit and persons' order are different entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
-
+Посещение (visit_date) и заказ (order_date) - это разные сущности, и нет никакой корреляции между их данными. Например, клиент может находиться в одном месте (просто просматривая меню) и в это время сделать заказ в другом по телефону или с помощью мобильного приложения. Или позвонить из дома с заказом без каких-либо визитов.
 
 ## Глава IV
-## Упражнение 00 - Simple aggregated information
+## Упражнение 00 - Простая агрегированная информация
 
-| Упражнение 00: Simple aggregated information |                                                                                                                          |
+| Упражнение 00: Простая агрегированная информация |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex00                                                                                                                     |
 | Файлы для сдачи                      | `day07_ex00.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | ANSI SQL|
 
-Let’s make a simple aggregation, please write a SQL statement that returns person identifiers and corresponding number of visits in any pizzerias and sorting by count of visits in descending mode and sorting in `person_id` in ascending mode. Please take a look at the sample of data below.
+Давайте сделаем простую агрегацию, пожалуйста, напишите оператор SQL, который возвращает идентификаторы людей и соответствующее количество посещений в любых пиццериях и сортирует по количеству посещений в режиме убывания. Пожалуйста, взгляните на образец данных ниже.
 
 | person_id | count_of_visits |
 | ------ | ------ |
@@ -125,16 +122,16 @@ Let’s make a simple aggregation, please write a SQL statement that returns per
 
 
 ## Глава V
-## Упражнение 01 - Let’s see real names
+## Упражнение 01 - Давайте посмотрим на настоящие имена
 
-| Упражнение 01: Let’s see real names|                                                                                                                          |
+| Упражнение 01: Давайте посмотрим на настоящие имена|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex01                                                                                                                     |
 | Файлы для сдачи                      | `day07_ex01.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | ANSI SQL                                                                                              |
 
-Please change a SQL statement from Упражнение 00 and return a person name (not identifier). Additional clause is  we need to see only top-4 persons with maximal visits in any pizzerias and sorted by a person name. Please take a look at the example of output data below.
+Измените оператор SQL из упражнения 00 и верните имя человека (не идентификатор). Дополнительным пунктом является то, что нам нужно видеть только топ-5 человек с максимальным количеством посещений в любых пиццериях. Пожалуйста, взгляните на пример выходных данных ниже. 
 
 | name | count_of_visits |
 | ------ | ------ |
@@ -142,19 +139,17 @@ Please change a SQL statement from Упражнение 00 and return a person n
 | Denis | 3 |
 | ... | ... | 
 
-
-
 ## Глава VI
-## Упражнение 02 - Restaurants statistics
+## Упражнение 02 - Статистика ресторанов
 
-| Упражнение 02: Restaurants statistics|                                                                                                                          |
+| Упражнение 02: Статистика ресторанов|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex02                                                                                                                     |
 | Файлы для сдачи                      | `day07_ex02.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | ANSI SQL                                                                                              |
 
-Please write a SQL statement to see 3 favorite restaurants by visits and by orders in one list (please add an action_type column with values ‘order’ or ‘visit’, it depends on data from the corresponding table). Please take a look at the sample of data below. The result should be sorted by action_type column in ascending mode and by count column in descending mode.
+Пожалуйста, напишите оператор SQL, чтобы увидеть 3 любимых ресторана по посещениям и по заказам в одном списке (пожалуйста, добавьте столбец action_type со значениями «заказ» или «посещение», это зависит от данных из соответствующей таблицы). Пожалуйста, взгляните на образец данных ниже. Результат должен быть отсортирован по столбцу action_type в возрастающем режиме и по столбцу count в нисходящем режиме. 
 
 | name | count | action_type |
 | ------ | ------ | ------ |
@@ -164,22 +159,22 @@ Please write a SQL statement to see 3 favorite restaurants by visits and by orde
 | ... | ... | ... |
 
 ## Глава VII
-## Упражнение 03 - Restaurants statistics #2
+## Упражнение 03 - Статистика ресторанов #2
 
-| Упражнение 03: Restaurants statistics #2 |                                                                                                                          |
+| Упражнение 03: Статистика ресторанов #2 |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex03                                                                                                                     |
 | Файлы для сдачи                      | `day07_ex03.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | ANSI SQL                                                                                              |
 
-Please write a SQL statement to see restaurants are grouping by visits and by orders and joined with each other by using restraunt name.  
-You can use internal SQLs from Упражнение 02 (restaurants by visits and by orders) without limitations of amount of rows.
+Пожалуйста, напишите SQL-запрос, чтобы увидеть, что рестораны группируются по посещениям и заказам и соединяются друг с другом с помощью ограниченного имени.
+Вы можете использовать внутренний Sql из Упражнение 02 (рестораны по посещениям и по заказам) без ограничений по количеству строк.
 
-Additioanlly, please add the next rules.
-- calculate a sum of orders and visits for corresponding pizzeria (be aware, not all pizzeria keys are presented in both tables).
-- sort results by `total_count` column in descending mode and by `name` in ascending mode.
-Take a look at the data sample below.
+Кроме того, пожалуйста, добавьте следующие правила.
+- рассчитайте сумму заказов и посещений для соответствующей пиццерии (имейте в виду, что не все ключи от пиццерии представлены в обеих таблицах).
+- сортировка результатов по столбцу "total_count" в режиме убывания и по "name" в режиме возрастания.
+Взгляните на приведенный ниже образец данных.
 
 | name | total_count |
 | ------ | ------ |
@@ -189,10 +184,10 @@ Take a look at the data sample below.
 
 
 ## Глава VIII
-## Упражнение 04 - Clause for groups
+## Упражнение 04 - Предложение для групп
 
 
-| Упражнение 04: Clause for groups |                                                                                                                          |
+| Упражнение 04: Предложение для групп |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex04                                                                                                                     |
 | Файлы для сдачи                      | `day07_ex04.sql`                                                                                 |
@@ -201,28 +196,26 @@ Take a look at the data sample below.
 | **Запрещено**                               |                                                                                                                          |
 | Syntax construction                        | `WHERE`                                                                                              |
 
-Please write a SQL statement that returns the person name and corresponding number of visits in any pizzerias if the person has visited more than 3 times (> 3).Please take a look at the sample of data below.
+Пожалуйста, напишите оператор SQL, который возвращает имя человека и соответствующее количество посещений в любой пиццерии, если человек посетил более 3 раз (> 3). Пожалуйста, взгляните на образец данных ниже. 
 
 | name | count_of_visits |
 | ------ | ------ |
 | Dmitriy | 4 |
 
-
-
 ## Глава IX
-## Упражнение 05 - Person's uniqueness
+## Упражнение 05 - Уникальность человека
 
 
-| Упражнение 05: Person's uniqueness|                                                                                                                          |
+| Упражнение 05: Уникальность человека|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex05                                                                                                                     |
 | Файлы для сдачи                      | `day07_ex05.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        |  ANSI SQL                                                                                              |
 | **Запрещено**                               |                                                                                                                          |
-| Syntax construction                        |  `GROUP BY`, any type (`UNION`,...) working with sets                                                                                              |
+| Синтаксические конструкции                     |  `GROUP BY`, и тип (`UNION`,...) работающие вместе                                                                                              |
 
-Please write a simple SQL query that returns a list of unique person names who made orders in any pizzerias. The result should be sorted by person name. Please take a look at the sample below.
+Пожалуйста, напишите простой SQL-запрос, который возвращает список уникальных имен людей, которые делали заказы в любых пиццериях. Результат должен быть отсортирован по имени человека. Пожалуйста, взгляните на образец ниже. 
 
 | name | 
 | ------ |
@@ -231,18 +224,17 @@ Please write a simple SQL query that returns a list of unique person names who m
 | ... | 
 
 ## Глава X
-## Упражнение 06 - Restaurant metrics
+## Упражнение 06 - Показатели ресторана
 
 
-| Упражнение 06: Restaurant metrics|                                                                                                                          |
+| Упражнение 06: Показатели ресторана|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex06                                                                                                                     |
 | Файлы для сдачи                      | `day07_ex06.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | ANSI SQL                                                                                              |
 
-Please write a SQL statement that returns the amount of orders, average of price, maximum and minimum prices for sold pizza by corresponding pizzeria restaurant. The result should be sorted by pizzeria name. Please take a look at the data sample below. 
-Round your average price to 2 floating numbers.
+Пожалуйста, напишите оператор SQL, который возвращает количество заказов, среднюю цену, максимальную и минимальную цены на пиццу, проданную соответствующим рестораном-пиццерией. Результат должен быть отсортирован по названию пиццерии. Пожалуйста, взгляните на образец данных ниже. Округлите среднюю цену до 2 плавающих чисел.
 
 | name | count_of_orders | average_price | max_price | min_price |
 | ------ | ------ | ------ | ------ | ------ |
@@ -252,31 +244,30 @@ Round your average price to 2 floating numbers.
 
 
 ## Глава XI
-## Упражнение 07 - Average global rating
+## Упражнение 07 - Средний глобальный рейтинг
 
 
-| Упражнение 07: Average global rating|                                                                                                                          |
+| Упражнение 07: Средний глобальный рейтинг|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex07                                                                                                                     |
 | Файлы для сдачи                      | `day07_ex07.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | ANSI SQL                                                                                              |
 
-Please write a SQL statement that returns a common average rating (the output attribute name is global_rating) for all restaurants. Round your average rating to 4 floating numbers.
-
+Напишите оператор SQL, который возвращает общий средний рейтинг (имя выходного атрибута — global_rating) для всех ресторанов. Округлите средний рейтинг до 4 плавающих чисел.
 
 ## Глава XII
-## Упражнение 08 - Find pizzeria’s restaurant locations
+## Упражнение 08 - Найдите расположение ресторанов пиццерии
 
 
-| Упражнение 08: Find pizzeria’s restaurant locations|                                                                                                                          |
+| Упражнение 08: Найдите расположение ресторанов пиццерии|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex08                                                                                                                     |
 | Файлы для сдачи                      | `day07_ex08.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | ANSI SQL                                                                                              |
 
-We know about personal addresses from our data. Let’s imagine, that particular person visits pizzerias in his/her city only. Please write a SQL statement that returns address, pizzeria name and amount of persons’ orders. The result should be sorted by address and then by restaurant name. Please take a look at the sample of output data below.
+Мы знаем о личных адресах из наших данных. Представим, что этот конкретный человек посещает пиццерии только в своем городе. Пожалуйста, напишите оператор SQL, который возвращает адрес, название пиццерии и количество заказов. Результат должен быть отсортирован по адресу, а затем по названию ресторана. Пожалуйста, взгляните на образец выходных данных ниже.
 
 | address | name |count_of_orders |
 | ------ | ------ |------ |
@@ -284,26 +275,22 @@ We know about personal addresses from our data. Let’s imagine, that particular
 | Kazan | DinoPizza |4 |
 | ... | ... | ... | 
 
-
 ## Глава XIII
-## Упражнение 09 - Explicit type transformation
+## Упражнение 09 - Явное преобразование типов
 
-
-| Упражнение 09: Explicit type transformation|                                                                                                                          |
+| Упражнение 09: Явное преобразование типов|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex09                                                                                                                     |
 | Файлы для сдачи                      | `day07_ex09.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | ANSI SQL                                                                                              |
 
-Please write a SQL statement that returns aggregated information by person’s address , the result of “Maximal Age - (Minimal Age  / Maximal Age)” that is presented as a formula column, next one is average age per address and the result of comparison between formula and average columns (other words, if formula is greater than  average then True, otherwise False value).
+Пожалуйста, напишите оператор SQL, который возвращает агрегированную информацию по адресу человека, среднему возрасту по адресу, результату «(Максимальный возраст - Минимальный возраст) / Максимальный возраст», который представлен в виде столбца формулы и результат сравнения между формулой и средним столбцом (другими словами, если формула больше среднего, то значение True, в противном случае значение False).
 
-The result should be sorted by address column. Please take a look at the sample of output data below.
+Результат должен быть отсортирован по столбцу адреса. Пожалуйста, взгляните на образец выходных данных ниже.
 
 | address | formula |average | comparison |
 | ------ | ------ |------ |------ |
 | Kazan | 44.71 |30.33 | true |
 | Moscow | 20.24 | 18.5 | true |
 | ... | ... | ... | ... |
-
-

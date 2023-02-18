@@ -13,19 +13,19 @@ Resume: Today you will see how database works with transactions and isolation le
 3. [Глава III](#chapter-iii) \
     3.1. [Правила дня](#rules-of-the-day)  
 4. [Глава IV](#chapter-iv) \
-    4.1. [Упражнение 00 - Simple transaction](#exercise-00-simple-transaction)  
+    4.1. [Упражнение 00 - Простая транзакция](#exercise-00-simple-transaction)  
 5. [Глава V](#chapter-v) \
-    5.1. [Упражнение 01 - Lost Update Anomaly](#exercise-01-lost-update-anomaly)  
+    5.1. [Упражнение 01 - Аномалия с потерянными обновлениями](#exercise-01-lost-update-anomaly)  
 6. [Глава VI](#chapter-vi) \
-    6.1. [Упражнение 02 - Lost Update for Repeatable Read](#exercise-02-lost-update-for-repeatable-read)  
+    6.1. [Упражнение 02 - Потерянное обновление для повторяющегося чтения](#exercise-02-lost-update-for-repeatable-read)  
 7. [Глава VII](#chapter-vii) \
-    7.1. [Упражнение 03 - Non-Repeatable Reads Anomaly](#exercise-03-non-repeatable-reads-anomaly)  
+    7.1. [Упражнение 03 - Аномалия неповторяющихся чтений](#exercise-03-non-repeatable-reads-anomaly)  
 8. [Глава VIII](#chapter-viii) \
-    8.1. [Упражнение 04 - Non-Repeatable Reads for Serialization](#exercise-04-non-repeatable-reads-for-serialization)
+    8.1. [Упражнение 04 - Неповторяющиеся  чтения для сериализации](#exercise-04-non-repeatable-reads-for-serialization)
 9. [Глава IX](#chapter-ix) \
-    9.1. [Упражнение 05 - Phantom Reads Anomaly](#exercise-05-phantom-reads-anomaly)
+    9.1. [Упражнение 05 - Аномалия фантомного чтения](#exercise-05-phantom-reads-anomaly)
 10. [Глава X](#chapter-x) \
-    10.1. [Упражнение 06 - Phantom Reads for Repeatable Read](#exercise-06-phantom-reads-for-repeatable-read)
+    10.1. [Упражнение 06 - Фантомные чтения для повторного чтения](#exercise-06-phantom-reads-for-repeatable-read)
 11. [Глава XI](#chapter-xi) \
     11.1. [Упражнение 07 - Deadlock](#exercise-07-deadlock)
       
@@ -35,19 +35,20 @@ Resume: Today you will see how database works with transactions and isolation le
 
 ![D08_01](misc/images/D08_01.png)
 
-The Penrose stairs or Penrose steps, also dubbed the impossible staircase, is an impossible object created by Lionel Penrose and his son Roger Penrose. A variation on the Penrose triangle, it is a two-dimensional depiction of a staircase in which the stairs make four 90-degree turns as they ascend or descend yet form a continuous loop, so that a person could climb them forever and never get any higher. This is clearly impossible in three dimensions. The "continuous staircase" was first presented in an article that the Penroses wrote in 1959, based on the so-called "triangle of Penrose" published by Roger Penrose in the British Journal of Psychology in 1958. 
+Лестница Пенроуза или ступеньки Пенроуза, также называемая невозможной лестницей, представляет собой невозможный объект, созданный Лайонелом Пенроузом и его сыном Роджером Пенроузом. Разновидность треугольника Пенроуза, это двухмерное изображение лестницы, в которой лестница делает четыре поворота на 90 градусов при подъеме или спуске, но образует непрерывную петлю, так что человек может подниматься по ней вечно и никогда не получить выше. Это явно невозможно в трех измерениях. «Непрерывная лестница» была впервые представлена ​​в статье, написанной Пенроузами в 1959 году на основе так называемого «треугольника Пенроуза», опубликованного Роджером Пенроузом в «Британском журнале психологии» в 1958 году.
 
-“Penrose Stairs” is a mathematical anomaly, actually Database Theory has 4 foundametal data anomalies (physical anomalies).
-- Lost Update Anomaly
-- Dirty Reads Anomaly
-- Non-repeatable Reads Anomaly
-- Phantom Read Anomaly
+«Лестница Пенроуза» — это математическая аномалия, на самом деле в теории баз данных есть 4 фундаментальные аномалии данных (физические аномалии).
 
-Therefore there are different Isolation Levels in ANSI SQL standard that prevent famous anomalies.
+    Аномалия потерянного обновления
+    Аномалия грязного чтения
+    Неповторяющаяся аномалия чтения
+    Аномалия фантомного чтения
+
+Поэтому в стандарте ANSI SQL существуют разные уровни изоляции, которые предотвращают известные аномалии.
 
 ![D08_02](misc/images/D08_02.png)
 
-From one side this matrix should be a Standard for every Relational Database, but reality ... looks a bit different.
+С одной стороны, эта матрица должна быть стандартом для каждой реляционной базы данных, но реальность... выглядит немного иначе.
 
 |  |  | |
 | ------ | ------ | ------ |
@@ -55,281 +56,267 @@ From one side this matrix should be a Standard for every Relational Database, bu
 | Oracle | ![D08_04](misc/images/D08_04.png) |
 | MySQL | ![D08_05](misc/images/D08_05.png) |
 
-Nowadays, IT community found a set of new anomalies based on Database Model (logical view)
-- Read Skew Anomaly
-- Write Skew Anomaly
-- Serialization Anomaly
-- Fan Traps Anomaly
-- Chasm Traps Anomaly 
-- Data Model Loops Anomaly
-- etc.
+В настоящее время ИТ-сообщество обнаружило ряд новых аномалий, основанных на модели базы данных (логический взгляд).
 
+- Чтение аномалии перекоса
+- Напишите аномалию перекоса
+- Аномалия сериализации
+- Аномалия веерных ловушек
+- Аномалия «Ловушки пропасти»
+- Аномалия циклов модели данных
+и т. д.
 
 ## Глава II
 ## Основные правила
 
-- Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
-- Please make sure you are using the latest version of PostgreSQL.
-- That is completely OK if you are using IDE to write a source code (aka SQL script).
-- To be assessed your solution must be in your GIT repository.
-- Your solutions will be evaluated by your piscine mates.
-- You should not leave in your directory any other file than those explicitly specified by the exercise instructions. It is recommended that you modify your `.gitignore` to avoid accidents.
-- Do you have a question? Ask your neighbor on the right. Otherwise, try with your neighbor on the left.
-- Your reference manual: mates / Internet / Google. 
-- Read the examples carefully. They may require things that are not otherwise specified in the subject.
-- And may the SQL-Force be with you!
-- Absolutely everything can be presented in SQL! Let’s start and have fun!
+- Используйте эту страницу как единственную инструкцию. Не слушайте никаких слухов и домыслов о том, как подготовить своё решение.
+- Пожалуйста, убедитесь, что вы используете последнюю версию PostgreSQL.
+- Это совершенно нормально, если вы используете IDE для написания исходного кода (он же SQL-скрипт).
+- Для оценки ваше решение должно находиться в вашем репозитории GIT.
+- Ваши решения будут оценены вашими товарищами по интенсиву.
+- Вы не должны оставлять в своем каталоге никаких других файлов, кроме тех, которые явно указаны в инструкциях к упражнению. Рекомендуется изменить ваш .gitignoreчтобы избежать случайностей.
+- У вас есть вопрос? Спросите у соседа справа. Если не помогло - попробуйте с соседом слева.
+- Ваш справочник: товарищи/интернет/гугл.
+- Внимательно прочитайте примеры. Они могут понять вещи, которые иначе не указаны в задании. 
+- И да прибудет с вами сила SQL!
+- Абсолютно все можно представить в SQL! Давайте начнем и получайте удовольствие!
 
 ## Глава III
 ## Правила дня
 
-- Please make sure you have an own database and access for it on your PostgreSQL cluster. 
-- Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). **Our knowledge way is incremental and linear therefore please be aware all changes that you made in Day03 during exercises 07-13 and in Day04 during Упражнение 07 should be on place (its similar like in real world , when we applied a release and need to be consistency with data for new changes).**
-- All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
-- Please take a look at the Logical View of our Database Model. 
+- Убедитесь, что у вас есть собственная база данных и доступ к ней в вашем кластере PostgreSQL.
+- Загрузите скрипт (materials/model.sql) с моделью базы данных здесь и примените его к своей базе данных (вы можете использовать командную строку с psql или просто запустить его через любую IDE, например DataGrip от JetBrains или pgAdmin от сообщества PostgreSQL).
+- **Наш способ получения знаний является постепенным и линейным, поэтому, пожалуйста, имейте в виду, что все изменения, которые вы внесли в День03 во время упражнений 07-13 и в День04 во время Упражнение 07, должны быть на месте (это похоже на реальный мир, когда мы применили релиз и должны быть согласованы с данными для новых изменений).**
+- Все задачи содержат список разрешенных и запрещенных разделов с перечисленными параметрами базы данных, типами баз данных, конструкциями SQL и т. д. Пожалуйста, ознакомьтесь с разделом перед началом.
+- Пожалуйста, взгляните на логическое представление нашей модели базы данных.
 
 ![schema](misc/images/schema.png)
 
+1. Таблица **pizzeria** (Таблица-словарь с доступными пиццериями)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``name`` - название пиццерии
+- поле ``rating`` - средний рейтинг пиццерии (от 0 до 5 баллов)
+2. Таблица **person** (Таблица-словарь с людьми, которые любят пиццу)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``name`` - имя человека
+- поле ``age`` - возраст человека
+- поле ``gender`` - пол человека
+- поле ``address`` - адрес человека
+3. Таблица **menu** (Таблица-словарь с доступным меню и ценой на конкретную пиццу)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``pizzeria_id`` - внешний ключ к пиццерии
+- поле ``pizza_name`` - название пиццы в пиццерии
+- поле ``price`` - цена конкретной пиццы
+4. Таблица **person_visits** (Операционная таблица с информацией о посещениях пиццерии)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``person_id`` - внешний ключ к человеку
+- поле ``pizzeria_id`` - внешний ключ к пиццерии
+- поле ``visit_date`` - дата (например 2022-01-01) посещения пиццерии человеком
+5. Таблица **person_order** (операционная таблица с информацией о заказах людей)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``person_id`` - внешний ключ к человеку
+- поле ``menu_id`` - внешний ключ к меню
+- поле ``order_date`` - дата (например 2022-01-01) заказа человека
 
-1. **pizzeria** table (Dictionary Table with available pizzerias)
-- field id - primary key
-- field name - name of pizzeria
-- field rating - average rating of pizzeria (from 0 to 5 points)
-2. **person** table (Dictionary Table with persons who loves pizza)
-- field id - primary key
-- field name - name of person
-- field age - age of person
-- field gender - gender of person
-- field address - address of person
-3. **menu** table (Dictionary Table with available menu and price for concrete pizza)
-- field id - primary key
-- field pizzeria_id - foreign key to pizzeria
-- field pizza_name - name of pizza in pizzeria
-- field price - price of concrete pizza
-4. **person_visits** table (Operational Table with information about visits of pizzeria)
-- field id - primary key
-- field person_id - foreign key to person
-- field pizzeria_id - foreign key to pizzeria
-- field visit_date - date (for example 2022-01-01) of person visit 
-5. **person_order** table (Operational Table with information about persons orders)
-- field id - primary key
-- field person_id - foreign key to person
-- field menu_id - foreign key to menu
-- field order_date - date (for example 2022-01-01) of person order 
-
-Persons' visit and persons' order are different entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
-
+Посещение (visit_date) и заказ (order_date) - это разные сущности, и нет никакой корреляции между их данными. Например, клиент может находиться в одном месте (просто просматривая меню) и в это время сделать заказ в другом по телефону или с помощью мобильного приложения. Или позвонить из дома с заказом без каких-либо визитов.
 
 ## Глава IV
-## Упражнение 00 - Simple transaction
+## Упражнение 00 - Простая транзакция
 
-| Упражнение 00: Simple transaction |                                                                                                                          |
+| Упражнение 00: Простая транзакция |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex00                                                                                                                     |
-| Файлы для сдачи                      | `day08_ex00.sql` with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2 |
+| Файлы для сдачи                      | `day08_ex00.sql` с комментариями к заявлениям Сессии №1, Сессии №2; снимок экрана вывода psql для сеанса № 1; снимок экрана вывода psql для сеанса №2 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        |  SQL|
 
-Please for this task use the command line for PostgreSQL database (psql). You need to check how your changes will be published in the database for other database users. 
+Пожалуйста, для этой задачи используйте командную строку для базы данных PostgreSQL (psql). Вам нужно проверить, как ваши изменения будут опубликованы в базе данных для других пользователей базы данных.
 
-Actually, we need two active sessions (meaning 2 parallel sessions in the command lines). 
+Собственно, нам нужны две активные сессии (имеется в виду 2 параллельные сессии в командных строках).
 
-Please provide a proof that your parallel session can’t see your changes until you will make a `COMMIT`;
+Пожалуйста, предоставьте доказательство того, что ваш параллельный сеанс не может видеть ваши изменения, пока вы не сделаете `COMMIT`;
 
-Take a look at the steps below.
+Взгляните на шаги ниже.
 
-**Session #1**
-- update of rating for “Pizza Hut” to 5 points in a transaction mode .
-- check that you can see a changes in session #1
+**Сессия #1**
+- обновление рейтинга «Pizza Hut» до 5 баллов в режиме транзакции.
+-     убедитесь, что вы видите изменения в сеансе № 1
 
-**Session #2**
-- check that you can’t see a changes in session #2
+**Сессия #2**
+- убедитесь, что вы не видите изменений в сеансе № 2
 
-**Session #1**
-- publish your changes for all parallel sessions.
+**Сессия #1**
+- опубликуйте свои изменения для всех параллельных сессий.
 
-**Session #2**
-- check that you can see a changes in session #2
+**Сессия #2**
+- убедитесь, что вы видите изменения в сеансе № 2
 
+Итак, взгляните на пример моего вывода для сеанса № 2.
 
-So, take a look on example of my output for Session #2.
+```
+pizza_db=> select * from pizzeria where name  = 'Pizza Hut';
+id |   name    | rating
+----+-----------+--------
+1 | Pizza Hut |    4.6
+(1 row)
 
-    pizza_db=> select * from pizzeria where name  = 'Pizza Hut';
-    id |   name    | rating
-    ----+-----------+--------
-    1 | Pizza Hut |    4.6
-    (1 row)
+pizza_db=> select * from pizzeria where name  = 'Pizza Hut';
+id |   name    | rating
+----+-----------+--------
+1 | Pizza Hut |      5
+(1 row)
+```
 
-    pizza_db=> select * from pizzeria where name  = 'Pizza Hut';
-    id |   name    | rating
-    ----+-----------+--------
-    1 | Pizza Hut |      5
-    (1 row)
-
-You can see the same query returns different results, because the first one was run before publishing in Session#1 and the second one was queried after finished Session#1. 
-
-
+Вы можете видеть, что один и тот же запрос возвращает разные результаты, потому что первый был запущен до публикации в сеансе № 1, а второй был запрошен после завершения сеанса № 1.
 
 ## Глава V
-## Упражнение 01 - Lost Update Anomaly
+## Упражнение 01 - Аномалия с потерянными обновлениями
 
-| Упражнение 01: Lost Update Anomaly|                                                                                                                          |
+| Упражнение 01: Аномалия с потерянными обновлениями|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex01                                                                                                                     |
-| Файлы для сдачи                      | `day08_ex01.sql` with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                 |
+| Файлы для сдачи                      | `day08_ex01.sql` с комментариями к заявлениям Сессии №1, Сессии №2; снимок экрана вывода psql для сеанса № 1; снимок экрана вывода psql для сеанса №2                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        |  SQL                                                                                              |
 
-Please for this task use the command line for PostgreSQL database (psql). You need to check how your changes will be published in the database for other database users. 
+Пожалуйста, для этой задачи используйте командную строку для базы данных PostgreSQL (psql). Вам нужно проверить, как ваши изменения будут опубликованы в базе данных для других пользователей базы данных.
 
-Actually, we need two active sessions (meaning 2 parallel sessions in the command lines). 
+Собственно, нам нужны две активные сессии (имеется в виду 2 параллельные сессии в командных строках).
 
-Before a task, make sure you are at a default isolation level in your database. Just run the next statement
+Перед выполнением задачи убедитесь, что вы находитесь на уровне изоляции по умолчанию в своей базе данных. Просто запустите следующий оператор
 
 `SHOW TRANSACTION ISOLATION LEVEL;`
 
-and the result should be “read committed”;
+и результат должен быть «read commit»;
 
-If not, then please set “read committed” isolation level explicitly on a session level.
+Если нет, то установите уровень изоляции «чтение зафиксировано» явно на уровне сеанса. 
 
 |  |  |
 | ------ | ------ |
-| Let’s check one of the famous “Lost Update Anomaly” database pattern. You can see a graphical presentation of that anomaly on a picture. Horizontal Red Line means the final results after all sequential steps for both Sessions. | ![D08_06](misc/images/D08_06.png) |
+| Давайте проверим один из известных шаблонов базы данных «Аномалия потерянных обновлений». Вы можете увидеть графическое представление этой аномалии на картинке. Горизонтальная красная линия означает окончательные результаты после всех последовательных шагов для обеих сессий. | ![D08_06](misc/images/D08_06.png) |
 
-Please check a rating for “Pizza Hut” in a transaction mode for both Sessions and after that make `UPDATE` of rating to 4 value in session #1 and make `UPDATE` of rating to 3.6 value in session #2 (in the same order as in the picture). 
-
-
+Пожалуйста, проверьте рейтинг «Pizza Hut» в режиме транзакций для обеих сессий и после этого сделайте `UPDATE` рейтинга до значения 4 в сессии №1 и сделать `UPDATE` рейтинга до значения 3,6 в сеансе №2 (в том же порядке, что и на картинке).
 
 ## Глава VI
-## Упражнение 02 - Lost Update for Repeatable Read
+## Упражнение 02 - Потерянное обновление для повторяющегося чтения
 
-| Упражнение 02: Lost Update for Repeatable Read|                                                                                                                          |
+| Упражнение 02: Потерянное обновление для повторяющегося чтения|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex02                                                                                                                     |
-| Файлы для сдачи                      | `day08_ex02.sql` with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                  |
+| Файлы для сдачи                      | `day08_ex02.sql` с комментариями к заявлениям Сессии №1, Сессии №2; снимок экрана вывода psql для сеанса № 1; снимок экрана вывода psql для сеанса № 2                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        |  SQL                                                                                              |
 
-Please for this task use the command line for PostgreSQL database (psql). You need to check how your changes will be published in the database for other database users. 
+Пожалуйста, для этой задачи используйте командную строку для базы данных PostgreSQL (psql). Вам нужно проверить, как ваши изменения будут опубликованы в базе данных для других пользователей базы данных.
 
-Actually, we need two active sessions (meaning 2 parallel sessions in the command lines).
+Собственно, нам нужны две активные сессии (имеется в виду 2 параллельные сессии в командных строках). 
 
 |  |  |
 | ------ | ------ |
-| Let’s check one of the famous “Lost Update Anomaly” database pattern but under `REPEATABLE READ` isolation level. You can see a graphical presentation of that anomaly on a picture. Horizontal Red Line means the final results after all sequential steps for both Sessions. | ![D08_07](misc/images/D08_07.png) |
+| Давайте проверим один из известных шаблонов базы данных «Аномалия потерянных обновлений», но под REPEATABLE READуровень изоляции. Вы можете увидеть графическое представление этой аномалии на картинке. Горизонтальная красная линия означает окончательные результаты после всех последовательных шагов для обеих сессий. | ![D08_07](misc/images/D08_07.png) |
 
-Please check a rating for “Pizza Hut” in a transaction mode for both Sessions and after that make `UPDATE` of rating to 4 value in session #1 and make `UPDATE` of rating to 3.6 value in session #2 (in the same order as in the picture). 
+Пожалуйста, проверьте рейтинг «Pizza Hut» в режиме транзакций для обеих сессий и после этого сделайте `UPDATE` рейтинга до значения 4 в сессии №1 и сделать `UPDATE`рейтинга до значения 3,6 в сеансе №2 (в том же порядке, что и на картинке).
 
 ## Глава VII
-## Упражнение 03 - Non-Repeatable Reads Anomaly
+## Упражнение 03 - Аномалия неповторяющихся чтений
 
-| Упражнение 03: Non-Repeatable Reads Anomaly |                                                                                                                          |
+| Упражнение 03: Аномалия неповторяющихся чтений |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex03                                                                                                                     |
-| Файлы для сдачи                      | `day08_ex03.sql` with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                 |
+| Файлы для сдачи                      | `day08_ex03.sql` с комментариями к заявлениям Сессии №1, Сессии №2; снимок экрана вывода psql для сеанса № 1; снимок экрана вывода psql для сеанса №2                                                                               |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        |  SQL                                                                                              |
 
-Please for this task use the command line for PostgreSQL database (psql). You need to check how your changes will be published in the database for other database users. 
+Пожалуйста, для этой задачи используйте командную строку для базы данных PostgreSQL (psql). Вам нужно проверить, как ваши изменения будут опубликованы в базе данных для других пользователей базы данных.
 
-Actually, we need two active sessions (meaning 2 parallel sessions in the command lines). 
+Собственно, нам нужны две активные сессии (имеется в виду 2 параллельные сессии в командных строках). 
 
 |  |  |
 | ------ | ------ |
-| Let’s check one of the famous “Non-Repeatable Reads” database pattern but under `READ COMMITTED` isolation level. You can see a graphical presentation of that anomaly on a picture. Horizontal Red Line means the final results after all sequential steps for both Sessions. | ![D08_08](misc/images/D08_08.png) |
+| Давайте проверим один из известных шаблонов базы данных «Неповторяемое чтение», но под `READ COMMITTED` уровень изоляции. Вы можете увидеть графическое представление этой аномалии на картинке. Горизонтальная красная линия означает окончательные результаты после всех последовательных шагов для обеих сессий. | ![D08_08](misc/images/D08_08.png) |
 
-Please check a rating for “Pizza Hut” in a transaction mode for both Sessions and after that make `UPDATE` of rating to 3.6 value in session #2 (in the same order as in the picture). 
-
+Пожалуйста, проверьте рейтинг «Pizza Hut» в режиме транзакций для обеих сессий и после этого сделайте `UPDATE` рейтинга до значения 3,6 в сеансе №2 (в том же порядке, что и на картинке). 
 
 ## Глава VIII
-## Упражнение 04 - Non-Repeatable Reads for Serialization
+## Упражнение 04 - Неповторяющиеся  чтения для сериализации
 
-
-| Упражнение 04: Non-Repeatable Reads for Serialization |                                                                                                                          |
+| Упражнение 04: Неповторяющиеся  чтения для сериализации |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex04                                                                                                                     |
-| Файлы для сдачи                      | `day08_ex04.sql` with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                 |
+| Файлы для сдачи                      | `day08_ex04.sql` с комментариями к заявлениям Сессии №1, Сессии №2; снимок экрана вывода psql для сеанса № 1; снимок экрана вывода psql для сеанса №2                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        |  SQL                                                                                              |
 
-Please for this task use the command line for PostgreSQL database (psql). You need to check how your changes will be published in the database for other database users. 
+Пожалуйста, для этой задачи используйте командную строку для базы данных PostgreSQL (psql). Вам нужно проверить, как ваши изменения будут опубликованы в базе данных для других пользователей базы данных.
 
-Actually, we need two active sessions (meaning 2 parallel sessions in the command lines).
+Собственно, нам нужны две активные сессии (имеется в виду 2 параллельные сессии в командных строках).
 
 |  |  |
 | ------ | ------ |
-| Let’s check one of the famous “Non-Repeatable Reads” database pattern but under `SERIALIZABLE` isolation level. You can see a graphical presentation of that anomaly on a picture. Horizontal Red Line means the final results after all sequential steps for both Sessions. | ![D08_09](misc/images/D08_09.png) |
+| Давайте проверим один из известных шаблонов базы данных «Неповторяемое чтение», но под `SERIALIZABLE` уровень изоляции. Вы можете увидеть графическое представление этой аномалии на картинке. Горизонтальная красная линия означает окончательные результаты после всех последовательных шагов для обеих сессий. | ![D08_09](misc/images/D08_09.png) |
 
-Please check a rating for “Pizza Hut” in a transaction mode for both Sessions and after that make `UPDATE` of rating to 3.0 value in session #2 (in the same order as in the picture). 
-
-
+Пожалуйста, проверьте рейтинг «Pizza Hut» в режиме транзакций для обеих сессий и после этого сделайте `UPDATE` рейтинга до значения 3.0 в сеансе №2 (в том же порядке, что и на картинке).
 
 ## Глава IX
-## Упражнение 05 - Phantom Reads Anomaly
+## Упражнение 05 - Аномалия фантомного чтения
 
-
-| Упражнение 05: Phantom Reads Anomaly|                                                                                                                          |
+| Упражнение 05: Аномалия фантомного чтения|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex05                                                                                                                     |
-| Файлы для сдачи                      | `day08_ex05.sql`  with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                 |
+| Файлы для сдачи                      | `day08_ex05.sql` с комментариями к заявлениям Сессии №1, Сессии №2; снимок экрана вывода psql для сеанса № 1; снимок экрана вывода psql для сеанса №2                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        |   SQL                                                                                              |
 
-Please for this task use the command line for PostgreSQL database (psql). You need to check how your changes will be published in the database for other database users. 
+Пожалуйста, для этой задачи используйте командную строку для базы данных PostgreSQL (psql). Вам нужно проверить, как ваши изменения будут опубликованы в базе данных для других пользователей базы данных.
 
-Actually, we need two active sessions (meaning 2 parallel sessions in the command lines).
+Собственно, нам нужны две активные сессии (имеется в виду 2 параллельные сессии в командных строках).
 
 |  |  |
 | ------ | ------ |
-| Let’s check one of the famous “Phantom Reads” database pattern but under `READ COMMITTED` isolation level. You can see a graphical presentation of that anomaly on a picture. Horizontal Red Line means the final results after all sequential steps for both Sessions. | ![D08_10](misc/images/D08_10.png) |
+| Давайте проверим один из известных шаблонов базы данных «Phantom Reads», но под `READ COMMITTED`уровень изоляции. Вы можете увидеть графическое представление этой аномалии на картинке. Горизонтальная красная линия означает окончательные результаты после всех последовательных шагов для обеих сессий. | ![D08_10](misc/images/D08_10.png) |
 
-Please summarize all ratings for all pizzerias in a transaction mode for both Sessions and after that make `UPDATE` of rating to 1 value for “Pizza Hut” restaurant in session #2 (in the same order as in the picture). 
-
- 
+Пожалуйста, суммируйте все рейтинги для всех пиццерий в режиме транзакций для обеих сессий, а затем сделайте `UPDATE` рейтинга на 1 значение для ресторана «Pizza Hut» в сеансе №2 (в том же порядке, что и на картинке). 
 
 ## Глава X
-## Упражнение 06 - Phantom Reads for Repeatable Read
+## Упражнение 06 - Фантомные чтения для повторного чтения
 
-
-| Упражнение 06: Phantom Reads for Repeatable Read|                                                                                                                          |
+| Упражнение 06: Фантомные чтения для повторного чтения|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex06                                                                                                                     |
-| Файлы для сдачи                      | `day08_ex06.sql`  with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                 |
+| Файлы для сдачи                      | `day08_ex06.sql`с комментариями к заявлениям Сессии №1, Сессии №2; снимок экрана вывода psql для сеанса № 1; снимок экрана вывода psql для сеанса №2                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        |  SQL                                                                                              |
 
-Please for this task use the command line for PostgreSQL database (psql). You need to check how your changes will be published in the database for other database users. 
+Пожалуйста, для этой задачи используйте командную строку для базы данных PostgreSQL (psql). Вам нужно проверить, как ваши изменения будут опубликованы в базе данных для других пользователей базы данных.
 
-Actually, we need two active sessions (meaning 2 parallel sessions in the command lines).
+Собственно, нам нужны две активные сессии (имеется в виду 2 параллельные сессии в командных строках).
 
 |  |  |
 | ------ | ------ |
-| Let’s check one of the famous “Phantom Reads” database pattern but under `REPEATABLE READ` isolation level. You can see a graphical presentation of that anomaly on a picture. Horizontal Red Line means the final results after all sequential steps for both Sessions. | ![D08_11](misc/images/D08_11.png) |
+| Давайте проверим один из известных шаблонов базы данных «Phantom Reads», но под `REPEATABLE READ` уровень изоляции. Вы можете увидеть графическое представление этой аномалии на картинке. Горизонтальная красная линия означает окончательные результаты после всех последовательных шагов для обеих сессий. | ![D08_11](misc/images/D08_11.png) |
 
 
-Please summarize all ratings for all pizzerias in a transaction mode for both Sessions and after that make `UPDATE` of rating to 5 value for “Pizza Hut” restaurant in session #2 (in the same order as in the picture). 
+Пожалуйста, суммируйте все рейтинги для всех пиццерий в режиме транзакций для обеих сессий, а затем сделайте `UPDATE`рейтинга до значения 5 для ресторана «Pizza Hut» в сеансе №2 (в том же порядке, что и на картинке).
 
 ## Глава XI
 ## Упражнение 07 - Deadlock
 
-
 | Упражнение 07: Deadlock|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex07                                                                                                                     |
-| Файлы для сдачи                      | `day08_ex07.sql`    with comments for Session #1, Session #2 statements; screenshot of psql output for Session #1; screenshot of psql output for Session #2                                                                                |
+| Файлы для сдачи                      | `day08_ex07.sql`с комментариями к заявлениям Сессии №1, Сессии №2; снимок экрана вывода psql для сеанса № 1; снимок экрана вывода psql для сеанса №2                                                                                |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        |  SQL                                                                                              |
 
-Please for this task use the command line for PostgreSQL database (psql). You need to check how your changes will be published in the database for other database users. 
+Пожалуйста, для этой задачи используйте командную строку для базы данных PostgreSQL (psql). Вам нужно проверить, как ваши изменения будут опубликованы в базе данных для других пользователей базы данных.
 
-Actually, we need two active sessions (meaning 2 parallel sessions in the command lines). 
+Собственно, нам нужны две активные сессии (имеется в виду 2 параллельные сессии в командных строках).
 
-Let’s reproduce a deadlock situation in our database. 
-
+Давайте воспроизведем ситуацию взаимоблокировки в нашей базе данных.
 
 |  |  |
 | ------ | ------ |
-| You can see a graphical presentation of the deadlock situation on a picture. Looks like a “christ-lock” between parallel sessions. | ![D08_12](misc/images/D08_12.png) |
+| Графическое представление тупиковой ситуации вы можете увидеть на картинке. Похоже на «крест-замок» между параллельными сессиями.  | ![D08_12](misc/images/D08_12.png) |
 
-Please write any SQL statement with any isolation level (you can use default setting) on the `pizzeria` table to reproduce this deadlock situation.
+Пожалуйста, напишите любую инструкцию SQL с любым уровнем изоляции (вы можете использовать настройку по умолчанию) в таблице `pizzeria`, чтобы воспроизвести эту тупиковую ситуацию.
 
