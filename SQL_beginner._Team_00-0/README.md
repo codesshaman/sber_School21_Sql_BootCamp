@@ -2,7 +2,7 @@
 
 ## _Traveling Salesman Problem_
 
-Resume: Today you will implementing a quick solution on SQL to achieve results of Traveling Salesman Problem
+Резюме: сегодня вы реализуете быстрое решение на SQL для достижения результатов задачи коммивояжера.
 
 ## Contents
 
@@ -13,51 +13,49 @@ Resume: Today you will implementing a quick solution on SQL to achieve results o
 3. [Глава III](#chapter-iii) \
     3.1. [Правила дня](#rules-of-the-day)  
 4. [Глава IV](#chapter-iv) \
-    4.1. [Упражнение 00 - Classical TSP](#exercise-00-classical-tsp)  
+    4.1. [Упражнение 00 - Классический TSP](#exercise-00-classical-tsp)  
 5. [Глава V](#chapter-v) \
-    5.1. [Упражнение 01 - Opposite TSP](#exercise-01-opposite-tsp)  
+    5.1. [Упражнение 01 - Оппозитный TSP](#exercise-01-opposite-tsp)  
 
 ## Глава I
 ## Преамбула
 
 ![T00_01](misc/images/T00_01.png)
 
-Given a finite number of "cities" along with the cost of travel between each pair of them, find the cheapest way of visiting all the cities and returning to your starting point. (on image Proctor and Gamble company ran a contest in 1962.  The contest required solving a TSP on a specified 33 cities.  There was a tie between many people who found the optimum.  An early TSP researcher, Professor Gerald Thompson of Carnegie Mellon University, was one of the winners.)
+Учитывая конечное количество «городов» и стоимость проезда между каждой парой из них, найдите самый дешевый способ посетить все города и вернуться в исходную точку. (на изображении Компания Proctor and Gamble провела соревнование в 1962 году. В нем требовалось решить TSP для указанных 33 городов. Многие люди, которые нашли оптимум, были равны. Один из первых исследователей TSP, профессор Джеральд Томпсон из Университета Карнеги-Меллона, был одним из победителей.)
 
-The travel costs are symmetric in the sense that traveling from city X to city Y costs just as much as traveling from Y to X; the "way of visiting all the cities" is simply the order in which the cities are visited. To put it differently, the data consist of integer weights assigned to the edges of a finite complete graph; the objective is to find a hamiltonian cycle (that is, a cycle passing through all the vertices) of the minimum total weight.  In this context, hamiltonian cycles are commonly called tours.
+Расходы на проезд симметричны в том смысле, что поездка из города X в город Y стоит столько же, сколько поездка из Y в X; «способ посещения всех городов» — это просто порядок посещения городов. Другими словами, данные состоят из целочисленных весов, присвоенных ребрам конечного полного графа; цель состоит в том, чтобы найти гамильтонов цикл (то есть цикл, проходящий через все вершины) минимального общего веса. В этом контексте гамильтоновы циклы обычно называют турами.
 
 ![T00_00](misc/images/T00_00.png)
 
-The origins of the TSP are obscure. In the 1920's, the mathematician and economist Karl Menger publicized it among his colleagues in Vienna. In the 1930's, the problem reappeared in the mathematical circles of Princeton. In the 1940's, it was  studied by statisticians (Mahalanobis (1940), Jessen (1942), Gosh (1948), Marks (1948)) in connection with an agricultural  application and the mathematician Merill Flood popularized it among his colleagues at the RAND Corporation.  Eventually,  the TSP gained notoriety as the prototype of a hard problem in combinatorial optimization: examining the tours one by one  is out of the question because of their large number, and no other idea was on the horizon for a long time.
+Происхождение TSP неясно. В 1920-х годах математик и экономист Карл Менгер опубликовал ее среди своих коллег в Вене. В 1930-х годах проблема вновь возникла в математических кругах Принстона. В 1940-х годах его изучали статистики (Махаланобис (1940), Джессен (1942), Гош (1948), Маркс (1948)) в связи с применением в сельском хозяйстве, а математик Мерилл Флуд популяризировал его среди своих коллег из RAND Corporation. . В конце концов, TSP приобрела известность как прототип сложной задачи комбинаторной оптимизации: о рассмотрении туров по одному не может быть и речи из-за их большого количества, а другой идеи долгое время не было на горизонте.
 
 
 ## Глава II
 ## Основные правила
 
-- Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
-- Please make sure you are using the latest version of PostgreSQL.
-- That is completely OK if you are using IDE to write a source code (aka SQL script).
-- To be assessed your solution must be in your GIT repository.
-- Your solutions will be evaluated by your piscine mates.
-- You should not leave in your directory any other file than those explicitly specified by the exercise instructions. It is recommended that you modify your `.gitignore` to avoid accidents.
-- Do you have a question? Ask your neighbor on the right. Otherwise, try with your neighbor on the left.
-- Your reference manual: mates / Internet / Google. 
-- Read the examples carefully. They may require things that are not otherwise specified in the subject.
-- And may the SQL-Force be with you!
-- Absolutely everything can be presented in SQL! Let’s start and have fun!
+- Используйте эту страницу как единственную инструкцию. Не слушайте никаких слухов и домыслов о том, как подготовить своё решение.
+- Пожалуйста, убедитесь, что вы используете последнюю версию PostgreSQL.
+- Это совершенно нормально, если вы используете IDE для написания исходного кода (он же SQL-скрипт).
+- Для оценки ваше решение должно находиться в вашем репозитории GIT.
+- Ваши решения будут оценены вашими товарищами по интенсиву.
+- Вы не должны оставлять в своем каталоге никаких других файлов, кроме тех, которые явно указаны в инструкциях к упражнению. Рекомендуется изменить ваш .gitignoreчтобы избежать случайностей.
+- У вас есть вопрос? Спросите у соседа справа. Если не помогло - попробуйте с соседом слева.
+- Ваш справочник: товарищи/интернет/гугл.
+- Внимательно прочитайте примеры. Они могут понять вещи, которые иначе не указаны в задании. 
+- И да прибудет с вами сила SQL!
+- Абсолютно все можно представить в SQL! Давайте начнем и получайте удовольствие!
 
 ## Глава III
 ## Правила дня
 
-- Please make sure you have an own database and access for it on your PostgreSQL cluster. 
-- All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
-
-
+Убедитесь, что у вас есть собственная база данных и доступ к ней в вашем кластере PostgreSQL.
+Все задачи содержат список разрешенных и запрещенных разделов с перечисленными параметрами базы данных, типами баз данных, конструкциями SQL и т. д. Пожалуйста, ознакомьтесь с разделом перед началом.
 
 ## Глава IV
-## Упражнение 00 - Classical TSP
+## Упражнение 00 - Классический TSP
 
-| Упражнение 00: Classical TSP|                                                                                                                          |
+| Упражнение 00: Классический TSP|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex00                                                                                                                     |
 | Файлы для сдачи                      | `team00_ex00.sql` DDL for table creation with INSERTs of data; SQL DML statement                                                                                |
@@ -67,14 +65,11 @@ The origins of the TSP are obscure. In the 1920's, the mathematician and economi
 
 ![T00_02](misc/images/T00_02.png)
 
-Please take a look at the Graph on the left. 
-There are 4 cities (a, b, c and d) and arcs between them with cost (or taxination). Actually the cost (a,b) = (b,a).
+Пожалуйста, взгляните на график слева. Есть 4 города (a, b, c и d) и дуги между ними со стоимостью (или налогообложением). На самом деле стоимость (a,b) = (b,a).
 
-Please create a table with name nodes by using structure {point1, point2, cost} and fill data based on a picture (remember there are direct and reverse paths between 2 nodes).
-Please write one SQL statement that returns all tours (aka paths) with minimal traveling cost if we will start from city "a".
-Just remember, you need to find the cheapest way of visiting all the cities and returning to your starting point. For example, the tour looks like that a -> b -> c -> d -> a.
+Пожалуйста, создайте таблицу с именами узлов, используя структуру {точка1, точка2, стоимость} и заполните данные на основе изображения (помните, что между двумя узлами есть прямой и обратный пути). Пожалуйста, напишите один оператор SQL, который возвращает все туры (пути) с минимальной стоимостью проезда, если мы начнем с города «а». Просто помните, вам нужно найти самый дешевый способ посетить все города и вернуться в исходную точку. Например, тур выглядит так: a -> b -> c -> d -> a.
 
-The sample of output data you can find below. Please sort data by total_cost and then by tour.
+Образец выходных данных вы можете найти ниже. Пожалуйста, отсортируйте данные по total_cost, а затем по туру.
 
 | total_cost | tour |
 | ------ | ------ |
@@ -82,9 +77,9 @@ The sample of output data you can find below. Please sort data by total_cost and
 | ... | ... |
 
 ## Глава V
-## Упражнение 01 - Opposite TSP
+## Упражнение 01 - Оппозитный TSP
 
-| Упражнение 01: Opposite TSP|                                                                                                                          |
+| Упражнение 01: Оппозитный TSP|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex01                                                                                                                     |
 | Файлы для сдачи                      | `team00_ex01.sql`     SQL DML statement                                                                             |
@@ -92,7 +87,7 @@ The sample of output data you can find below. Please sort data by total_cost and
 | Язык                        | ANSI SQL|
 | SQL Syntax Pattern                        | Recursive Query|
 
-Please add a possibility to see additional rows with the most expensive cost to the SQL from previous exercise. Just take a look at the sample of data below. Please sort data by total_cost and then by tour.
+Пожалуйста, добавьте возможность просмотра дополнительных строк с самой высокой стоимостью в SQL из предыдущего упражнения. Просто взгляните на образец данных ниже. Пожалуйста, отсортируйте данные по total_cost, а затем по туру.
 
 | total_cost | tour |
 | ------ | ------ |

@@ -13,23 +13,23 @@ Resume: Today you will see how to create and use functional blocks in Databases
 3. [Глава III](#chapter-iii) \
     3.1. [Правила дня](#rules-of-the-day)  
 4. [Глава IV](#chapter-iv) \
-    4.1. [Упражнение 00 - Audit of incoming inserts](#exercise-00-audit-of-incoming-inserts)  
+    4.1. [Упражнение 00 - Аудит входящих вставок](#exercise-00-audit-of-incoming-inserts)  
 5. [Глава V](#chapter-v) \
-    5.1. [Упражнение 01 - Audit of incoming updates](#exercise-01-audit-of-incoming-updates)  
+    5.1. [Упражнение 01 - Аудит входящих обновлений](#exercise-01-audit-of-incoming-updates)  
 6. [Глава VI](#chapter-vi) \
-    6.1. [Упражнение 02 - Audit of incoming deletes](#exercise-02-audit-of-incoming-deletes)  
+    6.1. [Упражнение 02 - Аудит входящих удалений](#exercise-02-audit-of-incoming-deletes)  
 7. [Глава VII](#chapter-vii) \
-    7.1. [Упражнение 03 - Generic Audit](#exercise-03-generic-audit)  
+    7.1. [Упражнение 03 - Общий аудит](#exercise-03-generic-audit)  
 8. [Глава VIII](#chapter-viii) \
-    8.1. [Упражнение 04 - Database View VS Database Function](#exercise-04-database-view-vs-database-function)
+    8.1. [Упражнение 04 - Представление базы данных VS функции базы данных](#exercise-04-database-view-vs-database-function)
 9. [Глава IX](#chapter-ix) \
-    9.1. [Упражнение 05 - Parameterized Database Function](#exercise-05-parameterized-database-function)
+    9.1. [Упражнение 05 - Параметризованная функция базы данных](#exercise-05-parameterized-database-function)
 10. [Глава X](#chapter-x) \
-    10.1. [Упражнение 06 - Function like a function-wrapper](#exercise-06-function-like-a-function-wrapper)
+    10.1. [Упражнение 06 - Функция-оболочка](#exercise-06-function-like-a-function-wrapper)
 11. [Глава XI](#chapter-xi) \
-    11.1. [Упражнение 07 - Different view to find a Minimum](#exercise-07-different-view-to-find-a-minimum)
+    11.1. [Упражнение 07 - Другой взгляд, чтобы найти минимум](#exercise-07-different-view-to-find-a-minimum)
 12. [Глава XII](#chapter-xii) \
-    12.1. [Упражнение 08 - Fibonacci algorithm is in a function](#exercise-08-fibonacci-algorithm-is-in-a-function)    
+    12.1. [Упражнение 08 - Алгоритм Фибоначчи внутри функции](#exercise-08-fibonacci-algorithm-is-in-a-function)    
       
 
 ## Глава I
@@ -37,171 +37,170 @@ Resume: Today you will see how to create and use functional blocks in Databases
 
 ![D09_01](misc/images/D09_01.png)
 
-There are a lot of functional programming Языкs in the RDBMS world. We can say mainly about “one-to-one” dependency between a particular RDBMS engine and functional Язык inside. Please take a look at a sample of these Языкs.
+В мире СУБД существует множество языков функционального программирования. В основном мы можем говорить о зависимости «один к одному» между конкретным движком СУБД и функциональным Языком внутри. Пожалуйста, взгляните на образец этих языков.
+
 - T-SQL
 - PL/SQL
 - SQL
 - PL/PGSQL
 - PL/R
 - PL/Python
-- etc.
+- и т.д.
 
-Actually, there are two opposite opinions in the IT world about where business logic should be located. The first opinion is on Application Level, the second one in RDBMS directly based on set UDF (User Defined Functions / Procedures / Packages). 
-Everyone chooses their own way to implement business logic. From my point of view, business logic should be in both places and I can say why.  
-Please take a look at the 2 simple architectures below. 
+На самом деле в IT-мире существует два противоположных мнения о том, где должна располагаться бизнес-логика. Первое мнение относится к уровню приложений, второе - к СУБД, непосредственно основанным на заданных UDF (определяемых пользователем функциях/процедурах/пакетах). Каждый выбирает свой способ реализации бизнес-логики. С моей точки зрения, бизнес-логика должна быть в обоих местах, и я могу сказать, почему.
+Пожалуйста, взгляните на две простые архитектуры ниже.
 
 |  |  |
 | ------ | ------ |
-| ![D09_02](misc/images/D09_02.png) | Everything is clear, frontends and backends are working through a special REST API layer that implements whole business logic. That's a really ideal application world. |
-| But, there are always some privileged guys / applications (like IDE) that are working directly with our databases and … our pattern can be broken. | ![D09_03](misc/images/D09_03.png) |
+| ![D09_02](misc/images/D09_02.png) | Все понятно, фронтенды и бэкенды работают через специальный слой REST API, который реализует всю бизнес-логику. Это действительно идеальный мир приложений. |
+| Но всегда есть какие-то привилегированные ребята/приложения (такие как IDE), которые работают напрямую с нашими базами данных и… наш шаблон может быть нарушен. | ![D09_03](misc/images/D09_03.png) |
 
-Just think about it and try to create a clean architecture :-)
-
+Просто подумайте об этом и попытайтесь создать чистую архитектуру :-) 
 
 ## Глава II
 ## Основные правила
 
-- Use this page as the only reference. Do not listen to any rumors and speculations on how to prepare your solution.
-- Please make sure you are using the latest version of PostgreSQL.
-- That is completely OK if you are using IDE to write a source code (aka SQL script).
-- To be assessed your solution must be in your GIT repository.
-- Your solutions will be evaluated by your piscine mates.
-- You should not leave in your directory any other file than those explicitly specified by the exercise instructions. It is recommended that you modify your `.gitignore` to avoid accidents.
-- Do you have a question? Ask your neighbor on the right. Otherwise, try with your neighbor on the left.
-- Your reference manual: mates / Internet / Google. 
-- Read the examples carefully. They may require things that are not otherwise specified in the subject.
-- And may the SQL-Force be with you!
-- Absolutely everything can be presented in SQL! Let’s start and have fun!
+- Используйте эту страницу как единственную инструкцию. Не слушайте никаких слухов и домыслов о том, как подготовить своё решение.
+- Пожалуйста, убедитесь, что вы используете последнюю версию PostgreSQL.
+- Это совершенно нормально, если вы используете IDE для написания исходного кода (он же SQL-скрипт).
+- Для оценки ваше решение должно находиться в вашем репозитории GIT.
+- Ваши решения будут оценены вашими товарищами по интенсиву.
+- Вы не должны оставлять в своем каталоге никаких других файлов, кроме тех, которые явно указаны в инструкциях к упражнению. Рекомендуется изменить ваш .gitignoreчтобы избежать случайностей.
+- У вас есть вопрос? Спросите у соседа справа. Если не помогло - попробуйте с соседом слева.
+- Ваш справочник: товарищи/интернет/гугл.
+- Внимательно прочитайте примеры. Они могут понять вещи, которые иначе не указаны в задании. 
+- И да прибудет с вами сила SQL!
+- Абсолютно все можно представить в SQL! Давайте начнем и получайте удовольствие!
 
 ## Глава III
 ## Правила дня
 
-- Please make sure you have an own database and access for it on your PostgreSQL cluster. 
-- Please download a [script](materials/model.sql) with Database Model here and apply the script to your database (you can use command line with psql or just run it through any IDE, for example DataGrip from JetBrains or pgAdmin from PostgreSQL community). **Our knowledge way is incremental and linear therefore please be aware all changes that you made in Day03 during exercises 07-13 and in Day04 during Упражнение 07 should be on place (its similar like in real world , when we applied a release and need to be consistency with data for new changes).**
-- All tasks contain a list of Allowed and Denied sections with listed database options, database types, SQL constructions etc. Please have a look at the section before you start.
-- Please take a look at the Logical View of our Database Model. 
+- Убедитесь, что у вас есть собственная база данных и доступ к ней в вашем кластере PostgreSQL.
+- Загрузите скрипт (materials/model.sql) с моделью базы данных здесь и примените его к своей базе данных (вы можете использовать командную строку с psql или просто запустить его через любую IDE, например DataGrip от JetBrains или pgAdmin от сообщества PostgreSQL).
+- **Наш способ получения знаний является постепенным и линейным, поэтому, пожалуйста, имейте в виду, что все изменения, которые вы внесли в День03 во время упражнений 07-13 и в День04 во время Упражнение 07, должны быть на месте (это похоже на реальный мир, когда мы применили релиз и должны быть согласованы с данными для новых изменений).**
+- Все задачи содержат список разрешенных и запрещенных разделов с перечисленными параметрами базы данных, типами баз данных, конструкциями SQL и т. д. Пожалуйста, ознакомьтесь с разделом перед началом.
+- Пожалуйста, взгляните на логическое представление нашей модели базы данных.
 
 ![schema](misc/images/schema.png)
 
+1. Таблица **pizzeria** (Таблица-словарь с доступными пиццериями)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``name`` - название пиццерии
+- поле ``rating`` - средний рейтинг пиццерии (от 0 до 5 баллов)
+2. Таблица **person** (Таблица-словарь с людьми, которые любят пиццу)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``name`` - имя человека
+- поле ``age`` - возраст человека
+- поле ``gender`` - пол человека
+- поле ``address`` - адрес человека
+3. Таблица **menu** (Таблица-словарь с доступным меню и ценой на конкретную пиццу)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``pizzeria_id`` - внешний ключ к пиццерии
+- поле ``pizza_name`` - название пиццы в пиццерии
+- поле ``price`` - цена конкретной пиццы
+4. Таблица **person_visits** (Операционная таблица с информацией о посещениях пиццерии)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``person_id`` - внешний ключ к человеку
+- поле ``pizzeria_id`` - внешний ключ к пиццерии
+- поле ``visit_date`` - дата (например 2022-01-01) посещения пиццерии человеком
+5. Таблица **person_order** (операционная таблица с информацией о заказах людей)
+- поле ``id`` - первичный ключ (primary key)
+- поле ``person_id`` - внешний ключ к человеку
+- поле ``menu_id`` - внешний ключ к меню
+- поле ``order_date`` - дата (например 2022-01-01) заказа человека
 
-1. **pizzeria** table (Dictionary Table with available pizzerias)
-- field id - primary key
-- field name - name of pizzeria
-- field rating - average rating of pizzeria (from 0 to 5 points)
-2. **person** table (Dictionary Table with persons who loves pizza)
-- field id - primary key
-- field name - name of person
-- field age - age of person
-- field gender - gender of person
-- field address - address of person
-3. **menu** table (Dictionary Table with available menu and price for concrete pizza)
-- field id - primary key
-- field pizzeria_id - foreign key to pizzeria
-- field pizza_name - name of pizza in pizzeria
-- field price - price of concrete pizza
-4. **person_visits** table (Operational Table with information about visits of pizzeria)
-- field id - primary key
-- field person_id - foreign key to person
-- field pizzeria_id - foreign key to pizzeria
-- field visit_date - date (for example 2022-01-01) of person visit 
-5. **person_order** table (Operational Table with information about persons orders)
-- field id - primary key
-- field person_id - foreign key to person
-- field menu_id - foreign key to menu
-- field order_date - date (for example 2022-01-01) of person order 
-
-Persons' visit and persons' order are different entities and don't contain any correlation between data. For example, a client can be in one restraunt (just looking at menu) and in this time make an order in different one by phone or by mobile application. Or another case,  just be at home and again make a call with order without any visits.
+Посещение (visit_date) и заказ (order_date) - это разные сущности, и нет никакой корреляции между их данными. Например, клиент может находиться в одном месте (просто просматривая меню) и в это время сделать заказ в другом по телефону или с помощью мобильного приложения. Или позвонить из дома с заказом без каких-либо визитов.
 
 ## Глава IV
-## Упражнение 00 - Audit of incoming inserts
+## Упражнение 00 - Аудит входящих вставок
 
-| Упражнение 00: Audit of incoming inserts |                                                                                                                          |
+| Упражнение 00: Аудит входящих вставок |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex00                                                                                                                     |
 | Файлы для сдачи                      | `day09_ex00.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | SQL, DDL, DML|
 
-We want to be stronger with data and don’t want to lose any event of changes. Let’s implement an audit feature for INSERT’s incoming changes. 
-Please create a table `person_audit` with the same structure like a person table but please add a few additional changes. Take a look at the table below with descriptions for each column.
+Мы хотим быть сильнее с данными и не хотим терять ни одно событие изменений. Давайте реализуем функцию аудита для входящих изменений INSERT. Пожалуйста, создайте таблицу `person_audit` с той же структурой, что и таблица людей, но добавьте несколько дополнительных изменений. Взгляните на таблицу ниже с описаниями для каждого столбца.
 
 | Column | Type | Description |
 | ------ | ------ | ------ |
-| created | timestamp with time zone | timestamp when a new event has been created.  Default value is a current timestamp and NOT NULL |
-| type_event | char(1) | possible values I (insert), D (delete), U (update). Default value is ‘I’. NOT NULL. Add check constraint `ch_type_event` with possible values ‘I’, ‘U’ and ‘D’ |
-| row_id |bigint | copy of person.id. NOT NULL |
-| name |varchar | copy of person.name (no any constraints) |
-| age |integer | copy of person.age (no any constraints) |
-| gender |varchar | copy of person.gender (no any constraints) |
-| address |varchar | copy of person.address (no any constraints) |
+| created | timestamp with time zone | метка времени создания нового события. Значение по умолчанию — текущая метка времени, и NOT NULL. |
+| type_event | char(1) | возможные значения I (вставить), D (удалить), U (обновить). Значение по умолчанию — «Я». НЕ НОЛЬ. Добавить контрольное ограничение  `ch_type_event`с возможными значениями «I», «U» и «D» |
+| row_id |bigint | копия person.id. NOT NULL |
+| name |varchar | копия person.name (без каких-либо ограничений) |
+| age |integer | копия person.age (без каких-либо ограничений) |
+| gender |varchar | копия person.gender (без каких-либо ограничений) |
+| address |varchar | копия person.address (без каких-либо ограничений) |
 
-Actually, let’s create a Database Trigger Function with the name `fnc_trg_person_insert_audit` that should process `INSERT` DML traffic and make a copy of a new row to the person_audit table.
+Собственно, давайте создадим триггерную функцию базы данных с именем `fnc_trg_person_insert_audit` который должен обрабатывать `INSERT` DML-трафик и сделайте копию новой строки в таблице person_audit.
 
-Just a hint, if you want to implement a PostgreSQL trigger (please read it in PostgreSQL documentation), you need to make 2 objects: Database Trigger Function and Database Trigger. 
+Просто подсказка: если вы хотите реализовать триггер PostgreSQL (пожалуйста, прочтите его в документации PostgreSQL), вам нужно создать 2 объекта: функцию триггера базы данных и триггер базы данных.
 
-So, please define a Database Trigger with the name `trg_person_insert_audit` with the next options
-- trigger with “FOR EACH ROW” option
-- trigger with “AFTER INSERT”
-- trigger calls fnc_trg_person_insert_audit trigger function
+Поэтому, пожалуйста, определите триггер базы данных с именем `trg_person_insert_audit` со следующими вариантами
 
-When you are ready with trigger objects then please make an `INSERT` statement into the person table. 
+- триггер с опцией «ДЛЯ КАЖДОЙ СТРОКИ» (“FOR EACH ROW”)
+- триггер с “AFTER INSERT”
+- триггер вызывает триггерную функцию `fnc_trg_person_insert_audit`
+
+Когда вы будете готовы с триггерными объектами, пожалуйста, создайте выражение `INSERT` в таблицу `person`. 
 `INSERT INTO person(id, name, age, gender, address) VALUES (10,'Damir', 22, 'male', 'Irkutsk');`
 
 
 ## Глава V
-## Упражнение 01 - Audit of incoming updates
+## Упражнение 01 - Аудит входящих обновлений
 
-| Упражнение 01: Audit of incoming updates|                                                                                                                          |
+| Упражнение 01: Аудит входящих обновлений|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex01                                                                                                                     |
 | Файлы для сдачи                      | `day09_ex01.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | SQL, DDL, DML                                                                                              |
 
-Let’s continue to implement our audit pattern for the person table. Just define a trigger `trg_person_update_audit` and corresponding trigger function `fnc_trg_person_update_audit` to handle all `UPDATE` traffic on the person table. We should save OLD states of all attribute’s values.
+Давайте продолжим реализацию нашего шаблона аудита для таблицы person. Просто определите триггер `trg_person_update_audit`и соответствующая триггерная функция `fnc_trg_person_update_audit` справиться со всеми `UPDATE` траффика в таблице ``person``.  Мы должны сохранить СТАРЫЕ состояния всех значений атрибутов.
 
-When you are ready please apply UPDATE’s statements below.
+Когда вы будете готовы, пожалуйста, примените утверждения UPDATE ниже.
 
 `UPDATE person SET name = 'Bulat' WHERE id = 10;`
 `UPDATE person SET name = 'Damir' WHERE id = 10;`
 
 
 ## Глава VI
-## Упражнение 02 - Audit of incoming deletes
+## Упражнение 02 - Аудит входящих удалений
 
-| Упражнение 02: Audit of incoming deletes|                                                                                                                          |
+| Упражнение 02: Аудит входящих удалений|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex02                                                                                                                     |
 | Файлы для сдачи                      | `day09_ex02.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | SQL, DDL, DML                                                                                              |
 
-Finally, we need to handle `DELETE` statements and make a copy of OLD states for all attribute’s values. Please create a trigger `trg_person_delete_audit` and corresponding trigger function `fnc_trg_person_delete_audit`. 
+Наконец, нам нужно обработать операторы `DELETE` и сделать копию СТАРЫХ состояний для всех значений атрибута. Пожалуйста, создайте триггер `trg_person_delete_audit` и соответствующую триггерную функцию `fnc_trg_person_delete_audit`. 
 
-When you are ready please apply the SQL statement below.
+Когда вы будете готовы, пожалуйста, примените оператор SQL ниже.
 
 `DELETE FROM person WHERE id = 10;`
 
 ## Глава VII
-## Упражнение 03 - Generic Audit
+## Упражнение 03 - Общий аудит
 
-| Упражнение 03: Generic Audit |                                                                                                                          |
+| Упражнение 03: Общий аудит |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex03                                                                                                                     |
 | Файлы для сдачи                      | `day09_ex03.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | SQL, DDL, DML                                                                                              |
 
-Actually, there are 3 triggers for one `person` table. Let’s merge all our logic to the one main trigger with the name `trg_person_audit` and a new corresponding trigger function `fnc_trg_person_audit`.
+На самом деле, есть 3 триггера для одной таблицы `person`.  Объединим всю нашу логику в один главный триггер с названием `trg_person_audit` и новую соответствующую триггерную функцию `fnc_trg_person_audit`.
 
-Other words, all DML traffic (`INSERT`, `UPDATE`, `DELETE`) should be handled from the one functional block. Please explicitly define a separated IF-ELSE block for every event (I, U, D)!
+Другими словами, весь DML-трафик (`INSERT`, `UPDATE`, `DELETE`) должны обрабатываться из одного функционального блока. Пожалуйста, явно определите отдельный блок IF-ELSE для каждого события (I, U, D)!
 
-Additionally, please take the steps below .
-- to drop 3 old triggers from the person table.
-- to drop 3 old trigger functions
-- to make a `TRUNCATE` (or `DELETE`) of all rows in our `person_audit` table
+Кроме того, выполните следующие действия.
+- удалите 3 старых триггера из таблицы лиц. 
+- удалите 3 старые триггерные функции 
+- сделайте `TRUNCATE` (или `DELETE`) всех строк в нашей таблице `person_audit`.
 
-When you are ready, please re-apply the set of DML statements.
+Когда вы будете готовы, повторно примените набор операторов DML.
 `INSERT INTO person(id, name, age, gender, address)  VALUES (10,'Damir', 22, 'male', 'Irkutsk');`
 `UPDATE person SET name = 'Bulat' WHERE id = 10;`
 `UPDATE person SET name = 'Damir' WHERE id = 10;`
@@ -209,22 +208,22 @@ When you are ready, please re-apply the set of DML statements.
 
 
 ## Глава VIII
-## Упражнение 04 - Database View VS Database Function
+## Упражнение 04 - Представление базы данных VS функции базы данных
 
 
-| Упражнение 04: Database View VS Database Function |                                                                                                                          |
+| Упражнение 04: Представление базы данных VS функции базы данных |                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex04                                                                                                                     |
 | Файлы для сдачи                      | `day09_ex04.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | SQL, DDL, DML                                                                                              |
 
-As you remember, we created 2 database views to separate data from the person tables by gender attribute. 
-Please define 2 SQL-functions (please be aware, not pl/pgsql-functions) with names
-- `fnc_persons_female` (should return female persons)
-- `fnc_persons_male` (should return male persons)
+Как вы помните, мы создали 2 представления базы данных, чтобы отделить данные от таблиц лиц по признаку пола. Пожалуйста, определите 2 SQL-функции (обратите внимание, не pl/pgsql-функции) с именами.
 
-To check yourself and call a function, you can make a statement like below (amazing! you can work with a function like with a virtual table!). 
+- `fnc_persons_female` (должны быть возвращены лица женского пола)
+- `fnc_persons_male` (должны возвращаться лица мужского пола)
+
+Чтобы проверить себя и вызвать функцию, вы можете сделать оператор, как показано ниже (удивительно! вы можете работать с функцией, как с виртуальной таблицей!).
 
     SELECT *
     FROM fnc_persons_male();
@@ -234,85 +233,88 @@ To check yourself and call a function, you can make a statement like below (amaz
 
 
 ## Глава IX
-## Упражнение 05 - Parameterized Database Function
+## Упражнение 05 - Параметризованная функция базы данных
 
 
-| Упражнение 05: Parameterized Database Function|                                                                                                                          |
+| Упражнение 05: Параметризованная функция базы данных|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex05                                                                                                                     |
 | Файлы для сдачи                      | `day09_ex05.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        |  SQL, DDL, DML                                                                                               |
 
-Looks like 2 functions from Упражнение 04 need a more generic approach. Please before our further steps drop these functions from the database. 
-Write a common SQL-function (please be aware, not pl/pgsql-function) with the name `fnc_persons`. This function should have an `IN` parameter pgender with default value = ‘female’. 
+Похоже, две функции из Упражнения 04 нуждаются в более общем подходе. Пожалуйста, перед нашими дальнейшими шагами удалите эти функции из базы данных. Напишите обычную SQL-функцию (обратите внимание, не pl/pgsql-функцию) с именем `fnc_persons`.  Эта функция должна иметь `IN`параметр pgender со значением по умолчанию = 'женский'.
 
-To check yourself and call a function, you can make a statement like below (wow! you can work with a function like with a virtual table but with more flexibilities!). 
+Чтобы проверить себя и вызвать функцию, вы можете сделать оператор, как показано ниже (вау! вы можете работать с функцией, как с виртуальной таблицей, но с большей гибкостью!).
 
+```
     select *
     from fnc_persons(pgender := 'male');
 
     select *
     from fnc_persons();
-
+```
 
 ## Глава X
-## Упражнение 06 - Function like a function-wrapper
+## Упражнение 06 - Функция-оболочка
 
 
-| Упражнение 06: Function like a function-wrapper|                                                                                                                          |
+| Упражнение 06: Функция-оболочка|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex06                                                                                                                     |
 | Файлы для сдачи                      | `day09_ex06.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | SQL, DDL, DML                                                                                              |
 
-Let’s look at pl/pgsql functions right now. 
+Давайте прямо сейчас посмотрим на функции pl/pgsql.
 
-Please create a pl/pgsql function  `fnc_person_visits_and_eats_on_date` based on SQL statement that finds the names of pizzerias which person (`IN` pperson parameter with default value is ‘Dmitriy’) visited and bought pizza for less than the given sum in rubles (`IN` pprice parameter with default value is 500) on the specific date (`IN` pdate parameter with default value is 8th of January 2022). 
+Пожалуйста, создайте функцию pl/pgsql `fnc_person_visits_and_eats_on_date` на основе оператора SQL, который находит названия пиццерий, которые человек (`IN` параметр pperson со значением по умолчанию 'Дмитрий') посетил и купил пиццу на сумму меньше указанной в рублях (`IN` параметр pprice со значением по умолчанию 500) на конкретную дату (`IN` параметр pdate со значением по умолчанию — 8 января 2022 г.).
 
-To check yourself and call a function, you can make a statement like below.
+Чтобы проверить себя и вызвать функцию, вы можете сделать оператор, как показано ниже.
 
+```
     select *
     from fnc_person_visits_and_eats_on_date(pprice := 800);
 
     select *
     from fnc_person_visits_and_eats_on_date(pperson := 'Anna',pprice := 1300,pdate := '2022-01-01');
-
+```
 
 ## Глава XI
-## Упражнение 07 - Different view to find a Minimum
+## Упражнение 07 - Другой взгляд, чтобы найти минимум
 
 
-| Упражнение 07: Different view to find a Minimum|                                                                                                                          |
+| Упражнение 07: Другой взгляд, чтобы найти минимум|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex07                                                                                                                     |
 | Файлы для сдачи                      | `day09_ex07.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | SQL, DDL, DML                                                                                              |
 
-Please write a SQL or pl/pgsql function `func_minimum` (it’s up to you) that has an input parameter is an array of numbers and the function should return a minimum value. 
+Пожалуйста, напишите функцию SQL или pl/pgsql `func_minimum` (на ваше усмотрение) у которого входной параметр представляет собой массив чисел и функция должна возвращать минимальное значение.
 
-To check yourself and call a function, you can make a statement like below.
+Чтобы проверить себя и вызвать функцию, вы можете сделать оператор, как показано ниже.
 
+```
     SELECT func_minimum(VARIADIC arr => ARRAY[10.0, -1.0, 5.0, 4.4]);
-
+```
 
 ## Глава XII
-## Упражнение 08 - Fibonacci algorithm is in a function
+## Упражнение 08 - Алгоритм Фибоначчи внутри функции
 
 
-| Упражнение 08: Fibonacci algorithm is in a function|                                                                                                                          |
+| Упражнение 08: Алгоритм Фибоначчи внутри функции|                                                                                                                          |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Каталог сдачи                     | ex08                                                                                                                     |
 | Файлы для сдачи                      | `day09_ex08.sql`                                                                                 |
 | **Разрешено**                               |                                                                                                                          |
 | Язык                        | SQL, DDL, DML                                                                                              |
 
-Please write a SQL or pl/pgsql function `fnc_fibonacci` (it’s up to you) that has an input parameter pstop with type integer (by default is 10) and the function output is a table with all Fibonacci numbers less than pstop.
+Пожалуйста, напишите функцию SQL или pl/pgsql `fnc_fibonacci` (на ваше усмотрение), у которого есть входной параметр pstop с типом integer (по умолчанию 10), а выходом функции является таблица со всеми числами Фибоначчи меньше pstop.
 
-To check yourself and call a function, you can make a statements like below.
+Чтобы проверить себя и вызвать функцию, вы можете сделать утверждения, как показано ниже.
 
+```
     select * from fnc_fibonacci(100);
     select * from fnc_fibonacci();
-
+```
