@@ -1,13 +1,10 @@
-WITH info_pizza AS (SELECT name, id
-		   	FROM pizzeria),
-	 info_menu AS (SELECT pizza_name, price, pizzeria_id
-		    FROM menu
-			WHERE pizza_name IN ('mushroom pizza','pepperoni pizza')
-		   )
-SELECT 	info_menu.pizza_name AS pizza_name,
-		info_pizza.name AS pizzeria_name,
-		info_menu.price AS price
+WITH info_pizza AS 
+(SELECT * FROM menu WHERE pizza_name = 'mushroom pizza', 'pepperoni pizza'),
+    info_menu AS
+(SELECT name AS pizzeria_name, id FROM pizzeria)
+
+SELECT pizza_name, pizzeria_name, price
 FROM info_pizza
-JOIN info_menu
-ON info_pizza.id = info_menu.pizzeria_id
-ORDER BY 1, 2;
+	JOIN
+info_menu ON info_pizza.pizzeria_id = info_menu.id
+ORDER BY pizza_name, pizzeria_name;
